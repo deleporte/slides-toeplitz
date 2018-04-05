@@ -23,3 +23,5 @@
 *.synctex.gz
 *~
 *.el
+*.snm
+*.nav
