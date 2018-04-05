@@ -1,0 +1,669 @@
+\documentclass[mathserif]{beamer}
+\usetheme{Luebeck}
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc} % Uses the utf8 input encoding
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+
+\usepackage[nomath]{kpfonts}
+\usepackage{eulervm}
+\usepackage{amssymb}
+%\usepackage{default}
+
+\input{thm-config}
+\title{Spectre à basse énergie des opérateurs de Toeplitz}
+\author[Alix Deleporte]{Alix Deleporte\\Sous la direction de Nalini Anantharaman}
+\institute[IRMA]{Institut de Recherche Mathématique Avancée}
+
+\AtBeginSection
+{
+	\begin{frame}
+		\frametitle{Plan}
+		\tableofcontents[currentsection]
+	\end{frame}
+	
+}
+
+\newcommand{\spline}{\hline}
+\renewcommand{\arraystretch}{1.3}
+\begin{document}
+\begin{frame}
+	\titlepage
+      \end{frame}
+
+      \begin{frame}
+        \frametitle{Introduction}
+        Spins sur Kagom\'e
+      \end{frame}
+
+\section{La quantification de Toeplitz}
+
+\subsection{Construction g\'eom\'etrique}
+
+
+\begin{frame}\frametitle{Quantifications}
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\spline
+	    Mécanique classique & Mécanique quantique\\
+		\spline
+		\uncover<2->{Variété symplectique $M$} & \uncover<2->{Espace de Hilbert $H$}\\ 
+		\spline 
+		\uncover<3->{Fonction $a\in C^{\infty}(M,\R)$} & \uncover<3->{Opérateur auto-adjoint $A\in L(H)$}\\
+		\spline
+		\uncover<4->{Flot hamiltonien de $a$} & \uncover<4->{Flot de $e^{itA/\hbar}$}\\
+		\spline
+	\uncover<5->{Crochet de Poisson} & \uncover<5->{Crochet de Lie}\\
+		\spline
+	\end{tabular}\end{center}
+	\begin{itemize}
+	\uncover<6>{\item Quantification : pour un modèle donné de mécanique classique, comment construire un modèle quantique associé ?
+	
+	\item Semi-classique : le modèle quantique dépend d'un petit paramètre $\hbar$. Que dire de l'asymptotique $\hbar \to 0$ ?}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quantification de Weyl et quantification
+    g\'eom\'etrique}
+  Deux approches historiques diff\'erentes.
+  \begin{enumerate}
+  \item Ann\'es 30 (motivations physiques):
+    \begin{itemize}
+    \item vari\'et\'e $M=\R^{2n}$,
+    symbole $a(q,p)$.
+  
+  \item Espace de Hilbert $L^2(\R^n)$.
+  \item Op\'erateur associ\'e : on remplace $p$ par $-ih\nabla$.
+  \item Exemple : particule massive soumise à un potentiel:
+    \[
+      |p|^2+V(q)\rightsquigarrow -h^2\Delta+V\]
+    \end{itemize}
+  \uncover<2>{\item Ann\'ees 60 (motivations math\'ematiques):
+    \begin{itemize}
+    \item Vari\'et\'e symplectique v\'erifiant
+      $[\omega] \in H^2(M,2\pi\Z)$.
+    \item Polarisation: distribution lagrangienne $P$
+      int\'egrable.
+    \item Espace de Hilbert: sections $L^2$ d'un fibr\'e invariantes par $P$.
+    \item Exemple : repr\'esentations irr\'eductibles de
+      dimension finie d'un groupe de Lie compact.}
+    \end{itemize}
+    \end{enumerate}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Fibr\'es pr\'equantifiants et vari\'et\'es de K\"ahler}
+    \begin{itemize}
+    \item Condition d'int\'egrabilit\'e $\Leftrightarrow$ Existence
+      d'un fibr\'e en droites complexes $L\to M$ avec une structure
+      hermitienne $h$ telle que $curv(h)=\omega$.
+    \uncover<2->{\item Vari\'et\'e de K\"ahler (symplectique, complexe et
+      riemannienne) : on prend pour polarisation $T_{1,0}M$.}
+    \uncover<3->{\item Espace de Hilbert: $H_0(M,L)$. Limite semi-classique : on
+      remplace $L$ par $L^{\otimes N}$, de courbure $N\omega$.}
+    \uncover<4->{\item Kodaira: si $M$ est compacte, $\dim H_0(M,L^{\otimes N})$ est
+      donn\'ee par Riemann-Roch (polyn\^ome en $N$ de degr\'e $\dim_{\C}M$).}
+    \end{itemize}
+  \end{frame}
+
+\subsection{Op\'erateurs de Toeplitz}
+
+
+  \begin{frame}
+    \frametitle{Quantification de Toeplitz}
+    \begin{defn}
+      \begin{itemize}
+      \item Le projecteur de Szeg\H{o} $S_N$ est le projecteur orthogonal de
+      $L^2(M,L^{\otimes N})$ dans $H_0(M,L^{\otimes N})$.
+    
+    \item Si $a\in C^{\infty}(M,\R)$, l'op\'erateur de Toeplitz
+      associ\'e est \[T_N(a)=S_Na:H_0(M,L^{\otimes N})\mapsto
+        H_0(M,L^{\otimes N}).\]
+      \end{itemize}
+    \end{defn}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exemple: $\C^n$}
+    \begin{itemize}
+    \item 
+    On peut expliciter les espaces de Hardy et le projecteur de
+    Szeg\H{o}.
+    \[H_0(\C^n,L^{\otimes N})\simeq \left\{f\text{ enti\`ere
+        },\, \int_{\C^n}f(z)e^{-N|z|^2}<+\infty\right\}\]
+
+      \[S_N(z,w)=\cfrac{N^n}{\pi^n}\exp\left(-\frac N2|z-w|^2+iN\Im(z\cdot \overline{w})\right)\]
+    \uncover<2>{\item Recette de quantification:
+      \[
+        T_N(z\mapsto
+        \overline{z}^{\alpha}z^{\beta})=N^{-\alpha}\partial^{\alpha}z^{\beta}.
+        \]}
+\end{itemize}
+    \end{frame}
+
+    \section{Analyse du noyau de Szeg\H{o}}
+
+\subsection{Op\'erateurs int\'egraux de Fourier}
+
+\begin{frame}
+  \frametitle{Th\'eor\`eme de la phase stationnaire}
+  On veut \'etudier des int\'egrales de la forme
+  \[
+    \int e^{iN\phi(x)}a(x)\dd x
+  \]
+  dans la limite $N\to +\infty$, où $\phi$ et $a$ sont des fonctions lisses.
+  \begin{itemize}
+  \uncover<2->{\item L\`a o\`u $\nabla \phi$ ne s'annule pas, on peut int\'egrer
+    par parties autant qu'on veut, contribution $O(N^{-\infty})$.}
+\uncover<3>{\item L\`a o\`u $\phi$ a un point critique de Morse, apr\`es un
+    changement de variable, on a un d\'eveloppement asymptotique car
+    \[
+      \int e^{iN|x|^2}a(x)\dd x=N^{-\frac
+        d2}\sum_{k=0}^K\frac{N^{-k}}{k!}\Delta^ka(0)+O(N^{-k+1}).
+      \]}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Phases complexes}
+  \begin{itemize}
+  \item 
+  Si $\phi$ est \`a valeurs complexes, l'\'equation $\nabla \phi=0$
+  peut ne pas avoir de solutions dans $\R^d$.
+\uncover<2->{\item Il faut prolonger $\phi$ et $a$ de manière analytique, ou
+  quasianalytique, dans $\C^d$, puis changer de contour
+  d'int\'egration.}
+\end{itemize}
+  \uncover<3>{\'Enonc\'es pr\'ecis beaucoup plus techniques.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Op\'erateurs int\'egraux de Fourier}
+  \begin{itemize}
+      
+  \item Op\'erateurs à noyaux:
+    \[
+      Af(x)=\int A(x,y)f(y)\dd y.
+      \]
+  \uncover<2->{\item Application de la phase stationnaire: \'etude des op\'erateurs
+    \`a noyaux de la forme
+    \[
+      A(x,y)=\int_{\xi\in E}e^{i\xi\cdot\Phi(x,y)}a(x,\xi,y)\dd \xi.
+    \]
+}
+  \uncover<3>{\item Op\'erateurs diff\'erentiels: $\Phi(x,y)=x-y$, $E=\R^d$,
+    et $a$ est un polyn\^ome en $\xi$.}
+  \end{itemize}
+\end{frame}
+\subsection{D\'eveloppement asymptotique du projecteur de Szeg\H{o}}
+\begin{frame}
+  \frametitle{Expression du projecteur de Szeg\H{o}}
+  \begin{thm}[Boutet-Sj\"ostrand, Shiffman-Zelditch]
+    Sur une vari\'et\'e K\"ahler compacte, dans les cartes locales, le
+    projecteur de Szeg\H{o} $S_N$ correspond au $N$-ième mode de
+    Fourier d'un OIF invariant par une action de $\S^1$.
+    \[
+      S_N(x,y)=e^{N\Phi(x,y)}\sum_{k=0}^KN^{n-k}a_n(x,y)+O(N^{-n-K-1}).
+    \]
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cons\'equences}
+\begin{itemize}
+  \item 
+  On a $\Re\Phi(x,y)<0$ si $x<y$ donc $S_N$ d\'ecroît très vite loin
+  de la diagonale, comme pour le cas $\C^d$.
+\uncover<2>{\item Près de z\'ero on a \[\Phi(x,y)=-\frac 12 |x-y|^2+i\Im(x\cdot
+    \overline{y})+O((x,y)^3),\] donc le cas $\C^d$ est un modèle local
+  universel dans l'asymptotique $N\to +\infty$.}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exemples}
+  \begin{enumerate}
+  \item $\C\mathbb{P}^1$: dans la projection st\'er\'eographique, on a
+    \[
+      S_N(z,w)=\frac{N}{\pi}\left(\cfrac{1+z\overline{w}}{\sqrt{(1+|z|^2)(1+|w|^2)}}\right)^N.
+    \]
+    
+  \item $\mathbb{H}$: dans le modèle du disque de Poincar\'e, on
+    a
+    \[
+      S_N(z,w)=\frac{N}{\pi}\left(\cfrac{\sqrt{(1-|z|^2)(1-|w|^2)}}{1-z\overline{w}}\right)^N.
+    \]
+    
+  \end{enumerate}
+\end{frame}
+
+\section{Localisation des fonctions propres à basse \'energie}
+
+\subsection{\'Etat de l'art}
+\begin{frame}
+  \frametitle{Localisation}
+  \begin{defn}
+    Une suite $(u_N)_{N\in \N}$ où chaque $u_N$ est un élément de
+    $H_0(M,L^{\otimes N})$ se \emph{localise} sur un fermé $Z\subset
+    M$ lorsque, pour tout ouvert $V$ à distance non-nulle de $Z$, on
+    a, quand $N\to +\infty$,
+    \[
+      \int_V |u_N|^2_h\dd Vol=O(N^{-\infty}).
+    \]
+  \end{defn}
+  \begin{ex}
+    Pour $x=(m,v)\in L^*$, la forme $e_x^N:u\mapsto
+    \langle v^{\otimes N},u(m)\rangle_{L^*,L}$ est continue de $H_0(M,L^{\otimes N})$ dans $\C$. Son dual
+    normalisé $\psi_x^N$, état cohérent en $x$, est localisé en $x$.
+  \end{ex}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Localisation près du lieu minimal}
+  \begin{prop}
+    Soit $h\in C^{\infty}(M)$ et $E\in h(M)$.
+
+    Si $(u_N)$ est une suite de fonctions propres normalis\'ees de
+    $T_N(h)$ avec valeur propre $\lambda_N=E+O(N^{-\epsilon})$, alors $(u_N)$ est
+    localisée sur $\{h=E\}$.
+  \end{prop}
+  \begin{preuve}
+    Le d\'eveloppement du noyau de Szeg\H{o} donne un calcul
+    fonctionnel
+    \[
+      T_N(f)T_N(g)=T_N(fg)+N^{-1}T_N(C_1(f,g))+N^{-2}T_N(C_2(f,g))+...
+    \]
+    Où $C_i$ est un opérateur bidifférentiel de degré $2i$.
+    On peut donc estimer $\langle u_N,T_N((h-E)^{2n}),u_N\rangle$
+  \end{preuve}
+\end{frame}
+
+\subsection{Critères sous-principaux}
+\begin{frame}
+  \frametitle{Valeur caractéristique}
+  Si $q$ est une forme quadratique définie positive sur $\R^{2n}$,
+  alors il existe une base symplectique $(e_i,f_i)_{1\leq i \leq n}$
+  pour laquelle
+  \[
+    Q\left(\sum x_ie_i+y_if_i\right)=\sum_{i=1}^n \lambda_i(x_i^2+y_i^2).
+  \]
+  \begin{prop}
+    \[\inf\Sp T_N(Q)=N^{-1}\left(\frac {\tr(Q)}{4}+\sum_{i=1}^n\lambda_i\right).\]
+  \end{prop}
+  On pose $\mu(Q)=\inf\Sp T_1(Q)$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cas d'un symbole à plusieurs puits}
+   \begin{minipage}[l]{0.3\linewidth}
+     \includegraphics[width=\linewidth]{wells.png}
+   \end{minipage}
+   \begin{minipage}[r]{0.65\linewidth}
+     Que dire si $h$ est minimale en des points critiques non-dégénérés
+     ?
+     \uncover<2->{
+       \begin{thm}[D.]
+         Les vecteurs propres de plus petite valeur propre se concentre
+         uniquement en les points \og minimaux \fg.
+       \end{thm}
+     }
+     Ce qu'on minimise, c'est le $\mu$ de la hessienne en ce point.
+     \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cas g\'en\'eral}
+  \begin{thm}[D.]
+    D\`es qu'il existe $C,\alpha>0$ tel que, pour tout $t\geq 0$, on ait
+    \[
+      dist(\{h\leq t\},\{h=0\})\leq Ct^{\alpha},
+    \]
+    alors les vecteurs propres d'énergie plus petite que $\min
+    \Sp(T_N(h))+CN^{-\epsilon}$ se concentrent uniquement sur
+    \[
+      \{h(x)=0, \mu(Hess(h)(x))\text{ est minimal}\}
+    \]
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cas particulier 1: Morse-Bott}
+  \begin{itemize}
+  \item On suppose que $h$ s'annulle à l'ordre $2$ sur une
+    sous-variété $Z$ de rang symplectique constant/
+  \uncover<2->{\item On a une forme normale locale pour $h$ à symplectomorphisme
+    près.}
+  \uncover<3->{\item D\'eveloppement asymptotique de la première fonction propre et
+    de la valeur propre associé, gap spectral $N^{-\frac 32}$.
+  \item Loi de Weyl dans des fenêtres de taille jusque $\epsilon N^{-1}$.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cas particulier 2: Point de croisement}
+  \begin{itemize}
+  \item $\{h=0\}$ contient un nombre fini de points près duquel il est
+    constitué de deux sous-variétés isotropes avec intersection transverse.
+  \uncover<2->{\item On a une forme normale locale pour $h$ à symplectomorphisme
+    près.}
+  \uncover<3->{\item D\'eveloppement asymptotique de la première fonction propre et
+    de la valeur propre associé, gap spectral $N^{-\frac 43}$.
+  \item Loi de Weyl dans des fenêtres de taille jusque $\epsilon N^{-1}$.}
+  \end{itemize}
+\end{frame}
+\subsection{Perspectives}
+\begin{frame}
+  \frametitle{Travaux en cours}
+  \begin{enumerate}
+  \item Dynamique effective à petite énergie.
+    \uncover<2>{\item Estimées exponentielles en r\'egularit\'e analytique.
+      }
+  \end{enumerate}
+\end{frame}
+
+% \begin{frame}\frametitle{Introduction}
+% 	\begin{itemize}
+% 		\item Spins quantiques : triplet de matrices hermitiennes $S_x,S_y,S_z\in M_{2S+1}(\C)$, avec$$[S_a,S_b]=\frac{i}{S}\epsilon_{abc}S_c$$
+% 		\item Pour $S=\frac 12$, on trouve les matrices de Pauli
+% 		$$S_x=\tiny{\frac 12\begin{pmatrix}
+% 		0& 1\\1& 0
+% 		\end{pmatrix}}\quad S_y=\frac 12\begin{pmatrix}
+% 		0& i\\-i& 0
+% 		\end{pmatrix}\quad S_z=\frac 12\begin{pmatrix}
+% 		1& 0\\0& -1
+% 		\end{pmatrix}$$
+% 		\item Si $G$ est un graphe fini quelconque, on veut étudier l'opérateur sur $(\C^{2S+1})^{\otimes |G|}$
+% 		$$H=\sum_{e\sim f}S_{x,e}S_{x,f}+S_{y,e}S_{y,f}+S_{z,e}S_{z,f}$$
+% 		dans la limite $S\to +\infty$.
+% 	\end{itemize}
+% \end{frame}
+
+% \section{Opérateurs de Toeplitz sur les espaces de Bargmann}
+% \subsection{Les espaces de Bargmann}
+% \begin{frame}\frametitle{Espaces de Bargmann}
+% 	Les espaces de Bargmann sont des espaces $L^2$ de fonctions holomorphes sur $\C^n$, avec un poids.
+% 	\begin{equation*}
+% 		B_N(\C^n)=\left\{z\mapsto \exp\left(-\frac N2|z|^2\right)f(z),\,f\text{ holomorphe}\right\}\cap L^2(\C^n)
+% 	\end{equation*}
+% 	Ce sont des sous-espaces fermés de $L^2(\C^n)$.
+% \end{frame}
+% \begin{frame}\frametitle{Projecteur de Szeg\H{o}}
+% 	Soit $\Pi_N$ le projecteur orthogonal depuis $L^2(\C^n)$ sur $B_N(\C^n)$. $\Pi_N$ admet un noyau de Schwartz :
+% 	\begin{equation*}
+% 		\Pi_N(z,w)=\frac{N^n}{\pi^n}\exp\left[N(-\frac 12 |z-w|^2+i\Im(z\cdot \overline{w}))\right].
+% 	\end{equation*}
+% 	Quand $N\to +\infty$, le noyau décroît exponentiellement vite loin de la diagonale. L'échelle typique d'interaction est $N^{-1/2}$.
+% \end{frame}
+% \subsection{Définition}
+% \begin{frame}
+% \begin{defn}
+% 	Soit $h\in C^{\infty}(\C^n)$ une fonction lisse qu'on suppose bornée, et $N\in \N$. On note $T_N(h)$ et on appelle opérateur de Toeplitz associé à $h$, l'opérateur
+% 	\begin{equation*}
+% 		\begin{array}{rcl}
+% 		T_N(h):B_N(\C^n)&\mapsto & B_N(\C^n)\\
+% 		u& \mapsto& \Pi_N(hu).
+% 		\end{array}
+% 	\end{equation*}
+% \end{defn}
+% Si $h$ n'est pas bornée, on peut construire $T_N(h)$ comme un opérateur non-borné sur $B_N(\C^n)$. 
+
+% L'opération $h\mapsto T_N(h)$ est linéaire et préserve l'adjoint. Si $h$ est à valeurs réelles, $T_N(h)$ est formellement auto-adjoint.
+% \end{frame}
+
+% \begin{frame}\frametitle{Quantification anti-Wick}
+% 		\begin{itemize}
+% 		\item<1-> On a $T_N(1)=1$, et si $h$ est holomorphe, $T_N(h)=h$ ; par exemple $T_N(z_i)=z_i$.
+		
+% 		\item<2-> Par ailleurs $T_N(\overline{z}_i)=N^{-1}\partial_i.$
+		
+% 		\item<3-> Si $h:z\mapsto \overline{z}^{\alpha}z^{\beta}$, alors $T_N(h)=N^{-|\alpha|}\partial^{\alpha}z^{\beta}$.
+		
+% 		\item<4-> Si $q$ est une forme quadratique sur
+%                   $\R^{2n}$, définie positive, alors $T_N(q)$ est à
+%                   résolvante compacte. Sa première valeur propre
+%                   $\mu_N(q)=N^{-1}\mu_1(q)$ est strictement positive.
+
+%                   \begin{equation*}
+%                     \mu_1(q)=\min \Sp(Op^W_1(q)) + \frac 12 \tr(q)
+%                   \end{equation*}
+% 		\end{itemize}
+% \end{frame}
+
+% \subsection{Propriétés semiclassiques}
+% \begin{frame}\frametitle{Composition et crochet}
+% 	\begin{prop}
+% 		Soient $a$ et $b$ lisses et bornées sur $\C^n$. Alors il existe une suite $(c_i)_{i\in \N}$ de fonctions lisses et bornées sur $\C^n$, avec $c_0=ab$, telle que, quand $N\to +\infty$, on a :
+% 		\begin{equation*}
+% 			T_N(a)T_N(b)=T_N(c_0)+N^{-1}T_N(c_1)+N^{-2}T_N(c_2)+\ldots
+% 		\end{equation*}
+		
+% 		\uncover<2>{En particulier,
+% 		\begin{equation*}
+% 			[T_N(a),T_N(b)]=\cfrac{i}{N}T_N(\{a,b\})+O(N^{-2}).
+% 		\end{equation*}}
+% 	\end{prop}
+% \end{frame}
+
+% \section{Généralisation à des variétés de K\"ahler}
+% \begin{frame}
+% 	\begin{itemize}
+% 		\item On veut généraliser les espaces de Bargmann à d'autres variétés complexes.
+% 		\item Comme précédemment, si on ne choisit pas un bon poids, on a un résultat trivial.
+% 		\item<2> Plutôt que de considérer des espaces à poids, on va considérer des espaces de sections holomorphes.
+% 	\end{itemize}
+% \end{frame}
+% \subsection{Espaces de Hardy}
+% \begin{frame}\frametitle{Notations}
+% 	\begin{itemize}
+% 		\item $M$ est une variété compacte de K\"ahler, avec forme symplectique $\omega$.
+% 		\item $L$ est un fibré en droites complexes sur $M$,
+%                   muni d'une structure hermitienne $h$, telle que la courbure de $L$ est $\omega$.
+% 		\item $N\geq 1$ est un entier naturel.
+% 	\end{itemize}
+% 	\uncover<2->{Alors si $s$ est une section (continue) de $L^{\otimes N}$, on peut calculer $$\|s\|_{L^2}:=\int_M h_N(s(m))\cfrac{\omega^{\wedge n}}{n!}.$$
+% 	Par complétion, on peut parler de sections de carré intégrable de $L^{\otimes N}$, c'est un Hilbert.}
+% \end{frame}
+
+% \begin{frame}\frametitle{Espaces de Hardy}
+% 	\begin{defn}
+% 		On appelle \emph{espace de Hardy N-équivariant} l'espace $H_N(M,L)$ des sections $L^2$ et holomorphes de $L^{\otimes N}$.
+% 	\end{defn}
+% 	C'est un espace de dimension finie, la dimension est un polynôme en $N$ (Riemann-Roch).
+% 	\uncover<2>{\begin{defn}
+% 		Le \emph{projecteur de Szeg\H{o}\hspace{0.3em} $S_N$ est le projecteur orthogonal de $L^2(M,L^{\otimes N})$ sur $H_N(M,L)$}.
+% 	\end{defn}
+% 	Il a toujours un noyau de Schwartz (section de $L^{\otimes N}\times L^{\otimes -N}$) car $H_N(M,L)$ est de dimension finie.}
+% \end{frame}
+
+% \begin{frame}\frametitle{Toeplitz}
+% 	\begin{defn}
+% 		Soit $h\in C^{\infty}(M)$ une fonction lisse, et $N\in \N$. On note $T_N(h)$ et on appelle opérateur de Toeplitz associé à $h$, l'opérateur
+% 		\begin{equation*}
+% 		\begin{array}{rcl}
+% 		T_N(h):H_N(M,L)&\mapsto & H_N(M,L)\\
+% 		u& \mapsto& S_N(hu).
+% 		\end{array}
+% 		\end{equation*}
+% 	\end{defn}
+% 	$T_N(h)$ agit sur un espace de dimension finie, et est symétrique quand $h$ est à valeurs réelles.
+% \end{frame}
+% \subsection{Propriétés semiclassiques}
+% \begin{frame}\frametitle{Asymptotique du noyau de Szeg\H{o}}
+% 	\begin{prop}[Boutet-Sjostrand 74]
+% 		Pour tout $\epsilon>0$ et $k\in \N$ il existe $C$ tel
+%                 que, pour tout $N\in \N$ :
+% 		\begin{equation*}
+% 			d(x,y)>\epsilon \Rightarrow |S_N(x,y)|\leq C N^{-k}
+% 		\end{equation*}
+% 	\end{prop}
+% 	\uncover<2>{\begin{prop}[Charles 00, Zelditch 02, Ma 06]
+% 		Dans un bon système de coordonnées locales, près d'un point de la diagonale, on a
+% 		\begin{equation*}
+% 			S_N(z,w)\simeq\Pi_N(z,w)\left[1+\sum_{k=1}^KN^{-k/2}b_k(\sqrt{N}z,\sqrt{N}w)\right]
+% 		\end{equation*}
+% 	\end{prop}}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Asymptotique du noyau de Szeg\H{o}}
+%   \begin{prop}[D.]
+%     Pour tout $\epsilon>0$ il existe $\delta>0$ tel que, dans un bon
+%     système de coordonées locales, si $u$ est supportée sur
+%     $B(0,N^{-\frac 12+\delta})$, alors
+% \[S_Nu=\Pi_Nu+O(N^{-\frac 12 + \epsilon}).\]
+%   \end{prop}
+% \end{frame}
+
+% \begin{frame}\frametitle{Composition et crochet}
+% 	\begin{prop}[Charles 00, Schlichenmaier 02]
+% 		Soient $a$ et $b$ lisses sur $M$. Alors il existe une suite $(c_i)_{i\in \N}$ de fonctions lisses sur $M$, avec $c_0=ab$, telle que, quand $N\to +\infty$, on a :
+% 		\begin{equation*}
+% 		T_N(a)T_N(b)=T_N(c_0)+N^{-1}T_N(c_1)+N^{-2}T_N(c_2)+\ldots
+% 		\end{equation*}
+		
+% 		En particulier,
+% 		\begin{equation*}
+% 		[T_N(a),T_N(b)]=\cfrac{i}{N}T_N(\{a,b\})+O(N^{-2}).
+% 		\end{equation*}
+% 	\end{prop}
+% \end{frame}
+% \subsection{Exemple : la sphère}
+% \begin{frame}\frametitle{Les espaces de Hardy sur la sphère}
+% 	\begin{itemize}
+% 	\item $H_N(\CP^1,L)$ correspond à l'ensemble des fonctions méromorphes sur la sphère, avec un pôle d'ordre au plus $N$.
+	
+% 	\item Donc $H_N(\CP^1,L)\simeq \C_{N}[X]$, de dimension $N+1$.
+	
+% 	\item Une base hilbertienne est constituée des fonctions
+% 	$$e_{k,N}(X)=\frac{\binom{k}{N}^{1/2}}{N}X^k.$$
+% 	\end{itemize}
+% \end{frame}
+
+% \begin{frame}
+% 	\frametitle{Fonctions coordonnées}
+% 	\begin{minipage}{0.44\linewidth}
+% 	\includegraphics[scale=0.3]{sphere.png}
+% 	\end{minipage}
+% 	\begin{minipage}{0.55\linewidth}
+% 	\begin{itemize}
+% 			\item Il y a trois fonctions coordonnées sur la sphère : $x$, $y$ et $z$.
+% 	\item Les quantifications de Toeplitz de ces trois fonctions sont les opérateurs de spin, pour $S=\frac{N}{2}$.
+% 	\end{itemize}\end{minipage}
+% \end{frame}
+
+% \section{La plus petite valeur propre}
+% \begin{frame}\frametitle{Localisation a priori}
+% 	\begin{itemize}
+% 		\item Dans le modèle classique, pour minimiser l'énergie, on se place en n'importe quel point où l'énergie est minimale.
+% 		\item Que se passe-t-il pour un vecteur propre associé à la première valeur propre de $T_N(h)$ quand $N\to +\infty$ ?
+% 	\end{itemize}
+% 	\only<1>{\begin{prop}[Charles 00]
+% 		Un vecteur propre de valeur propre minimale est
+%                 uniformément $O(N^{-\infty})$ hors d'un voisinage fixé de $\{h=min(h)\}$.
+% 	\end{prop}}
+% 	\only<2>{\begin{prop}[D.]
+%             Si le lieu minimal est non dégénéré, alors pour tout $\delta\in [0,1/2[$, un vecteur propre de valeur propre minimale est uniformément $O(N^{-\infty})$ hors d'un voisinage de $\{h=min(h)\}$ de taille $N^{-\delta}$.
+% 	\end{prop}}
+% Peut-on être plus précis ?
+% \end{frame}
+% \subsection{Puits}
+% \begin{frame}
+%   \frametitle{Cas de plusieurs puits}
+%   \begin{minipage}[l]{0.3\linewidth}
+%     \includegraphics[width=\linewidth]{wells.png}
+%   \end{minipage}
+%   \begin{minipage}[r]{0.65\linewidth}
+%     Que dire si $h$ est minimale en des points critiques non-dégénérés
+%     ?
+
+%     \uncover<2->{
+%       \begin{thm}[D.]
+%         Les vecteurs propres de plus petite valeur propre se concentre
+%         uniquement en les points \og minimaux \fg.
+%       \end{thm}
+%     }
+
+%     \uncover<3>{Ce qu'on minimise, c'est le $\mu$ de la hessienne en
+%       ce point.}
+%   \end{minipage}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Le cas le plus général}
+% Pour $h$ quelconque, en tout point minimal on peut considérer le $\mu$
+% de la Hessienne (qui est semi-définie positive).
+%   \begin{thm}
+%     On suppose seulement $\min(f)=0$. Soit $V$ à distance positive de $\{\mu=\mu_{min}\}$.
+%     Alors toute suite $(u_N)$ d'états fondamentaux normalisés de
+%     $T_N(h)$ vérifie $$\int_{V}|u_N|^2\dd Vol=O(N^{-\infty}).$$
+%   \end{thm}
+% \end{frame}
+% \begin{frame}
+%   \frametitle{Cas régulier}
+%   Le cas régulier est une généralisation des \og minipuits \fg de
+%   Helffer-Sj\"ostrand.
+
+% Si $\mu$ est minimale en un seul point $x_0$ près duquel $\{h=0\}$ est
+% une sous-variété isotrope, et que ce minimum est non dégénéré, alors
+%     \begin{itemize}
+%     \item La première valeur propre est simple et admet un
+%       développement en puissances de $N^{-\frac 14}$.
+%     \item L'état fondamental se concentre à vitesse $N^{-\frac 12+}$
+%       sur $\{f=0\}$ et à vitesse $N^{-\frac 14+}$ en $x_0$ le long de
+%       $\{f=0\}$.
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Cas singulier}
+%   On suppose que $\{h=0\}$ est une union de deux sous-variétés qui se
+%   croisent en un point où $\mu$ est minimale.
+%     \begin{itemize}
+%     \item La première valeur propre est simple et admet un
+%       développement en puissances de $N^{-\frac 16}$.
+%     \item L'état fondamental se concentre à vitesse $N^{-\frac 12+}$
+%       sur $\{f=0\}$ et à vitesse $N^{-\frac 13+}$ en $x_0$ le long de
+%       $\{f=0\}$.
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Démarche de la preuve}
+%   \begin{enumerate}
+%   \item Forme normale symplectique de $h$ dans les différentes
+%     situations.
+%   \item $\,$\uncover<2->{Application d'une \emph{quantum map} qui quantifie ce
+%     symplectomorphisme en une transformation unitaire des états
+%     quantiques (Egorov).}
+%   \item $\,$\uncover<3>{Théorie perturbative sous-principale : l'opérateur
+%     est \[A_0+rA_1+r^2A_2+r^3A_3+\ldots\]
+% et $A_0+rA_1$ est elliptique pour tout $r>0$.}
+%   \end{enumerate}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Exemples}
+% Le croisement de variétés arrive vraiment en physique ! Par exemple, si on prend des spins
+%       antiferromagnétiques sur un graphe en triangles.
+% \begin{minipage}[l]{0.3\linewidth}
+%       \includegraphics[scale=0.2]{hexa.png}\end{minipage}\begin{minipage}[r]{0.65\linewidth}
+%       On conjecture que les configurations favorisées sont planaires,
+%       dans certains cas.
+%       \end{minipage}
+
+% \end{frame}
+% \subsection{Conjectures}
+% \begin{frame}
+%   \frametitle{Conjectures}
+%   \begin{description}
+%   \item[Localisation exponentielle] Pour l'instant on n'a que des
+%     estimations à $O(N^{-\infty})$ pour la localisation. Peut-on
+%     prétendre à des estimations du type $O(\exp(-cN))$ ?
+%   \item[Limite thermodynamique] Au lieu de considérer une variété $M$
+%     on regarde $M^n$ et on fait tendre $n\to +\infty$. Quel
+%     comportement vis-à-vis la limite semiclassique ?
+%   \end{description}
+% \end{frame}
+\end{document}
