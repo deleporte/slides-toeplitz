@@ -32,7 +32,15 @@
 
       \begin{frame}
         \frametitle{Introduction}
-        Spins sur Kagom\'e
+        \begin{center}
+          \only<1>{\includegraphics[scale=8]{Alcazar.jpg}}
+          \only<2>{\includegraphics[scale=8]{Alcazar-Kagome.png}}
+          \only<3>{\includegraphics[scale=8]{Kagome.png}}
+          % \only<4>{\includegraphics[scale=8]{Spins.png}}
+          % \only<5>{includegraphics[scale=8]{HAF.png}}
+          
+          \uncover<1-2>{\tiny{source: patterninislamicart.com}}
+        \end{center}
       \end{frame}
 
 \section{La quantification de Toeplitz}
@@ -155,11 +163,11 @@
   \begin{itemize}
   \uncover<2->{\item L\`a o\`u $\nabla \phi$ ne s'annule pas, on peut int\'egrer
     par parties autant qu'on veut, contribution $O(N^{-\infty})$.}
-\uncover<3>{\item L\`a o\`u $\phi$ a un point critique de Morse, apr\`es un
+\uncover<3->{\item L\`a o\`u $\phi$ a un point critique de Morse, apr\`es un
     changement de variable, on a un d\'eveloppement asymptotique car
     \[
-      \int e^{iN|x|^2}a(x)\dd x=N^{-\frac
-        d2}\sum_{k=0}^K\frac{N^{-k}}{k!}\Delta^ka(0)+O(N^{-k+1}).
+      \int e^{iN|x|^2}a(x)\dd x\uncover<4>{=N^{-\frac
+        d2}\sum_{k=0}^K\frac{N^{-k}}{k!}\Delta^ka(0)+O(N^{-k+1}).}
       \]}
   \end{itemize}
   
