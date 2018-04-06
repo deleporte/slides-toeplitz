@@ -54,11 +54,11 @@ $$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
 
 \begin{frame}
   \frametitle{Szeg\H{o} kernel}
-  Hilbert basis indexed by $\N^{n}$.
+  Hilbert basis indexed by $\N^{n}$:
 
-$$e_{\nu}=\cfrac{N^{|\nu|}}{\nu_1!\nu_2!\ldots\nu_n!}z^{\nu}e^{-\frac{N|z|^2}{2}}.$$
+$$e_{\nu}=\uncover<2->{\cfrac{N^{|\nu|}}{\nu_1!\nu_2!\ldots\nu_n!}}\,z^{\nu}e^{-\frac{N|z|^2}{2}}.$$
 
-\uncover<2>{From there one recovers $\Pi_N$ with
+\uncover<3>{From there one recovers $\Pi_N$ with
 $$\Pi_N(x,y)=\sum_{\nu\in \N^n} e_{\nu}(x)\overline{e_{\nu}}(y).$$
 
 The Szeg\H{o} kernel decays exponentially fast away from the diagonal.
@@ -92,7 +92,7 @@ with dense domain.}
 \uncover<2->{\item The Toepliz quantization is \emph{anti-Wick}: if $f$ is
   anti-holomorphic and $h$ is holomorphic then
 \[T_N(fgh)=T_N(f)T_N(g)T_N(h).\]}
-\uncover<3>{\vspace{-1em}\item More generally, composition yields a formal series:
+\uncover<3>{\vspace{-1.5em}\item More generally, composition yields a formal series:
 \[T_N(f)T_N(g)=T_N\left(fg+N^{-1}C_1(f,g)+N^{-2}C_2(f,g)+\cdots\right).\]
 
 $C_j$ is a bidifferential operator of total order $2j$.}
@@ -104,7 +104,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
   \begin{itemize}
   \item The Bargmann transform $\mathcal{B}_N$ conjugates $B_N$ and
     $L^2(\R^n)$.
-  \uncover<2->{\item This Bargmann transform is related to the FBI
+  \uncover<2->{\item It is related to the FBI
     transform.}
   \uncover<3->{
   \item With $g_N=(N/\pi)^ne^{-N|z|^2}$ one has
