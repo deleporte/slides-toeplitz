@@ -1,5 +1,9 @@
 \documentclass[mathserif]{beamer}
 \usetheme{Luebeck}
+%\documentclass{article}
+%\usepackage{beamerarticle}
+%\usepackage{graphicx}
+
 \usepackage[francais]{babel}
 \usepackage[utf8]{inputenc} % Uses the utf8 input encoding
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
@@ -224,7 +228,7 @@
   \frametitle{Cons\'equences}
 \begin{itemize}
   \item 
-  On a $\Re\Phi(x,y)<0$ si $x<y$ donc $S_N$ d\'ecroît très vite loin
+  On a $\Re\Phi(x,y)<0$ si $x\neq y$ donc $S_N$ d\'ecroît très vite loin
   de la diagonale, comme pour le cas $\C^d$.
 \uncover<2>{\item Près de z\'ero on a \[\Phi(x,y)=-\frac 12 |x-y|^2+i\Im(x\cdot
     \overline{y})+O((x,y)^3),\] donc le cas $\C^d$ est un modèle local
@@ -280,7 +284,7 @@
     $T_N(h)$ avec valeur propre $\lambda_N=E+O(N^{-\epsilon})$, alors $(u_N)$ est
     localisée sur $\{h=E\}$.
   \end{prop}
-  \begin{preuve}
+  \uncover<2>{\begin{preuve}
     Le d\'eveloppement du noyau de Szeg\H{o} donne un calcul
     fonctionnel
     \[
@@ -288,7 +292,7 @@
     \]
     Où $C_i$ est un opérateur bidifférentiel de degré $2i$.
     On peut donc estimer $\langle u_N,T_N((h-E)^{2n}),u_N\rangle$
-  \end{preuve}
+  \end{preuve}}
 \end{frame}
 
 \subsection{Critères sous-principaux}
@@ -300,10 +304,10 @@
   \[
     Q\left(\sum x_ie_i+y_if_i\right)=\sum_{i=1}^n \lambda_i(x_i^2+y_i^2).
   \]
-  \begin{prop}
+  \uncover<2>{\begin{prop}
     \[\inf\Sp T_N(Q)=N^{-1}\left(\frac {\tr(Q)}{4}+\sum_{i=1}^n\lambda_i\right).\]
   \end{prop}
-  On pose $\mu(Q)=\inf\Sp T_1(Q)$.
+  On pose $\mu(Q)=\inf\Sp T_1(Q)$.}
 \end{frame}
 
 \begin{frame}
@@ -320,7 +324,7 @@
          uniquement en les points \og minimaux \fg.
        \end{thm}
      }
-     Ce qu'on minimise, c'est le $\mu$ de la hessienne en ce point.
+     \uncover<3>{Ce qu'on minimise, c'est le $\mu$ de la hessienne en ce point.}
      \end{minipage}
 \end{frame}
 
