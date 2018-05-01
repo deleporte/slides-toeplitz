@@ -132,8 +132,14 @@
       $L^2(M,L^{\otimes N})$ dans $H_0(M,L^{\otimes N})$.
     
     \item Si $a\in C^{\infty}(M,\R)$, l'op\'erateur de Toeplitz
-      associ\'e est \[T_N(a)=S_Na:H_0(M,L^{\otimes N})\mapsto
-        H_0(M,L^{\otimes N}).\]
+      associ\'e est
+      \[
+        \begin{array}{rcl}
+        T_N(a):H_0(M,L^{\otimes N})&\mapsto&
+                                             H_0(M,L^{\otimes N})\\
+        u &\mapsto& \uncover<2>{S_N(}au\uncover<2>{)}.
+        \end{array}
+      \]
       \end{itemize}
     \end{defn}
   \end{frame}
@@ -271,7 +277,7 @@
   \begin{ex}
     Pour $x=(m,v)\in L^*$, la forme $e_x^N:u\mapsto
     \langle v^{\otimes N},u(m)\rangle_{L^*,L}$ est continue de $H_0(M,L^{\otimes N})$ dans $\C$. Son dual
-    normalisé $\psi_x^N$, état cohérent en $x$, est localisé en $x$.
+    normalisé $\psi_x^N$, état cohérent en $m$, est localisé en $m$.
   \end{ex}
 \end{frame}
 
@@ -298,7 +304,7 @@
 \subsection{Critères sous-principaux}
 \begin{frame}
   \frametitle{Valeur caractéristique}
-  Si $q$ est une forme quadratique définie positive sur $\R^{2n}$,
+  Si $Q$ est une forme quadratique définie positive sur $\R^{2n}$,
   alors il existe une base symplectique $(e_i,f_i)_{1\leq i \leq n}$
   pour laquelle
   \[
