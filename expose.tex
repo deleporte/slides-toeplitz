@@ -15,6 +15,71 @@
 \institute[IRMA]{Institut de Recherche Mathématique
   Avancée\\Université de Strasbourg}
 
+\newcommand{\spline}{\hline}
+\renewcommand{\arraystretch}{1.3}
+\begin{document}
+
+\begin{frame}\frametitle{Introduction}
+	\begin{itemize}
+		\item Quantum spins: triplet of self-adjoint matrices
+                  $S_x,S_y,S_z\in M_{2S+1}(\C)$, with $$[S_a,S_b]=\frac{i}{S}\epsilon_{abc}S_c.$$
+		\item For $S=\frac 12$, one finds the Pauli matrices
+		$$S_x=\tiny{\frac 12\begin{pmatrix}
+		0& 1\\1& 0
+		\end{pmatrix}}\quad S_y=\frac 12\begin{pmatrix}
+		0& i\\-i& 0
+		\end{pmatrix}\quad S_z=\frac 12\begin{pmatrix}
+		1& 0\\0& -1
+		\end{pmatrix}.$$
+		\uncover<2>{\item For any finite graph $G$, we wish to study the
+                  following operator acting on $(\C^{2S+1})^{\otimes |G|}$:
+		$$H=\sum_{e\sim f}S_{x,e}S_{x,f}+S_{y,e}S_{y,f}+S_{z,e}S_{z,f}$$
+		as $S\to +\infty$.}
+	\end{itemize}
+      \end{frame}
+
+            \begin{frame}
+        \frametitle{Introduction}
+%\begin{overlayarea}{\textwidth}{\textheight}
+  \begin{center}
+    \begin{picture}(50,50)
+          \only<1>{\put(-100,-70){\includegraphics[scale=8]{Alcazar.png}}}
+          \only<2>{\put(-100,-70){\includegraphics[scale=8]{Alcazar-Kagome.png}}}
+          \only<3>{\put(-100,-70){\includegraphics[scale=8]{Kagome.png}}}
+          \only<4>{\put(-100,-70){\includegraphics[scale=8]{Kagome-spins.png}}}
+          % \only<5>{includegraphics[scale=8]{HAF.png}}
+        \end{picture}
+      \end{center}
+%      \end{overlayarea}
+
+    \end{frame}
+
+\begin{frame}\frametitle{Introduction}
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\spline
+	    Classical mechanics & Quantum mechanics\\
+		\spline
+		Symplectic manifold $M$ & Hilbert Space $H$\\ 
+		\spline 
+		Function $a\in C^{\infty}(M,\R)$ & Self-adjoint
+                                                   operator $A\in L(H)$\\
+		\spline
+                Hamiltonien flow of $a$ & Flow of $e^{itA/\hbar}$\\
+		\spline
+		Poisson Bracket & Lie Bracket\\
+		\spline
+	\end{tabular}\end{center}\vspace{0em}
+	\begin{itemize}
+	\uncover<2>{\item Quantization : for a given classical
+          model, how to construct an associated quantum
+          model ?
+	
+	\item Semiclassics : the quantum model is $\hbar$-dependent. What
+          can be said in the $\hbar\to 0$ limit ?}
+	\end{itemize}
+\end{frame}
+
 \AtBeginSection
 {
 	\begin{frame}
@@ -24,9 +89,7 @@
 	
 }
 
-\newcommand{\spline}{\hline}
-\renewcommand{\arraystretch}{1.3}
-\begin{document}
+
 \begin{frame}
 	\titlepage
 \end{frame}
