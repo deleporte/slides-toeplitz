@@ -14,27 +14,33 @@
 \author[Alix Deleporte]{Alix Deleporte\\Advisor : Nalini Anantharaman}
 \institute[IRMA]{Institut de Recherche Mathématique
   Avancée\\Université de Strasbourg}
+\titlegraphic{\includegraphics[height=1cm]{ANR.png}}
 
 \newcommand{\spline}{\hline}
 \renewcommand{\arraystretch}{1.3}
 \begin{document}
 
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
 \begin{frame}\frametitle{Introduction}
 	\begin{itemize}
 		\item Quantum spins: triplet of self-adjoint matrices
-                  $S_x,S_y,S_z\in M_{2S+1}(\C)$, with $$[S_a,S_b]=\frac{i}{S}\epsilon_{abc}S_c.$$
-		\item For $S=\frac 12$, one finds the Pauli matrices
-		$$S_x=\tiny{\frac 12\begin{pmatrix}
+                  $(S_x,S_y,S_z)\in M_{2S+1}(\C)$,
+                  with \[[S_x,S_y]=\frac{i}{S}S_z\] and similar
+                  formulas given by direct permutation.
+		\item $S=\frac 12$: Pauli matrices
+		\[S_x=\tiny{\frac 12\begin{pmatrix}
 		0& 1\\1& 0
 		\end{pmatrix}}\quad S_y=\frac 12\begin{pmatrix}
 		0& i\\-i& 0
 		\end{pmatrix}\quad S_z=\frac 12\begin{pmatrix}
 		1& 0\\0& -1
-		\end{pmatrix}.$$
-		\uncover<2>{\item For any finite graph $G$, we wish to study the
-                  following operator acting on $(\C^{2S+1})^{\otimes |G|}$:
-		$$H=\sum_{e\sim f}S_{x,e}S_{x,f}+S_{y,e}S_{y,f}+S_{z,e}S_{z,f}$$
-		as $S\to +\infty$.}
+		\end{pmatrix}.\]
+		\uncover<2>{\item Finite graph $G$ $\rightsquigarrow$ operator on $(\C^{2S+1})^{\otimes |G|}$:
+		\[H_{AF}=\sum_{e\sim f}S_{x,e}S_{x,f}+S_{y,e}S_{y,f}+S_{z,e}S_{z,f}\]}
 	\end{itemize}
       \end{frame}
 
@@ -52,6 +58,24 @@
       \end{center}
 %      \end{overlayarea}
 
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Introduction}
+      \begin{itemize}
+      \item The low-energy states (low-temperature properties) of
+        $H_{AF}$ on subgraphs of the Kagome lattice are very
+        complicated.
+      \item<2-> In the \emph{large spin limit} $S\to +\infty$, one
+        should recover the geometry of the classical energy landscape.
+      \item<2-> Minimisers of
+        \[
+          (\S^2)^{|G|} \mapsto \sum_{e\sim f}u_e\cdot u_f
+        \]
+        form a very complicated set! Not a smooth manifold.
+      \end{itemize}
+
+      \footnotesize{[1] Douçot, Simon, J. Physics A: Math and General 31, no. 28 (1998)}
     \end{frame}
 
 \begin{frame}\frametitle{Introduction}
@@ -89,12 +113,7 @@
 	
 }
 
-
-\begin{frame}
-	\titlepage
-\end{frame}
-
-\section{Toeplitz opreators}
+\section{Toeplitz operators}
 \subsection{Toeplitz operators on $\C^n$}
 \begin{frame}
   \frametitle{Bargmann spaces}
@@ -111,7 +130,7 @@ $$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
   |x-y|^2+iN\Im(x\cdot \overline{y})\right).$$}
   \end{itemize}
 \vspace{-1em}
-\small{[1] Bargmann, V. Comm. Pure Appl. Math. 14, no. 3 (1961): 187–214.}
+\footnotesize{[2] Bargmann, Comm. Pure Appl. Math. 14, no. 3 (1961): 187–214.}
 
 \end{frame}
 
@@ -119,9 +138,9 @@ $$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
   \frametitle{Szeg\H{o} kernel}
   Hilbert basis indexed by $\N^{n}$:
 
-$$e_{\nu}=\uncover<2->{\cfrac{N^{|\nu|}}{\nu_1!\nu_2!\ldots\nu_n!}}\,z^{\nu}e^{-\frac{N|z|^2}{2}}.$$
+$$e_{\nu}={\cfrac{N^{|\nu|}}{\nu_1!\nu_2!\ldots\nu_n!}}\,e^{-\frac{N|z|^2}{2}}z^{\nu}.$$
 
-\uncover<3>{From there one recovers $\Pi_N$ with
+{From there one recovers $\Pi_N$ with
 $$\Pi_N(x,y)=\sum_{\nu\in \N^n} e_{\nu}(x)\overline{e_{\nu}}(y).$$
 
 The Szeg\H{o} kernel decays exponentially fast away from the diagonal.
@@ -186,53 +205,40 @@ $C_j$ is a bidifferential operator of total order $2j$.}
 \begin{frame}
   \frametitle{Hardy spaces and Szeg\H{o} kernel}
   \begin{itemize}
-  \item Geometrical setting: compact K\"ahler manifold $M$.\\
-    \begin{minipage}{0.37\linewidth}\begin{itemize}
-    \item Symplectic form
-    \item Complex structure
-    \end{itemize}
-\end{minipage}
-\uncover<2->{\begin{minipage}{0.52\linewidth}
-
-$\biggl\}$ Compatibility condition
-\end{minipage}}
-\uncover<3->{\item Complex line bundle $L\to M$ with curvature $-i\omega$.}
-\uncover<4->{\item Hardy space $H_N(M,L)$ of holomorphic sections of $L^{\otimes N}$.}
-\uncover<5->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M,L).$}
+  \item Geometrical setting: compact, complex, symplectic manifold $M$
+    under compatibility conditions; complex line bundle $L$ over $M$.
+\uncover<2->{\item Quantum space $H_N(M,L)$ of holomorphic sections of
+  $L^{\otimes N}$ (holomorphic functions are constant).}
+\uncover<3->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M,L).$}
   \end{itemize}
-\uncover<6>{The spaces $H_N(M,L)$ are finite-dimensional in that case. The
+\uncover<4>{The spaces $H_N(M,L)$ are finite-dimensional in that case. The
 line bundles $L^{\otimes N}$ correspond to the weights $e^{-\frac N2
   |\cdot|^2}$ in the flat case.}
 \vspace{1em}
 
-\small{[2] Woodhouse, N. Geometric Quantization. Oxford University Press, 1997.}
+\footnotesize{[3] Woodhouse, Geometric Quantization. Oxford University Press, 1997.}
 \end{frame}
 
 \begin{frame}
   \frametitle{Algebra of Toeplitz operators}
   \begin{itemize}
   \item The Szeg\H{o} kernel $S_N$ has a full expansion near the
-    diagonal, and decays far from it.
+    diagonal, and decays far from it, as $N\to +\infty$.
   \uncover<2->{\item Indeed $S_N$ can be seen as the $N$-th Fourier mode of a
     Fourier Integral Operator with complex phase; the critical set is
     the diagonal.}
 \uncover<3->{\item The dominant term is always $\Pi_N$.}
   \uncover<4>{\item Toeplitz operators form a $C^{*}$-algebra as previously.} 
   \end{itemize}
-\vspace{2em}
+\vspace{1.5em}
 
-\small{[3] Boutet de Monvel, L, Sjöstrand, J. Journées EDP 34–35 (1975): 123–64.
+\footnotesize{[4] Boutet de Monvel, Sjöstrand, Journées EDP 34–35 (1975): 123–64.
 
-[4] Charles, L. Comm. Math. Phys. 239, no. 1–2 (2003): 1–28.
+[5] Charles, Comm. Math. Phys. 239, no. 1–2 (2003): 1–28.
 
-[5] Berman, R., Berndtsson, B., Sjöstrand, J.,  Arkiv För Matematik
+[6] Berman, Berndtsson, Sjöstrand,  Arkiv För Matematik
 46, no. 2 (2008).
-
-[6] Kordyukov, Y. ArXiv Preprint ArXiv:1703.04107, 2017.
 }
-
- 
-
 \end{frame}
 
 \begin{frame}
@@ -247,46 +253,32 @@ quantization of the three base coordinates on $\mathbb{S}^2$ are the Spin
 matrices with spin $S=\frac {N-1}2$.}
 \end{frame}
 
-
-\section{Spin systems in the semiclassical limit}
+\section{localisation of ground states}
+\subsection{Localisation at the classical minimal set}
 \begin{frame}
-  \frametitle{General spin systems}
-\begin{itemize}
-  \item Systems with $n$ spins correspond to the K\"ahler manifold
-  $(\mathbb{S}^2)^n$.
-
-\item We are interested in \emph{antiferromagnetic} systems. Let $G=(V,E)$
-  a finite graph, the antiferromagnetic symbol on
-  $(\mathbb{S}^2)^{|V|}$ is set to $$h_{AF}=\sum_{(i,j)\in
-    E}x_ix_j+y_iy_j+z_iz_j.$$
-\uncover<2>{\item If the graph is bipartite, then the minimum is reached when two
-  neighbours always have opposite values.}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Frustrated systems}
+  \frametitle{Speed of localisation}
+  Spectral study of a Toeplitz operator $T_N(f)$: normalised
+  eigenvector $u_N$ at smallest eigenvalue (can be degenerate).
   \begin{itemize}
-  \item In frustrated systems, the previous solution is not possible.
-  \uncover<2->{\item If the graph is ``made with triangles'', then on each triangle
-    the sum of the vectors should be zero.}
-  \uncover<3>{\item This yields a \emph{degenerate} minimal set, which is not a
-    manifold.
-  \item What behaviour should one expect for the eigenvectors with
-    minimal eigenvalue
-    of $T_N(h_{AF})$?}
-  \end{itemize}
-\vspace{1em}
+    \item<2->  If $f$ is smooth, the ground state decays
+      rapidly in the forbidden region: if $V$ is such that
+      $\inf_V(f)>\min_M(f)$, then \[\int_{V}|u_N|^2=O(N^{-\infty}).\]
+    \item<3> If $f$ is analytic, the ground state decays exponentially
+      fast: there exists $c$ such that
+      \[
+        \int_{V}|u_N|^2=O(N^{-\infty}).
+      \]\vspace{-1em}
+    \end{itemize}
+\uncover<3>{Tool for the analytic case: new analytic microlocal
+  methods}
 
-\small{[7] Douçot, B., and Simon, P.,  J. Physics A: Math and General 31, no. 28 (1998)}
+\footnotesize{\bfseries{[7] Deleporte, in progress (2018)}}
+  \end{frame}
 
-\end{frame}
-
-\section{Melin estimate and localization}
-\subsection{General result}
+\subsection{Subprincipal effects on localisation}
 \begin{frame}
   \frametitle{Characteristic value}
-  Can one improve the lower bound $f\geq 0\Rightarrow T_N(f)\geq 0$ ?
+  Can one improve the lower bound $f\geq 0\Rightarrow T_N(f)\geq 0$?
   \begin{itemize}
   \item If $q$ is a quadratic form in $\C^n$, the minimal eigenvalue
     of $T_N(q)$ is $N^{-1}\mu(q)$ with $$\mu(q)=N^{-1}(Tr^+(q)+\frac
@@ -300,166 +292,56 @@ matrices with spin $S=\frac {N-1}2$.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Case of several wells}
-  \begin{minipage}[l]{0.3\linewidth}
-    \includegraphics[width=\linewidth]{wells.png}
+  \frametitle{Melin estimate and ground state concentratoin}
+  \begin{minipage}[l]{0.3\linewidth}\vspace{1em}
+    \includegraphics[width=\linewidth]{wells.png}\\
+    \uncover<2>{\begin{center}\includegraphics[width=0.7\linewidth]{35.png}\end{center}}
   \end{minipage}
   \begin{minipage}[r]{0.65\linewidth}
-    What can be said if $h$ is minimal on non-degenerate critical
-    points?
-    
-    \uncover<2->{
-      \begin{thm}
-        The eigenvectors of minimal eigenvalue concentrate only on
-        ``minimal'' points. Eigenvectors and eigenvalues have an
-        asymptotical expansion in powers of $N^{-\frac 12}$.
-      \end{thm}
-    }
-
-    \uncover<3>{What is minimized ? The $\mu$ of the Hessian at this
-      point.}
+    \begin{itemize}
+    \item If $f$ is minimal at several non-degenerate points, ground
+      states only concentrates at the wells which are ``minimal'' for
+      the Melin value.\vspace{1em}
+    \item<2-> Arbitrary $f$: same result. 
+    \end{itemize}
   \end{minipage}
 
-  \vspace{2em}
+  \vspace{1.7em}
 
-\small{{\bfseries [9] Deleporte, A., Journal of Spectral Theory
-    (accepted)}}
+\footnotesize{{\bfseries [8] Deleporte, Journal of Spectral Theory
+    (accepted)}\\{\bfseries [9] Deleporte, ArXiv preprint}}
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Melin estimate}
-\begin{itemize}
-  \item Local result: for sections $u$ sufficiently concentrated around a
-    minimal point of $f$ where the Hessian matrix is $q$, one has $\langle
-    u,T_N(f)u\rangle \geq N^{-1}\mu(q)+CN^{-1-\epsilon}$.
-  \uncover<2>{\item Global result: if $\mu_{inf}$ is the infimum of $\mu$ over all
-    minimal points, then $$T_N(f)\geq N^{-1}\mu_{inf}+N^{-1-\epsilon}.$$}
-  \end{itemize}
-
-\small{
-[8] Melin, A. Arkiv För Matematik 9, no. 1 (1971): 117–140}
-
-\end{frame}
 
 \begin{frame}
-  \frametitle{Ideas for the proof}
+  \frametitle{Two particular cases}
   \begin{itemize}
-  \item Local result: use the fact that the Szeg\H{o} kernel is
-    equivalent to the $\C^n$ case near the diagonal, as $N\to
-    +\infty$.
-  \uncover<2>{\item Global result: pick a covering of the manifold with small open sets
-    corresponding to the section, and ask
-    that the section is relatively smaller at the intersection of the
-    open sets than elsewhere.}
+  \item ``Miniwells'': $\mu$ is only minimal at one point $x_0$ near which $\{f=0\}$ is
+    an isotropic submanifold, and the minimum is non-degenerate,
+    expansions for the smallest eigenvalue and the associated
+    eigenvector.
+  \item ``Crossing case'' as in the example:
+    \[
+      f(q_1,q_2,p_1,p_2)=p_1^2+p_2^2+q_1^2q_2^2.
+      \]
+    Same results.
   \end{itemize}
-\end{frame}
-
-\subsection{Localization of the ground state}
-\begin{frame}
-  \frametitle{A general localization result}
-  \begin{prop}
-    Let $f\in C^{\infty}(M,\R)$ with $\min(f)=0$.
-    Then any sequence $(u_N)$ of normalized eigenstates of $T_N(f)$
-    with eigenvalues $O(N^{-\epsilon})$ is such that
-$$\int_{\{f(x)\geq N^{-1+\delta}\}}|u_N(x)|^2 \dd Vol=O(N^{-\infty}).$$
-  \end{prop}
-
-  \uncover<2->{Indeed, the first eigenvalue is $O(N^{-1})$, so that $\langle
-  u_N,fu_N\rangle=O(N^{-1})$.}
-
-\uncover<3>{By induction, $\langle u_N,f^ku_N\rangle = O(N^{-k})$,
-  hence the claim.}
-\vspace{2em}
-
-\small{{\bfseries [9] Deleporte, A., Journal of Spectral Theory
-    (accepted)}}
-\end{frame}
-
-\begin{frame}
-\frametitle{Subprincipal effects on localization}
-  \begin{thm}
-    Let $f\in C^{\infty}(M,\R)$ with $\min(f)=0$. Let $V$ at positive
-    distance from $\{\mu=\mu_{min}\}$.
-    Then, with $(u_N)$ as previously one has $$\int_{V}|u_N|^2\dd Vol=O(N^{-\infty}).$$
-  \end{thm}
-\uncover<2>{The proof uses the Melin estimates.}
-\vspace{2em}
-
-\small{{\bfseries [9] Deleporte, A., Journal of Spectral Theory
-    (accepted)}\\{\bfseries [10] Deleporte, A., Arxiv preprint}.}
-\end{frame}
-\begin{frame}
-  \frametitle{Expansions in the regular case}
-  The regular case is a generalization of Helffer-Sj\"ostrand's
-  ``miniwells''.
-If $\mu$ is only minimal at one point $x_0$ near which $\{f=0\}$ is
-    an isotropic submanifold, and the minimum is non-degenerate, then
-    \begin{itemize}
-    \item The first eigenvalue is simple and admits an expansion in
-      powers of $N^{-\frac 14}$.
-    \item The first eigenvector concentrates at speed $N^{-\frac 14+}$ on $x_0$ along
-      $\{f=0\}$.
-    \item Spectral gap $CN^{-\frac 32}$.
-    \end{itemize}
-
-\small{[11] Helffer, B., Sjöstrand, J. Current Topics in PDEs, 1986, 133–186\\{\bfseries [10] Deleporte, A., Arxiv preprint}.}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Crossing points}
-  We treat the case where $\{f=0\}$ is a union of two sumbanifolds
-  with a ``crossing point'', where $\mu$ is minimal.
-
-  Toy model: $h(q_1,q_2,p_1,p_2)=p_1^2+p_2^2+q_1^2q_2^2$.
+  Method of proof: symplectic normal forms (new, even for miniwells!)
   
-    \begin{itemize}
-    \item The first eigenvalue is simple and admits an expansion in
-      powers of $N^{-\frac 16}$.
-    \item The first eigenvector concentrates  at speed $N^{-\frac 13+}$ on $x_0$ along
-      $\{f=0\}$.
-    \item Spectral gap $CN^{-\frac 43}$.
-    \end{itemize}
-    \vspace{2em}
-    
-\small{{\bfseries [10] Deleporte, A., Arxiv preprint}.}
+  \vspace{1em}
+  \footnotesize{{\bfseries [9] Deleporte, Arxiv preprint}
+
+    [10] Helffer, Sjöstrand, Current Topics in PDEs, 1986, 133–186.}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Tools for the two cases}
-  We constructed symplectic normal forms, which are new even in the
-  context of pseudodifferential calculus.
-\uncover<2->{  \begin{prop}
-If $\sigma:U\to V$ is a local symplectomorphism between two K\"ahler
-manifolds $M$ and $N$, then there is a sequence of maps
-$\mathfrak{S}_N:M\to N$, such that, when acting on sequences of
-sections microlocalising on $U$, 
-
-\begin{itemize}
-\item $\mathfrak{S}_N$ is an isometry modulo $O(N^{-\infty})$ error.
-\uncover<3->{\item $\mathfrak{S}_NT_N(h)\mathfrak{S}_N^{-1}=T_N(\sigma\circ h + N^{-1}g_1+N^{-2}g_2+\cdots).$}
-\end{itemize}
-\end{prop}}
-
-\uncover<4>{At the minimal points, the subprincipal symbol is
-  prescribed by the Melin estimates on both sides.}
-\end{frame}
 \subsection{Future work}
 \begin{frame}
-  \frametitle{Perspective}
-  \begin{enumerate}
-  \item Work in progress:
+  \frametitle{Perspectives}
     \begin{itemize}
-    \item Exponential estimates in the analytic case,
-      \uncover<2->{Tunnelling}
-    \uncover<3->{\item Low-energy time evolution}
+    \item Low-energy time evolution
+    \item Large dimension (large number of sites)
     \end{itemize}
-  \item Conjectures:
-    \begin{itemize}
-    \uncover<4->{\item Where is $\mu$ minimal for the Kagome lattice?}
-    \uncover<5>{\item The Scottish flag: $T_N(\cos(q)+i\cos(p))$ on the two-torus.}
-    \end{itemize}
-  \end{enumerate}
 \end{frame}
 
 \end{document}
