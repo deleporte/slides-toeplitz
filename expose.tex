@@ -11,8 +11,8 @@
 %\usepackage{default}
 
 \input{thm-config}
-\title[Eigenfunctions concentration for Toeplitz operators]{Concentration of
-  eigenfunctions for semiclassical Toeplitz operators}
+\title{Toeplitz
+  operators and the large spin limit}
 \author[Alix Deleporte]{Alix Deleporte\\Advisor : Nalini Anantharaman}
 \institute[IRMA]{Institut de Recherche Mathématique
   Avancée\\Université de Strasbourg}
@@ -76,9 +76,8 @@
     \begin{frame}
       \frametitle{Introduction}
       \begin{itemize}
-      \item The low-energy states (low-temperature properties) of
-        $H_{AF}$ on subgraphs of the Kagome lattice are very
-        complicated.
+      \item Goal: study low-energy eigenvectors (low-temperature properties) of
+        $H_{AF}$ on subgraphs of the Kagome lattice.
       \item<2-> In the \emph{large spin limit} $S\to +\infty$, one
         should recover the geometry of the classical energy landscape.\footcite{doucot_semiclassical_1998}
       \item<2-> Minimisers of
@@ -232,7 +231,9 @@ line bundles $L^{\otimes N}$ correspond to the weights $e^{-\frac N2
   that \begin{align*}H_N(M,L)&\simeq \left\{f\text{ holomorphic in
                                $\C$},\,\int_{\C}\cfrac{|f|^2}{(1+|z|^2)^{N+2}}<\infty\right\}\\
                              &=\C_N[X].\end{align*}
-\uncover<2>{In the canonical basis $\binom{N}{k}^{-\frac 12}X^k$, the Toeplitz
+                           \uncover<2->{Expression of the Szeg\H{o}
+                             kernel:\[S_N(z,w)=\cfrac{N+1}{\pi}\left(\cfrac{1+z\overline{w}}{\sqrt{(1+|z|^2)(1+|w|^2)}}\right)^N.\]}
+\uncover<3>{In the canonical basis $\binom{N}{k}^{-\frac 12}X^k$, the Toeplitz
 quantization of the three base coordinates on $\mathbb{S}^2$ are the Spin
 matrices with spin $S=\frac {N-1}2$.}
 \end{frame}
@@ -248,9 +249,9 @@ matrices with spin $S=\frac {N-1}2$.}
       rapidly in the forbidden region: if $V$ is such that
       $\inf_V(f)>\min_M(f)$, then \[\int_{V}|u_N|^2=O(N^{-\infty}).\]
     \item<3> If $f$ is analytic, the ground state decays exponentially
-      fast\footcite{deleporte_toeplitz_2018}: there exists $c$ such that
+      fast\footcite{deleporte_toeplitz_2018}: there exists $c>0$ such that
       \[
-        \int_{V}|u_N|^2=O(N^{-\infty}).
+        \int_{V}|u_N|^2=O(e^{-cN}).
       \]\vspace{-1em}
     \end{itemize}
 \uncover<3>{Tool for the analytic case: new analytic microlocal
@@ -322,6 +323,10 @@ matrices with spin $S=\frac {N-1}2$.}
     \printbibliography[keyword=Deleporte,heading=none]
   \end{frame}
 
+  \begin{frame}[allowframebreaks]
+    \frametitle{Citations}
+    \printbibliography[notkeyword=Deleporte,heading=none]
+  \end{frame}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
