@@ -94,18 +94,19 @@
 		\spline
 	    Classical mechanics & Quantum mechanics\\
 		\spline
-		Symplectic manifold $M$ & Hilbert Space $H$\\ 
+		\uncover<2->{Symplectic manifold $M$} & \uncover<2->{Hilbert Space $H$}\\ 
 		\spline 
-		Function $a\in C^{\infty}(M,\R)$ & Self-adjoint
-                                                   operator $A\in L(H)$\\
+		\uncover<3->{Function $a\in C^{\infty}(M,\R)$}& \uncover<3->{Self-adjoint
+                                                   operator $A\in L(H)$}\\
 		\spline
-                Hamiltonien flow of $a$ & Flow of $e^{itA/\hbar}$\\
+          \uncover<4->{Hamiltonien flow of $a$} &
+                                                  \uncover<4->{Flow of $e^{itA/\hbar}$}\\
 		\spline
-		Poisson Bracket & Lie Bracket\\
+		\uncover<5->{Poisson Bracket} &\uncover<5->{ Lie Bracket}\\
 		\spline
 	\end{tabular}\end{center}\vspace{0em}
 	\begin{itemize}
-	\uncover<2>{\item Quantization : for a given classical
+	\uncover<6>{\item Quantization : for a given classical
           model, how to construct an associated quantum
           model ?
 	
@@ -148,7 +149,7 @@ $$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
   with $f$ is the bounded operator
 \begin{center}
 \begin{array}{rcl}
- 		T_N(f):B_N(\C^n)&\mapsto & B_N(\C^n)\\
+ 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
 		u& \mapsto& \uncover<2->{\Pi_N(}fu\uncover<2->{)}.
  		\end{array}
 \end{center}
@@ -186,7 +187,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
   \uncover<3->{
   \item With $g_N=(N/\pi)^ne^{-N|z|^2}$ one has
     \[
-      \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_W^{N^{-1}}(f*g_N).
+      \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_{\frac 12}^{N^{-1}}(f*g_N).
     \]\vspace{-2em}}
 \uncover<4->{\item Formal equivalence between Toeplitz and $\Psi$DO
   calculus.}
@@ -220,7 +221,8 @@ line bundles $L^{\otimes N}$ correspond to the weights $e^{-\frac N2
     Fourier Integral Operator with complex phase; the critical set is
     the diagonal.\footcite{boutet_de_monvel_sur_1975}}
 \uncover<3->{\item The dominant term is always $\Pi_N$.}
-  \uncover<4>{\item Toeplitz operators form a $C^{*}$-algebra as previously.} 
+  \uncover<4>{\item Toeplitz operators of the form $S_NfS_N$ can be
+    composed and inverted as previously.} 
   \end{itemize}
 \end{frame}
 
@@ -264,7 +266,7 @@ matrices with spin $S=\frac {N-1}2$.}
   Can one improve the lower bound $f\geq 0\Rightarrow T_N(f)\geq 0$?
   \begin{itemize}
   \item If $q$ is a quadratic form in $\C^n$, the minimal eigenvalue
-    of $T_N(q)$ is $N^{-1}\mu(q)$ with $$\mu(q)=N^{-1}(Tr^+(q)+\frac
+    of $T_N(q)$ is $N^{-1}\mu(q)$ with $$\mu(q)=(Tr^+(q)+\frac
     12 \tr(q)).$$
   \uncover<2>{\item Here, up to a
     symplectomorphism, $$q=\sum_{i=1}^{r}\lambda_i(q_i^2+p_i^2)+\sum_{i=r+1}^{r+r'}p_i^2,$$
@@ -307,6 +309,20 @@ matrices with spin $S=\frac {N-1}2$.}
     Same results.\footcite{deleporte_low-energy_2017}
   \end{itemize}
   Method of proof: symplectic normal forms (new, even for miniwells!)
+\end{frame}
+
+\begin{frame}
+  \frametitle{Application to spin systems}
+  \begin{itemize}
+\item  Framework: fixed number of particles, spin tends to infinity.
+
+  \item<2->{Computations\footcite{deleporte_quantum_2018} for this particular case
+    $M=(\S^2)^d$.}
+
+  \item<3>{Heisenberg Antiferromagnet on the Kagome lattice: we
+    conjecture that the planar configurations are direct product of
+    crossing points, so that they are local minima for $\mu$.}
+  \end{itemize}
 \end{frame}
 
 \subsection{Future work}
