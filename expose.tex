@@ -32,11 +32,11 @@
 %\usepackage{default}
 
 \input{thm-config}
-\title{Low-energy spectrum of Toeplitz operators}
-\author[Alix Deleporte]{Alix Deleporte\\Advisor: Nalini Anantharaman}
+\title{Miniwells and quantization}
+\author[Alix Deleporte]{Alix Deleporte}
 \institute[IRMA]{Institut de Recherche Mathématique
   Avancée\\Université de Strasbourg}
-\titlegraphic{\includegraphics[height=0.8cm]{logoIRMA.pdf}\hfill\includegraphics[height=0.8cm]{logounistra.pdf}\hfill\includegraphics[height=0.8cm]{logoCNRS.pdf}\hfill\includegraphics[height=0.7cm]{ANR.png}\hfill\includegraphics[height=0.8cm]{logoENS.jpg}}
+\titlegraphic{\includegraphics[height=0.8cm]{logoIRMA.pdf}\hfill\includegraphics[height=0.8cm]{logounistra.pdf}\hfill\includegraphics[height=0.8cm]{logoCNRS.pdf}\hfill\includegraphics[height=0.7cm]{ANR.png}}
 
 \newcommand{\spline}{\hline}
 \renewcommand{\arraystretch}{1.3}
@@ -62,10 +62,108 @@
 
 \begin{frame}
 	\titlepage
-\end{frame}
+      \end{frame}
+
+\section{Constrained movement and symplectic reduction}
 
 \begin{frame}
-  \frametitle{Introduction}
+  \frametitle{Constraints in mechanics}
+  Constrained motion: subject to an equation of the form
+  \[
+    f(\underbrace{x_1,\ldots,x_n}_{\text{position}},t)=0
+    \]
+    \vfill
+    
+  Examples of constrained motion:
+  \begin{itemize}
+  \item the pendulum (rod length is constant)
+  \item incompressible Euler or Navier-Stokes equation ($f=\mathop{div} u$)
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Equations}
+    Various ways to write down the equations of motion for the
+    Hamiltonian $H_0$ constrained to $Z=\{f=0\}$:
+    \begin{itemize}
+    \item Add a term corresponding to the constraint (force/pressure)
+    \item Lagrangean formulation
+    \item Symplectic reduction.
+    \end{itemize}
+
+    \uncover<2>{
+      \begin{que}
+        Do trajectories of the Hamiltonian
+        \[
+          H_0+\lambda |f|^2
+        \]
+        converge to the trajectories above as $\lambda\to +\infty$?
+      \end{que}
+      }
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Realizing constraints via a potential}
+      Answer for $H_0$ of the form $|p|^2+V(x)$:
+      \begin{itemize}
+        \item Strong convergence if the initial position/velocity lies on $TZ$
+          (Arnold 1978)
+          \item<2-> Weak convergence to $H_0+$ additional term in the
+            regime of bounded energy (Rubin-Ungar 1957) if
+            \begin{itemize}
+            \item $f$ is Morse-Smale
+            \item $\mathop{codim} Z=1$.
+            \end{itemize}
+          \item<3-> Weak convergence to $H_0+$ additional term in the
+            regime of bounded energy (Takens 1980) if
+            \begin{itemize}
+            \item $f$ is Morse-Smale
+            \item $\mathop{Hess} |f|^2$ has simple eigenvalues (other than $0$) on $Z$.
+            \end{itemize}
+            If there are resonances, then trajectories may bifurcate.
+          \end{itemize}
+        \end{frame}
+
+        \begin{frame}
+          \frametitle{Quantum case}
+          For the quantum problem $-\Delta+V+\lambda |f|^2$, similar
+          results hold (Froese-Herbst 2000), with the supplementary
+          condition that $f$ is linear (so that $\mathop{Hess} |f|^2$
+          is ``constant'' on $Z$).
+
+          \vfill
+
+          Reformulation: semiclassical analysis of
+          $-\hbar^2\Delta+|f|^2$ at energy scales
+          $O(\hbar)$. Generalisation: operators whose symbol vanish on
+          a non-trivial set $Z$.
+        \end{frame}
+
+        \begin{frame}
+          \frametitle{Semiclassical results}
+          \begin{itemize}
+          \item (Helffer-Sjöstrand 1986): low-energy state for
+            $-\hbar^2\Delta+V$ where
+            \begin{itemize}
+            \item $V$ vanishes in a Morse-Bott way
+            \item Non-degeneracy ``miniwell'' condition.
+            \end{itemize}
+            \item<2-> (Helffer-Kordyukov 2008): low-energy state for
+              magnetic Schrödinger operators, under a similar
+              condition.
+              \item<3> (Raymond-Vũ Ng\d{o}c 2015,
+                Helffer-Kordyukov-Raymond-Vũ Ng\d{o}c 2016) :
+                evolution in 2D or 3D ``magnetic wells'', using a
+                {\color{myorange} normal form}.
+              \end{itemize}
+              In all cases, the low-energy states concentrate on a
+              subset of $Z$.
+        \end{frame}
+
+\section{Frustrated spin systems}
+
+\begin{frame}
+  \frametitle{Spin systems}
   \begin{itemize}
   \item<1-> {\bfseries spin systems}: models for magnetism in solids.
   \item<2-> {\bfseries classical spins}: one atom at site $i$
@@ -82,7 +180,7 @@
 \end{frame}
 
              \begin{frame}
-         \frametitle{Introduction}
+         \frametitle{The Kagome lattice}
    \begin{center}
      \begin{picture}(50,50)
            \only<1>{\put(-125,-80){\includegraphics[scale=9]{Alcazar.png}}}
@@ -94,60 +192,10 @@
        \end{center}
      \end{frame}
 
-% \begin{frame}
-%   \frametitle{Introduction}
-%   \begin{center}
-%     \begin{picture}(50,50)
-%       \put(-125,-80){\includegraphics[scale=9]{Alcazar.png}}
-%     \end{picture}
-%   \end{center}
-% \end{frame}
-
-% \begin{frame}
-%   \frametitle{Introduction}
-%   \addtocounter{framenumber}{-1}
-%   \begin{center}
-%     \begin{picture}(50,50)
-%       \put(-125,-80){\includegraphics[scale=9]{Alcazar-Kagome.png}}
-%     \end{picture}
-%   \end{center}
-% \end{frame}
-
-% \begin{frame}
-%   \frametitle{Introduction}
-%   \addtocounter{framenumber}{-1}
-%   \begin{center}
-%     \begin{picture}(50,50)
-%       \put(-112,-80){\includegraphics[scale=0.32]{kagome-svg.png}}
-%     \end{picture}
-%   \end{center}
-% \end{frame}
-
-% \begin{frame}
-%   \frametitle{Introduction}
-%   \addtocounter{framenumber}{-1}
-%   \begin{center}
-%     \begin{picture}(50,50)
-%       \put(-112,-80){\includegraphics[scale=0.32]{kagome-spins-svg.png}}
-%     \end{picture}
-%   \end{center}
-% \end{frame}
-
-% \begin{frame}
-%   \frametitle{Introduction}
-%   \addtocounter{framenumber}{-1}
-%   \begin{center}
-%     \begin{picture}(50,50)
-%       \put(-112,-80){\includegraphics[scale=0.32]{kagome-spins-2-svg.png}}
-%     \end{picture}
-%   \end{center}
-% \end{frame}
 
 
 
-
-
-    \begin{frame}\frametitle{Introduction}
+    \begin{frame}\frametitle{Quantum spins}
 	\begin{itemize}
 		\item Quantum spin: self-adjoint matrices
                   $S_x,S_y,S_z\in M_{N+1}(\C)$ \[[S_x,S_y]=\frac{2i}{N}S_z\qquad
@@ -173,334 +221,123 @@
       \end{itemize}
     \end{frame}
     \begin{frame}
-      \frametitle{Introduction}
-      Quantum energy is a self-adjoint matrix $\Rightarrow$
-      
-      \hspace{1em}eigenvalues
-      $\lambda_1\leq \lambda_2\leq \cdots\leq \lambda_{(N+1)^d}$
-
-      \hspace{1em}and associated eigenvectors.
-      
-      Goal: qualitative study of eigenvectors associated with
-      $\lambda_1$ (ground states) or other small eigenvalues.
-      
-      \hfill
-      
-      \uncover<2>{Physics claim: {\color{myorange} quantum-classical
+      \frametitle{Toeplitz quantization}
+      \begin{itemize}
+        \item Physics claim: {\color{myorange} quantum-classical
           correspondence} as $N\to +\infty$.
         
-        \hfill
-        
-      Prediction [DS98]: lowest-energy eigenvectors concentrate on {\color{myorange} some} classical configurations.}
-    \end{frame}
-      \begin{frame}
-        \frametitle{Introduction}
-        Toeplitz quantization:
-        \begin{itemize}
-          \item treat $N\to +\infty$ as a semiclassical
-       limit
-     \item see eigenvectors above as sections over $(\S^2)^d$.
-     \end{itemize}
-     \uncover<2->{Questions:}
-     \begin{itemize}
-        \item<2-> Where does the ground state concentrate?
-        \item<3> What is the decay speed outside the concentration set?
-        \end{itemize}
-      \end{frame}
+      Prediction (Douçot-Simon 1998): lowest-energy eigenvectors concentrate on
+      {\color{myorange} some} classical configurations.
 
-      \begin{frame}
-        \frametitle{Introduction}
-        \setbeamercovered{transparent}
-        {\footnotesize
-        \begin{description}
-        \item<1>[{[Del19]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
-of Wells.” In: Journal of Spectral Theory 9 (2019).
-\item<1-2> [{[Del17++]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
-Miniwell.” In: arXiv 1610.05902 (2017).
-\item<1>[{[Del18a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
-1808.00718 (2018).
-\item<1>[{[Del18b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
-arXiv 1812.06648 (2018).
-\item<1-2>[{[Del18c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
-1812.07202 (2018).
-\item<1>[{[Del19++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
-  Operators.” In: arXiv 1901.07215 (2019).
-        \end{description}}
-      \end{frame}
-
-      
-
-
-
-      \section{Toeplitz operators}
-
-\subsection{Construction}
-\begin{frame}
-  \frametitle{Setting}
-  \begin{itemize}
-  \item Compact, complex, symplectic manifold $M$
-    under compatibility conditions (K\"ahler, quantizable).
-    \item<2-> There exists a natural complex line bundle $L$ over $M$.
-\uncover<3->{\item Quantum space $H_N(M)$ of holomorphic sections of
-  $L^{\otimes N}$ (Remark: holomorphic functions are constant).}
-\uncover<4->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M).$}
-  \end{itemize}
-  \uncover<5>{The Szeg\H{o} projector has an integral kernel (section
-    over $M^2$):
-    \[
-      (S_Nu)(x)=\int_M S_N(x,y)u(y) \omega^{\wedge d}(dy).
-    \]
-    }
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Toeplitz quantization}
-  Let $f\in L^{\infty}(M,\C)$. The Toeplitz operator associated
-  with $f$ is the bounded operator
-\begin{center}
-\begin{array}{rcl}
- 		T_N(f):H_N(M)&\to & H_N(M)\\
-		u& \mapsto& \only<1>{fu}\only<2->{S_N(fu)}.
- 		\end{array}
-\end{center}
-\uncover<3->{Correspondence with pseudodifferential operators when $M$
-  is replaced with $\C^n$.}
-\uncover<4>{Advantages:
-\begin{itemize}
-\item If $f\geq 0$ then $T_N(f)\geq 0$.
-\item Quantum states are sections over the {\color{myorange} whole manifold} M.
-\end{itemize}}
-\end{frame}
-
-\subsection{Case of the sphere}
-
-\begin{frame}
-  \frametitle{Case $M=\S^2$}
-  Stereographic chart: $L$ is topologically trivial.
-
-  \hspace{9.5em}Its hermitian metric is
-  $\frac{1}{1+|z|^2}|\cdot|^2.$ \[H_N(M)\simeq \left\{f\text{ holo on $
-        \C$},\,\int_{\C}\cfrac{|f|^2}{(1+|z|^2)^{N+2}}<\infty\right\}=\C_N[X].\]
- \uncover<2->{Expression of the Szeg\H{o}
- kernel in this chart:\[S_N(z,w)=\cfrac{N+1}{\pi}\left(\cfrac{1+z\overline{w}}{\sqrt{(1+|z|^2)(1+|w|^2)}}\right)^N.\]}
-\uncover<3->{
-  \only<3>{\[T_N(\text{base coords})=\vphantom{\frac{N-2}{N}}\text{spin matrices}.\]}
-  \only<4>{\[T_N(\S^2\ni (x,y,z)\mapsto x)=\frac{N-2}{N}S_x.\]}
-  }
-\end{frame}
-
-\subsection{Semiclassical limit}
-\begin{frame}
-  \frametitle{The Szeg\H{o} kernel}
- On $\S^2$, there holds $S_N(x,y)=(N+1)\Psi^{\otimes
-      N}(x,y)$, where $\Psi$ is a fixed section over $M\times M$.
-    \uncover<2->{\begin{theorem}[{[Cha03]}]
-        Let $M$ be a compact, quantizable almost K\"ahler manifold. There exists a section
-        $\Psi$ and a sequence of functions $(s_k)_{k\geq 0}$ on
-        $M\times M$ such that, uniformly in $(x,y)\in M^2$,
-      \[
-        S_N(x,y)=N^d\Psi^{\otimes
-          N}(x,y)(s_0+N^{-1}s_1+\cdots)(x,y)+O(N^{-\infty}).
-      \]
-      Here, for some $c>0$,
-      \[
-        |\Psi(x,y)|\leq e^{-c\dist(x,y)^2}.
-        \]
-      \end{theorem}
-    \uncover<3>{Meaning: we can sum up to $N^{-K}$ and have $O(N^{-K-1})$ error.}}
-    
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Approaches for kernel estimates}
-    \begin{itemize}
-    \item FIOs with complex phase [SZ02, Cha03]: versions of
-      the result above, remainder $O(N^{-\infty})$.
-    \item Elliptic (weighted) estimates on $-\Delta$ [MM07, Kor17++]:
-      generalisations to other geometries (spin$^c$-Dirac, Bochner).
-    \item Partial Bergman kernels [HLX17++]: if $M$ is {\color{myorange}
-        real-analytic}, the remainder is $O(e^{-c\sqrt{N}})$ with
-      $c>0$.
-    \item New analytic calculus [Del18c++,RSV18++]: if $M$ is
-      {\color{myorange} real-analytic},
-      the remainder is $O(e^{-cN})$ with $c>0$.
+    \item<2> Berezin-Toeplitz operators: quantization of the
+      symplectic manifold $\mathbb{S}^2$.
     \end{itemize}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{Calculus of Toeplitz operators}
-    Asymptotics of the Szeg\H{o} kernel $\rightarrow$ composition and
-    inversion of Toeplitz operators assocaited with smooth
-    functions.
+ %      \begin{frame}
+%         \frametitle{Introduction}
+%         \setbeamercovered{transparent}
+%         {\footnotesize
+%         \begin{description}
+%         \item<1>[{[Del19]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
+% of Wells.” In: Journal of Spectral Theory 9 (2019).
+% \item<1-2> [{[Del17++]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
+% Miniwell.” In: arXiv 1610.05902 (2017).
+% \item<1>[{[Del18a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
+% 1808.00718 (2018).
+% \item<1>[{[Del18b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
+% arXiv 1812.06648 (2018).
+% \item<1-2>[{[Del18c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
+% 1812.07202 (2018).
+% \item<1>[{[Del19++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
+%   Operators.” In: arXiv 1901.07215 (2019).
+%         \end{description}}
+%       \end{frame}
 
-    \begin{theorem}[{[Cha03]}]Let $M$ be smooth. Let $a$ and $b$ be
-      smooth real-valued functions on $M$. Then there exists a sequence $(c_k)_{k\geq
-        0}\in (C^{\infty}(M,\R))^{\N}$ such that
-      \[
-        T_N(a)T_N(b)=T_N(c_0+N^{-1}c_1+\cdots)+O(N^{-\infty}).
-        \]
-
-        If $a$ does not vanish, then there exists a sequence
-        $(d_k)_{k\geq 0}\in (C^{\infty}(M,\R))^{\N}$ such that
-        \[
-          T_N(a)T_N(d_0+N^{-1}d_1+\cdots)=S_N+O(N^{-\infty}).
-          \]
-    \end{theorem}
-  \end{frame}
-
-  \subsection{Analytic regularity}
-  
-\begin{frame}
-  \frametitle{New symbol classes in real-analytic regularity}
-
-  Let $a$ be an analytic function on an analytic manifold $X$. $\exists C_a,r>0, \forall
-  j\in \N, \|a\|_{C^j(X)}\leq C_ar^jj!$.
-\uncover<2->{
-  \begin{defn}[{[Del18c++]}]
-    Let $X$ be an analytic manifold with boundary.
-
-    For parameters $r,R,m\in (\R^+_*)^3$, we define the space
-    $S^{r,R}_m(X)$ as the set of sequences $a=(a_k)_{k\geq 0}$ of
-    real-analytic functions on $X$ such that, for some $C_a>0$, for
-    all $j,k\in \N$,
-    \[
-      \|a_k\|_{C^j(X)}\leq
-      C_ar^jR^k(j+k)!\only<2>{(1+j+k)^{-m}\vphantom{\underbrace{(1+j+k)^{-m}}_{\text{new
-          (with respect to [Sjö82])}}}}\only<3->{\underbrace{(1+j+k)^{-m}}_{\text{new
-          (w.r.t. [Sjö82])}}}.\]
-  \end{defn}
-
-}
-\uncover<3->{
-   $S^{r,R}_m(X)$ behaves better with respect to standard manipulations (product,
-    inversion, stationary phase lemma) than $S^{r,R}_0(X)$.
-  }
-\end{frame}
-\begin{frame}
-  \frametitle{Calculus of covariant Toeplitz operators}
-Let $U$ be a neighbourhood of the diagonal in $M\times M$. Let $a=(a_k)_{k\in \N}\in S^{r,R}_m(U)$ be a sequence of holomorphic
-  functions on $U$. We define
-  \[
-    T_N^{cov}(a)(x,y)=N^d\Psi^{\otimes
-      N}(x,y)(a_0+N^{-1}a_1+\cdots)(x,y){+\color{myorange} O(e^{-cN})}.
-  \]
-  \vspace{-1em}
-  \uncover<2>{
-  \begin{theorem}[{[Del18c++]}]
-    Let $M$ be real-analytic. Let $a\in S^{r,R}_m(U)$ and $b\in
-    S^{2r,2R}_m(U)$ with $U$ as above. Then there exist
-    $a\sharp b\in S^{2r,2R}_m(U)$ and $c>0$ such that
-    \[T_N^{cov}(a)T_N^{cov}(b)=T_N^{cov}(a\sharp b)+O(e^{-cN})\]
-
-    When $a$ is nonvanishing, from $a\sharp b$ one can recover $b$ .
-  \end{theorem}
- $\Rightarrow \; S_N=T_N^{cov}(s)+O(e^{-cN})$
-for some analytic symbol $s$.
-}
-\end{frame}
-
-\section{Localisation of low-energy states}
-
-\subsection{Localisation at the classical minimal set}
-\begin{frame}
-  \frametitle{Speed of localisation}
- For $N\in \N$, let $u_N$ be a normalised eigenvector associated with
- the smallest eigenvalue of $T_N(f)$. Let $Z=\mathop{argmin}(f)$.
-  \begin{theorem}[{[Cha00]}]
-  If f is {\color{myorange}smooth} and $U\subset M$ is at positive distance from $Z$, then \[\int_{U}|u_N|^2=O(N^{-\infty}).\]\vspace{-1.2em}
-\end{theorem}
-\uncover<2>{
-\begin{theorem}[{[Del18c++]}]
-If f is {\color{myorange}real-analytic} and $U$ is as above, there exists $c>0$ such that
-      \[
-        \int_{U}|u_N|^2=O(e^{-cN}).\vspace{-0.5em}
-      \]
-    \end{theorem}}
-\end{frame}
-
-
-
-\subsection{Subprincipal effects on localisation}
+\section{Results}
 \begin{frame}
   \frametitle{Characteristic value}
   \begin{itemize}
-  \item Let $f$ be smooth and $Z$ be as above. One can construct a continuous function $\mu$ on $Z$, which only depends on the Hessian of $f$.
-    \item $\mu(x)$ measures the contributions of order $N^{-1}$ in the quantum
-    energy near $x$.
+  \item Let $f$ be smooth and $Z=\{f=0\}$ One can construct a continuous function $\mu$ on $Z$, which only depends on the Hessian of $f$.
+  \item $\mu(x)=\inf \Sp(Op^{\text{flat}}(Hess(f)(x)))$,
+
+    where $Op^{\text{flat}}$ is the quantization on flat space which
+    fits at $x$ (in the Kähler case: Bargmann quantization).
   \item<2-> {\color{myorange} Quantum selection}: the ground states of $T_N(f)$
     concentrate only on the subset $Z_{\mu}$ of $Z$ where also $\mu$ is minimal.
   \end{itemize}
-  
-  \uncover<3>{\begin{description}
-    \item[{{\color{white} blaa\hspace{3pt}a}[HS86]}] case of a Schrödinger operator $-\hbar^2\Delta+V$, where\vspace{-1.2em}
-      \begin{itemize}
-      \item $V$ vanishes on a smooth submanifold $Z$
-      \item Its transverse Hessian is nondegenerate on $Z$.
-      \end{itemize}
-    \item[{[HM96,HK09]}] case of a magnetic Schrödinger operator with similar conditions.
-    \end{description}
-    }
 
 \end{frame}
 
 \begin{frame}
   \frametitle{Subprincipal localisation}
-  \begin{theorem}[{[Del17++]}]
-    Let $M$ be smooth, let $f\in C^{\infty}(M,\R)$ and let $Z_{\mu}$ and
-    $(u_N)_{N\geq 0}$ be as above.
+  \begin{theorem}[(Deleporte 17)]
+    Let $M$ be smooth, let $f\in C^{\infty}(M,\R)$ and let $Z_{\mu}$
+    be as above. Let $u_N$ be a ground state of $T_N(f)$.
 
     For all $U\subset M$ at positive distance from $Z_{\mu}$, one has
     \[
       \int_U
       |u_N|^2=O(N^{-\infty}).
-      \]
+    \]
+    In progress: $O(\exp(-c\sqrt{N}))$.
   \end{theorem}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Particular case: spin systems}
-  \begin{itemize}
-\item  Framework: fixed number of particles $d$ , spin parameter $N$ tends to infinity.
+  \frametitle{Z is regular and isotropic}
+  Classical normal form: up to a symplectic change of variables, near
+  a point, the symbol is of the form
+  \[
+    \langle p,Q_S(q),p\rangle +\langle
+    (x,\xi),Q_F(q),(x,\xi)\rangle+O((p,x,\xi)^3,\]
+  where $Q_F$ is unitarily equivalent to a matrix of the form
+  \[
+    \sum \lambda_j (x_j^2+\xi_j^2)
+  \]
+  (the
+  equivalence does not smoothly depend on $q$).
 
-  \item<2->{Computations for this particular case
-    $M=(\S^2)^d$ [Del18b++].}
-
-  \item<3>{{\color{myorange} Open problem}: where is $\mu$ minimal among classical
-      configurations on the Kagome lattice?}
-  \end{itemize}
+  If $Q_F$ has no resonances, then one can smoothly reduce $Q_F$.
 \end{frame}
 
-     \begin{frame}
-        \frametitle{Publications}
-        {\footnotesize
-        \begin{description}
-        \item[{[Del19]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
-of Wells.” In: Journal of Spectral Theory 9 (2019).
-\item[{[Del17++]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
-Miniwell.” In: arXiv 1610.05902 (2017).
-\item[{[Del18a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
-1808.00718 (2018).
-\item[{[Del18b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
-arXiv 1812.06648 (2018).
-\item[{[Del18c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
-1812.07202 (2018).
-\item[{[Del19++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
-  Operators.” In: arXiv 1901.07215 (2019).
-        \end{description}}
-      \end{frame}
-
-\subsection{Future work}
 \begin{frame}
-  \frametitle{Perspectives}
-    \begin{itemize}
-    \item Low-energy time evolution.
-    \item Large number of sites: $\stackrel[d\to +\infty]{}{\lim}\stackrel[N\to +\infty]{}{\lim}\stackrel{?}{=}\stackrel[N\to +\infty]{}{\lim}\stackrel[d\to +\infty]{}{\lim}$.
-    \item Exponential decay in quantum selection.
-    \item Non self-adjoint operators.
-    \end{itemize}
-  \end{frame}
+  \frametitle{Quantum normal form}
+  The ground state for $Q_F$ is the standard Gaussian, independently
+  on $q$, with eigenvalue $\tr Q_F$.
+  \vfill
+
+  Born-Oppenheimer approximation: function of the form
+  $\exp(-N|x|^2/2)g(q)$. Then the operator acts as
+  \[
+    -N^{-2}\langle \nabla,Q_S(q)
+      \nabla\rangle+N^{-1}(\tr(Q_F(q))+h_1(q))+l.o.\]
+  Here $h_1(q)$ comes from the quantization of the symplectic change
+  of variables + change of quantization.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quantum normal form II}
+  What we are left with:
+  
+  An operator on $T^*Z$, with semiclassical parameter $N^{-\frac 12}$,
+  which is {\color{myorange} operator-valued} (takes values into
+  functions of $(x,\xi)$). One can always isolate the lowest-energy
+  direction (Born-Oppenheimer approximation).
+  \vfill
+  (Deleporte 17) Complete expansion for the ground state if the
+  effective potential $\tr(Q_F)+h_1$ has a non-degenerate minimum.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Crossings}
+  In the physical example before, $Z$ is not smooth.
+  \vfill
+  (Deleporte 17) Expansions for the lowest-energy eigenvector in the
+  case of two manifolds crossing.
+  \vfill
+  Example: $p_1^2+p_2^2+q_1^2q_2^2$.
+\end{frame}
 
   \begin{frame}
     \frametitle{Thanks}
@@ -508,43 +345,6 @@ arXiv 1812.06648 (2018).
     {\Large Thanks for your attention!}
   \end{frame}
   
-
-  \begin{frame}[allowframebreaks]
-    \frametitle{Bibliography}
-        {\footnotesize
-        \begin{description}
-        \item[{[Cha00]}] Laurent Charles. “Aspects Semi-Classiques de La Quantification Géométrique.” PhD thesis. Université Paris 9, 2000.
-        \item[{[Cha03]}] Laurent Charles. “Berezin-Toeplitz Operators, a Semi-Classical Approach.” en. In: Communications in Mathematical Physics 239.1-2
-(Aug. 2003), pp. 1–28.
-        \item[{[DS98]}] Benoît Douçot and Patrice Simon. “A Semiclassical Analysis of Order
-from Disorder.” en. In: Journal of Physics A: Mathematical and General
-31.28 (1998), p. 5855.
-\item[{[HK09]}] Bernard Helffer and Yuri A. Kordyukov. “Semiclassical Analysis of
-Schrödinger Operators with Magnetic Wells.” In: Contemporary Mathematics 500 (2009), p. 105.
-\item[{[HM96]}] Bernard Helffer and Abderemane Mohamed. “Semiclassical Analysis for
-the Ground State Energy of a Schrödinger Operator with Magnetic
-Wells.” In: Journal of Functional Analysis 138.1 (1996), pp. 40–81.
-\item[{[HS86]}] Bernard Helffer and Johannes Sjöstrand. “Puits Multiples En Limite
-Semi-Classique V : Étude Des Minipuits.” In: Current topics in partial
-differential equations (1986), pp. 133–186.
-\item[{[HLX17++]}] Hamid Hezari, Zhiqin Lu, and Hang Xu. “Off-Diagonal Asymptotic
-Properties of Bergman Kernels Associated to Analytic Kähler Potentials.” In: arXiv 1705.09281 (2017).
-\item[{[Kor17++]}] Yuri A. Kordyukov. “On Asymptotic Expansions of Generalized Bergman
-Kernels on Symplectic Manifolds.” In: arXiv 1703.04107 [math-ph]
-(Mar. 2017).
-\item[{[MM07]}] Xiaonan Ma and George Marinescu. Holomorphic Morse Inequalities
-and Bergman Kernels. Vol. 254. Springer Science \& Business Media,
-2007.
-\item[{[RSV18++]}] Ophélie Rouby, Johannes Sjöstrand, and San Vũ Ng\d{o}c. “Analytic
-Bergman Operators in the Semiclassical Limit.” In: hal-01851770 (July
-2018).
-\item[{[SZ02]}] Bernard Shiffman and Steve Zelditch. “Asymptotics of Almost Holomorphic Sections on Symplectic Manifolds.” In: J. reine angew. Math.
-544 (2002), pp. 181–222.
-\item[{[Sjö82]}] Johannes Sjöstrand. Singularit\'es Analytiques Microlocales. Vol. 95.
-Astérisque. Soc. Math. de France, 1982
-        \end{description}
-        }
-      \end{frame}
 
 \end{document}
 %%% Local Variables:
