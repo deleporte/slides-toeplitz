@@ -1,5 +1,5 @@
 \documentclass[mathserif]{beamer}
-\usetheme{Luebeck}
+\usetheme{Boadilla}
 %\usepackage[francais]{babel}
 \usepackage[utf8]{inputenc} % Uses the utf8 input encoding
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
@@ -9,11 +9,9 @@
 %\usepackage{default}
 
 \input{thm-config}
-\title[Eigenfunctions concentration for Toeplitz operators]{Concentration of
-  eigenfunctions for semiclassical Toeplitz operators}
-\author[Alix Deleporte]{Alix Deleporte\\Advisor : Nalini Anantharaman}
-\institute[IRMA]{Institut de Recherche Mathématique
-  Avancée\\Université de Strasbourg}
+\title{Szeg\H{o} kernels and Toeplitz operators}
+\author{Alix Deleporte}
+\institute{MSRI}
 
 \AtBeginSection
 {
@@ -31,15 +29,30 @@
 	\titlepage
 \end{frame}
 
-\section{Toeplitz opreators}
-\subsection{Toeplitz operators on $\C^n$}
+\section{Toeplitz operators on $\C^n$}
+\begin{frame}
+  \frametitle{Quantization of the harmonic oscillator}
+  Quantization: associate {\bf classical dynamics} (driven by
+  real-valued functions) with {\bf self-adjoint operators}.
+
+  \uncover<2->{\begin{center}
+    \begin{tabular}{ccc}
+      classical & $\rightsquigarrow$ & quantum\\\hline
+      \uncover<3->{\includegraphics[scale=0.2]{harm_phase.png}}&&\uncover<6>{\begin{minipage}{}
+        ???\\
+        \vspace{7em}\end{minipage}\vspace{-3em}}\\
+      \uncover<4->{{\tiny $x(t)=\sqrt{x_0^2+\xi_0^2}\cos\left[t-\arctan\left(\frac{\xi_0}{x_0}\right)\right]$}}& &\uncover<5->{$H_n(x)e^{-\frac{x^2}{2}}$}
+    \end{tabular}
+  \end{center}}
+\end{frame}
+
 \begin{frame}
   \frametitle{Bargmann spaces}
   \begin{itemize}
   \item Original idea: express Quantum Mechanics directly in phase
     space.
   \uncover<2->{\item The standard $L^2(\R^n)$ is replaced with the \emph{Bargmann
-      space}, with parameter $N>0$:
+      space}, with parameter $N>0$ (think of $N=\hbar^{-1}$):
 $$B_N=L^2(\C^n)\cap\left\{e^{-\frac N2 |\cdot|^2}f,\,f\text{ is
   holomorphic on $\C^n$}\right\}.$$}\vspace{-2em}
   \uncover<3>{\item This is a closed subspace of $L^2(\C^n)$, with reproducing
@@ -66,6 +79,20 @@ The Szeg\H{o} kernel decays exponentially fast away from the diagonal.
 \end{frame}
 
 \begin{frame}
+  \frametitle{Quantum harmonic oscillator}
+  \begin{itemize}
+  \item Let us quantize $x^2+\xi^2=|z|^2=\overline{z}z$.
+  \item<2-> $z$ acts by multiplication.
+  \item<3-> $\overline{z}$ acts as its adjoint; it acts as
+    $N^{-1}\partial+\frac 12 \overline{z}=\mathfrak{d}_N$.
+  \item<4-> {\bf ordering choice}: $Op(x^2+\xi^2)=\mathfrak{d}_Nz$.
+  \item<5-> $\langle u,\mathfrak{d}_Nzv\rangle=\langle
+    zu,zv\rangle=\langle u,|z|^2v\rangle$.
+  \item<6> Spectrum: $N^{-1}\N$; eigenfunctions: monomials. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{Toeplitz quantization}
   Let $f\in C^{\infty}(\C^n,\C)$ bounded. The Toeplitz operator associated
   with $f$ is the bounded operator
@@ -87,7 +114,7 @@ with dense domain.}
 \begin{frame}
   \frametitle{Composition of Toeplitz operators}
   \begin{itemize}
-  \item Recipe: \[T_N(z\mapsto \overline{z}^{\alpha}z^{\beta})=N^{-|\alpha|}\partial^{\alpha}z^{\beta}.\]
+  \item Recipe: \[T_N(z\mapsto \overline{z}^{\alpha}z^{\beta})=\mathfrak{d}_N^{\alpha}z^{\beta}.\]
 
 \uncover<2->{\item The Toepliz quantization is \emph{anti-Wick}: if $f$ is
   anti-holomorphic and $h$ is holomorphic then
@@ -113,13 +140,34 @@ $C_j$ is a bidifferential operator of total order $2j$.}
     \]\vspace{-2em}}
 \uncover<4->{\item Formal equivalence between Toeplitz and $\Psi$DO
   calculus.}
-\uncover<5>{\item Toeplitz quantization is formulated directly in
-  phase space, and it is positive.}
+\uncover<5>{\item Toeplitz quantization is formulated {\bf directly in
+  phase space}, and {\bf positive}.}
 
   \end{itemize}
 \end{frame}
 
-\subsection{Toeplitz operators on compact manifolds}
+\section{Toeplitz operators on compact manifolds}
+\begin{frame}\frametitle{Generalized Bargmann spaces}
+  \begin{itemize}
+    \item Changing the positive quadratic weight in the Bargmann space:
+  \[
+    B_N^{\psi}=\left\{f\in L^2(\C^n), e^{-N\psi}f \text{ is
+        holomorphic}\right\}
+  \]
+  is another closed subspace of $L^2$.
+
+  \item<2-> Commutator of Toeplitz operators $\rightsquigarrow$
+    squeezed symplectic form given by
+    $\partial\overline{\partial}\psi$.
+    
+  \item<3-> Infinitesimal model for the case where $\psi$ is an
+    arbitrary strongly pseudoconvex function $\Leftrightarrow$ arbitrary
+    symplectic form on $\R^{2n}$.
+      \item<4> Note: one cannot simplify both symplectic and complex
+          structure at the same time!
+      \end{itemize}
+    \end{frame}
+
 \begin{frame}
   \frametitle{Hardy spaces and Szeg\H{o} kernel}
   \begin{itemize}
@@ -133,15 +181,13 @@ $C_j$ is a bidifferential operator of total order $2j$.}
 
 $\biggl\}$ Compatibility condition
 \end{minipage}}
-\uncover<3->{\item Complex line bundle $L\to M$ with curvature $-i\omega$.}
+\uncover<3->{\item Complex line bundle $L\to M$ with curvature
+  $-i\omega$: glue together pieces of Bargmann spaces in holomorphic charts.}
 \uncover<4->{\item Hardy space $H_N(M,L)$ of holomorphic sections of $L^{\otimes N}$.}
 \uncover<5->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M,L).$}
   \end{itemize}
-\uncover<6>{The spaces $H_N(M,L)$ are finite-dimensional in that case. The
-line bundles $L^{\otimes N}$ correspond to the weights $e^{-\frac N2
-  |\cdot|^2}$ in the flat case.}
-\vspace{1em}
 
+\vspace{5em}
 \small{[2] Woodhouse, N. Geometric Quantization. Oxford University Press, 1997.}
 \end{frame}
 
@@ -165,7 +211,7 @@ line bundles $L^{\otimes N}$ correspond to the weights $e^{-\frac N2
 [5] Berman, R., Berndtsson, B., Sjöstrand, J.,  Arkiv För Matematik
 46, no. 2 (2008).
 
-[6] Kordyukov, Y. ArXiv Preprint ArXiv:1703.04107, 2017.
+{\bf [6] Deleporte, A. preprint arXiv:1812.07202}
 }
 
  
@@ -185,42 +231,8 @@ matrices with spin $S=\frac {N-1}2$.}
 \end{frame}
 
 
-\section{Spin systems in the semiclassical limit}
-\begin{frame}
-  \frametitle{General spin systems}
-\begin{itemize}
-  \item Systems with $n$ spins correspond to the K\"ahler manifold
-  $(\mathbb{S}^2)^n$.
 
-\item We are interested in \emph{antiferromagnetic} systems. Let $G=(V,E)$
-  a finite graph, the antiferromagnetic symbol on
-  $(\mathbb{S}^2)^{|V|}$ is set to $$h_{AF}=\sum_{(i,j)\in
-    E}x_ix_j+y_iy_j+z_iz_j.$$
-\uncover<2>{\item If the graph is bipartite, then the minimum is reached when two
-  neighbours always have opposite values.}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Frustrated systems}
-  \begin{itemize}
-  \item In frustrated systems, the previous solution is not possible.
-  \uncover<2->{\item If the graph is ``made with triangles'', then on each triangle
-    the sum of the vectors should be zero.}
-  \uncover<3>{\item This yields a \emph{degenerate} minimal set, which is not a
-    manifold.
-  \item What behaviour should one expect for the eigenvectors with
-    minimal eigenvalue
-    of $T_N(h_{AF})$?}
-  \end{itemize}
-\vspace{1em}
-
-\small{[7] Douçot, B., and Simon, P.,  J. Physics A: Math and General 31, no. 28 (1998)}
-
-\end{frame}
-
-\section{Melin estimate and localization}
-\subsection{General result}
+\section{Melin estimate}
 \begin{frame}
   \frametitle{Characteristic value}
   Can one improve the lower bound $f\geq 0\Rightarrow T_N(f)\geq 0$ ?
@@ -237,13 +249,58 @@ matrices with spin $S=\frac {N-1}2$.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Case of several wells}
+  \frametitle{Estimates on the first eigenfunction}
+  \begin{enumerate}
+  \item<1-> {\bf Upper estimate}: try states localised near a point
+    $x$ where $f$ is minimal:
+    contribution $\min(f)+N^{-1}\mu(\Hess(f)(x))+O(N^{-2})$.
+  \item<2-> Corresponding lower bound for {\bf states localised near a
+      point}.
+  \item<3-> Proof in three steps:
+    \begin{itemize}
+    \item Small energy eigenfunctions localize where $f$ is minimal.
+    \item Cut into pieces of size $N^{-\frac 12+\epsilon}$ {\bf
+        corresponding to the eigenfunction} (see next slide)
+      \item Apply the lower bound on each piece.
+    \end{itemize}
+
+  \end{enumerate}
+\end{frame}
+\begin{frame}
+  \frametitle{A cutting lemma}
+  A function cannot be too large everywhere!
+\vfill 
+  Example: given $t<a$ and $u:\S^1\to \R$, then $\S^1$ can be cut into pieces $U_j$ of size
+  between $a$ and $2a$, with overlap $t$, such that
+  \[
+    \sum_{i,j}\int_{U_i\cap U_j}|u|\leq
+    C\frac{t}{a}\sum_i\int_{U_i}|u|.
+    \]
+  \end{frame}
+
+  \begin{frame}
+\frametitle{Melin estimate}
+\begin{theorem}
+    If $f\in C^{\infty}(M,\R)$ and if $\mu_{inf}$ is the infimum of $\mu$ over all
+    minimal points, then $$T_N(f)\geq \min(f)+N^{-1}\mu_{inf}+N^{-1-\epsilon}.$$
+  \end{theorem}
+  
+\vspace{7em}
+\small{
+  [8] Melin, A. Arkiv För Matematik 9, no. 1 (1971): 117–140
+  
+{\bf [9] Deleporte, A. Comm. Math. Phys (accepted)}
+}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Consequence: localization of the ground state}
   \begin{minipage}[l]{0.3\linewidth}
     \includegraphics[width=\linewidth]{wells.png}
   \end{minipage}
   \begin{minipage}[r]{0.65\linewidth}
-    What can be said if $h$ is minimal on non-degenerate critical
-    points?
+    What can be said about the ground state, using the Melin estimate?
     
     \uncover<2->{
       \begin{thm}
@@ -264,140 +321,8 @@ matrices with spin $S=\frac {N-1}2$.}
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Melin estimate}
-\begin{itemize}
-  \item Local result: for sections $u$ sufficiently concentrated around a
-    minimal point of $f$ where the Hessian matrix is $q$, one has $\langle
-    u,T_N(f)u\rangle \geq N^{-1}\mu(q)+CN^{-1-\epsilon}$.
-  \uncover<2>{\item Global result: if $\mu_{inf}$ is the infimum of $\mu$ over all
-    minimal points, then $$T_N(f)\geq N^{-1}\mu_{inf}+N^{-1-\epsilon}.$$}
-  \end{itemize}
 
-\small{
-[8] Melin, A. Arkiv För Matematik 9, no. 1 (1971): 117–140}
 
-\end{frame}
-
-\begin{frame}
-  \frametitle{Ideas for the proof}
-  \begin{itemize}
-  \item Local result: use the fact that the Szeg\H{o} kernel is
-    equivalent to the $\C^n$ case near the diagonal, as $N\to
-    +\infty$.
-  \uncover<2>{\item Global result: pick a covering of the manifold with small open sets
-    corresponding to the section, and ask
-    that the section is relatively smaller at the intersection of the
-    open sets than elsewhere.}
-  \end{itemize}
-\end{frame}
-
-\subsection{Localization of the ground state}
-\begin{frame}
-  \frametitle{A general localization result}
-  \begin{prop}
-    Let $f\in C^{\infty}(M,\R)$ with $\min(f)=0$.
-    Then any sequence $(u_N)$ of normalized eigenstates of $T_N(f)$
-    with eigenvalues $O(N^{-\epsilon})$ is such that
-$$\int_{\{f(x)\geq N^{-1+\delta}\}}|u_N(x)|^2 \dd Vol=O(N^{-\infty}).$$
-  \end{prop}
-
-  \uncover<2->{Indeed, the first eigenvalue is $O(N^{-1})$, so that $\langle
-  u_N,fu_N\rangle=O(N^{-1})$.}
-
-\uncover<3>{By induction, $\langle u_N,f^ku_N\rangle = O(N^{-k})$,
-  hence the claim.}
-\vspace{2em}
-
-\small{{\bfseries [9] Deleporte, A., Journal of Spectral Theory
-    (accepted)}}
-\end{frame}
-
-\begin{frame}
-\frametitle{Subprincipal effects on localization}
-  \begin{thm}
-    Let $f\in C^{\infty}(M,\R)$ with $\min(f)=0$. Let $V$ at positive
-    distance from $\{\mu=\mu_{min}\}$.
-    Then, with $(u_N)$ as previously one has $$\int_{V}|u_N|^2\dd Vol=O(N^{-\infty}).$$
-  \end{thm}
-\uncover<2>{The proof uses the Melin estimates.}
-\vspace{2em}
-
-\small{{\bfseries [9] Deleporte, A., Journal of Spectral Theory
-    (accepted)}\\{\bfseries [10] Deleporte, A., Arxiv preprint}.}
-\end{frame}
-\begin{frame}
-  \frametitle{Expansions in the regular case}
-  The regular case is a generalization of Helffer-Sj\"ostrand's
-  ``miniwells''.
-If $\mu$ is only minimal at one point $x_0$ near which $\{f=0\}$ is
-    an isotropic submanifold, and the minimum is non-degenerate, then
-    \begin{itemize}
-    \item The first eigenvalue is simple and admits an expansion in
-      powers of $N^{-\frac 14}$.
-    \item The first eigenvector concentrates at speed $N^{-\frac 14+}$ on $x_0$ along
-      $\{f=0\}$.
-    \item Spectral gap $CN^{-\frac 32}$.
-    \end{itemize}
-
-\small{[11] Helffer, B., Sjöstrand, J. Current Topics in PDEs, 1986, 133–186\\{\bfseries [10] Deleporte, A., Arxiv preprint}.}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Crossing points}
-  We treat the case where $\{f=0\}$ is a union of two sumbanifolds
-  with a ``crossing point'', where $\mu$ is minimal.
-
-  Toy model: $h(q_1,q_2,p_1,p_2)=p_1^2+p_2^2+q_1^2q_2^2$.
-  
-    \begin{itemize}
-    \item The first eigenvalue is simple and admits an expansion in
-      powers of $N^{-\frac 16}$.
-    \item The first eigenvector concentrates  at speed $N^{-\frac 13+}$ on $x_0$ along
-      $\{f=0\}$.
-    \item Spectral gap $CN^{-\frac 43}$.
-    \end{itemize}
-    \vspace{2em}
-    
-\small{{\bfseries [10] Deleporte, A., Arxiv preprint}.}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Tools for the two cases}
-  We constructed symplectic normal forms, which are new even in the
-  context of pseudodifferential calculus.
-\uncover<2->{  \begin{prop}
-If $\sigma:U\to V$ is a local symplectomorphism between two K\"ahler
-manifolds $M$ and $N$, then there is a sequence of maps
-$\mathfrak{S}_N:M\to N$, such that, when acting on sequences of
-sections microlocalising on $U$, 
-
-\begin{itemize}
-\item $\mathfrak{S}_N$ is an isometry modulo $O(N^{-\infty})$ error.
-\uncover<3->{\item $\mathfrak{S}_NT_N(h)\mathfrak{S}_N^{-1}=T_N(\sigma\circ h + N^{-1}g_1+N^{-2}g_2+\cdots).$}
-\end{itemize}
-\end{prop}}
-
-\uncover<4>{At the minimal points, the subprincipal symbol is
-  prescribed by the Melin estimates on both sides.}
-\end{frame}
-\subsection{Future work}
-\begin{frame}
-  \frametitle{Perspective}
-  \begin{enumerate}
-  \item Work in progress:
-    \begin{itemize}
-    \item Exponential estimates in the analytic case,
-      \uncover<2->{Tunnelling}
-    \uncover<3->{\item Low-energy time evolution}
-    \end{itemize}
-  \item Conjectures:
-    \begin{itemize}
-    \uncover<4->{\item Where is $\mu$ minimal for the Kagome lattice?}
-    \uncover<5>{\item The Scottish flag: $T_N(\cos(q)+i\cos(p))$ on the two-torus.}
-    \end{itemize}
-  \end{enumerate}
-\end{frame}
 
 \end{document}
 %%% Local Variables:
