@@ -3,6 +3,33 @@
 %\usepackage[francais]{babel}
 \usepackage[utf8]{inputenc} % Uses the utf8 input encoding
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{main.bib}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@@description}{\advance\beamer@descdefault by
+  \labelsep}{\advance\beamer@descdefault by -1em}{}{}
+\makeatother
+
+\usepackage{calc}
+\usepackage{xcolor}
+
+\AtBeginSection[]
+{
+\setbeamercolor{section in toc}{fg=alerted text.fg}
+\setbeamercolor{section in toc shaded}{bg=structure!20,fg=structure}
+\setbeamertemplate{section in toc shaded}[default][100]
+\begin{frame}<beamer>
+  \frametitle{Outline}
+  \tableofcontents[currentsection,hideallsubsections]
+\end{frame}
+}
+
+\definecolor{myorange}{RGB}{180,90,0}
+
+\definecolor{mygreen}{RGB}{70,140,0}
+
+\newcommand{\mycite}[1]{{\color{mygreen} \small #1}}
 
 \usepackage[nomath]{kpfonts}
 \usepackage{eulervm}
@@ -12,24 +39,177 @@
 \title{Szeg\H{o} kernels and Toeplitz operators}
 \author{Alix Deleporte}
 \institute{MSRI}
-
-\AtBeginSection
-{
-	\begin{frame}
-		\frametitle{Plan}
-		\tableofcontents[currentsection]
-	\end{frame}
-	
-}
-
 \newcommand{\spline}{\hline}
 \renewcommand{\arraystretch}{1.3}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite=true]{
+      \step[fieldsource=author,
+            match=Deleporte,
+            final]
+      \step[fieldset=keywords, fieldvalue=Deleporte]
+    }
+  }
+}
 \begin{document}
+
+\beamertemplatenavigationsymbolsempty
+
+    \expandafter\def\expandafter\insertshorttitle\expandafter{%
+       \insertshorttitle\hfill%}
+       }%\insertframenumber}
+
+
 \begin{frame}
 	\titlepage
+      \end{frame}
+
+      \begin{frame}
+        \frametitle{Outline}
+        \begin{enumerate}\setcounter{enumi}{-1}
+        \item Motivation: antiferromagnetic spin systems
+          \begin{itemize}
+          \item What are spin systems?
+          \item frustration in antiferromagnets
+          \end{itemize}
+        \item Basics of Toeplitz quantization
+          \begin{itemize}
+          \item Toeplitz operators and Szeg\H{o} kernel on $\C^n$
+          \item Elementary properties
+          \item Relation to $\Psi$DO's
+          \end{itemize}
+        \item Toeplitz quantization on manifolds
+          \begin{itemize}
+          \item General constructions
+          \item The case of the sphere: spin systems
+          \item Semiclassical limit
+          \end{itemize}
+        \item Localisation of low-energy states
+          \begin{itemize}
+          \item A general result
+          \item Applications to frustrated spin systems
+          \end{itemize}
+        \end{enumerate}
+      \end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+  \begin{itemize}
+  \item<1-> {\bfseries spin systems}: models for magnetism in solids.
+  \item<2-> {\bfseries classical spins}: one atom at site $i$
+    $\rightsquigarrow$ one spin $s_i\in \S^2$.
+  \item<3> Heisenberg antiferromagnet: Graph $G=(V,E)$,
+    
+    search the minima of the following energy:
+    \[
+      (s_i)_{i\in V}\mapsto\sum_{i\sim j}s_i\cdot s_j.
+    \]
+    Here $i\sim j$ when the atoms $i$ and $j$ are neighbours in $G$
+    and $\cdot$ is the scalar product.
+  \end{itemize}
 \end{frame}
 
-\section{Toeplitz operators on $\C^n$}
+             \begin{frame}
+         \frametitle{Introduction}
+   \begin{center}
+     \begin{picture}(50,100)
+           \only<1>{\put(-125,-80){\includegraphics[scale=9]{Alcazar.png}}}
+           \only<2>{\put(-125,-80){\includegraphics[scale=9]{Alcazar-Kagome.png}}}
+           \only<3>{\put(-112,-80){\includegraphics[scale=0.32]{kagome-svg.png}}}
+           \only<4>{\put(-112,-80){\includegraphics[scale=0.32]{kagome-spins-svg.png}}}
+           \only<5>{\put(-112,-80){\includegraphics[scale=0.32]{kagome-spins-2-svg.png}}}
+         \end{picture}
+         \vspace{8em}
+
+         Kagome lattice: \uncover<2->{appears in Zn$_2$CU$_3$(OH)$_6$Cl$_2$ crystals.}
+       \end{center}
+     \end{frame}
+
+     \begin{frame}\frametitle{Introduction}
+       \begin{itemize}
+       \item Quantum spin: self-adjoint matrices
+         $S_x,S_y,S_z\in M_{N+1}(\C)$ \[[S_x,S_y]=\frac{2i}{N}S_z\qquad
+           [S_y,S_z]=\frac{2i}{N}S_x\qquad [S_z,S_x]=\frac{2i}{N}S_y.\]
+       \item Several spins $\rightarrow$ {\color{myorange} tensor product}.
+         \[S_{x,i}=\underbrace{Id\otimes \cdots\otimes Id}_{i-1}\otimes S_x\otimes
+           \underbrace{Id\otimes
+             \cdots
+             \otimes
+             Id}_{d-i}.\]
+         
+       \item<2>
+         Quantum
+         energy
+         (matrix
+         of
+         size
+         $(N+1)^d$):
+         \[
+           \sum_{i\sim j}S_{i,x}S_{j,x}+S_{i,y}S_{j,y}+S_{i,z}S_{j,z}.\]
+         
+         
+      \end{itemize}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Introduction}
+      Quantum energy is a self-adjoint matrix $\Rightarrow$
+      
+      \hspace{1em}eigenvalues
+      $\lambda_1\leq \lambda_2\leq \cdots\leq \lambda_{(N+1)^d}$
+
+      \hspace{1em}and associated eigenvectors. \vspace{1em}
+      
+      Goal: {\color{myorange} qualitative study of eigenvectors} associated with
+      $\lambda_1$ (ground states) or other small eigenvalues.
+      
+      \hfill
+      
+      \uncover<2>{Physics claim: {\color{myorange} quantum-classical
+          correspondence} as $N\to +\infty$.
+        
+        \hfill
+        
+      Prediction \mycite{[Douçot-Simon 1998]}: lowest-energy eigenvectors concentrate on {\color{myorange} some} classical configurations.}
+    \end{frame}
+      \begin{frame}
+        \frametitle{Introduction}
+        Toeplitz quantization:
+        \begin{itemize}
+          \item treat $N\to +\infty$ as a semiclassical
+       limit
+     \item see eigenvectors above as sections over $(\S^2)^d$.
+     \end{itemize}
+     \uncover<2->{Questions:}
+     \begin{itemize}
+        \item<2-> Where does the ground state concentrate?
+        \item<3> What is the decay speed outside the concentration set?
+        \end{itemize}
+      \end{frame}
+
+      \begin{frame}
+        \frametitle{Introduction}
+        \setbeamercovered{transparent}
+        {\footnotesize
+        \begin{description}
+        \item<1>[{[D. 2019a]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
+of Wells.” In: Journal of Spectral Theory 9 (2019).
+\item<1-2> [{[D. 2019b]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
+Miniwell.” In: Comm. Math. Phys, to appear.
+\item<1>[{[D. 2018a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
+1808.00718 (2018).
+\item<1>[{[D. 2018b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
+arXiv 1812.06648 (2018).
+\item<1>[{[D. 2018c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
+1812.07202 (2018).
+\item<1>[{[D. 2019++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
+  Operators.” In: arXiv 1901.07215 (2019).
+        \end{description}}
+      \end{frame}
+
+      
+
+\section{Basics of Toeplitz quantization}
 \begin{frame}
   \frametitle{Quantization of the harmonic oscillator}
   Quantization: associate {\bf classical dynamics} (driven by
@@ -54,28 +234,15 @@
   \uncover<2->{\item The standard $L^2(\R^n)$ is replaced with the \emph{Bargmann
       space}, with parameter $N>0$ (think of $N=\hbar^{-1}$):
 $$B_N=L^2(\C^n)\cap\left\{e^{-\frac N2 |\cdot|^2}f,\,f\text{ is
-  holomorphic on $\C^n$}\right\}.$$}\vspace{-2em}
+    holomorphic on $\C^n$}\right\}.$$\vspace{-1em}
+
+Example of functions in $B_N$: $\C[z]e^{-\frac N2|z|^2}$.}
   \uncover<3>{\item This is a closed subspace of $L^2(\C^n)$, with reproducing
     kernel
 $$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
   |x-y|^2+iN\Im(x\cdot \overline{y})\right).$$}
   \end{itemize}
-\vspace{-1em}
-\small{[1] Bargmann, V. Comm. Pure Appl. Math. 14, no. 3 (1961): 187–214.}
 
-\end{frame}
-
-\begin{frame}
-  \frametitle{Szeg\H{o} kernel}
-  Hilbert basis indexed by $\N^{n}$:
-
-$$e_{\nu}=\uncover<2->{\cfrac{N^{|\nu|}}{\nu_1!\nu_2!\ldots\nu_n!}}\,z^{\nu}e^{-\frac{N|z|^2}{2}}.$$
-
-\uncover<3>{From there one recovers $\Pi_N$ with
-$$\Pi_N(x,y)=\sum_{\nu\in \N^n} e_{\nu}(x)\overline{e_{\nu}}(y).$$
-
-The Szeg\H{o} kernel decays exponentially fast away from the diagonal.
-}
 \end{frame}
 
 \begin{frame}
@@ -88,22 +255,23 @@ The Szeg\H{o} kernel decays exponentially fast away from the diagonal.
   \item<4-> {\bf ordering choice}: $Op(x^2+\xi^2)=\mathfrak{d}_Nz$.
   \item<5-> $\langle u,\mathfrak{d}_Nzv\rangle=\langle
     zu,zv\rangle=\langle u,|z|^2v\rangle$.
-  \item<6> Spectrum: $N^{-1}\N$; eigenfunctions: monomials. 
+  \item<6> Spectrum: $N^{-1}\N$; eigenfunctions: monomials. \vspace{1em}
   \end{itemize}
+  \uncover<6>{Note: spectrum is shifted by $\frac{1}{2N}$ with respect to the Weyl case.}
 \end{frame}
 
 \begin{frame}
   \frametitle{Toeplitz quantization}
-  Let $f\in C^{\infty}(\C^n,\C)$ bounded. The Toeplitz operator associated
+  Let $f\in L^{\infty}(\C^n,\C)$ bounded. The Toeplitz operator associated
   with $f$ is the bounded operator
 \begin{center}
 \begin{array}{rcl}
- 		T_N(f):B_N(\C^n)&\mapsto & B_N(\C^n)\\
+ 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
 		u& \mapsto& \uncover<2->{\Pi_N(}fu\uncover<2->{)}.
  		\end{array}
 \end{center}
 
-\uncover<3->{If $f$ has polynomial growth then $T_N(f)$ is an unbounded operator
+\uncover<3->{If $f\in L^{\infty}_{loc}$ has polynomial growth then $T_N(f)$ is an unbounded operator
 with dense domain.}
 \uncover<4>{\begin{itemize}
 \item If $f$ is real-valued then $T_N(f)$ is ess. self-adjoint.
@@ -116,13 +284,14 @@ with dense domain.}
   \begin{itemize}
   \item Recipe: \[T_N(z\mapsto \overline{z}^{\alpha}z^{\beta})=\mathfrak{d}_N^{\alpha}z^{\beta}.\]
 
-\uncover<2->{\item The Toepliz quantization is \emph{anti-Wick}: if $f$ is
-  anti-holomorphic and $h$ is holomorphic then
-\[T_N(fgh)=T_N(f)T_N(g)T_N(h).\]}
-\uncover<3>{\vspace{-1.5em}\item More generally, composition yields a formal series:
+\uncover<2->{\item Composition of smooth symbols: formal series
 \[T_N(f)T_N(g)=T_N\left(fg+N^{-1}C_1(f,g)+N^{-2}C_2(f,g)+\cdots\right).\]
 
 $C_j$ is a bidifferential operator of total order $2j$.}
+\item<3> In particular,
+  \[
+    [T_N(f),T_N(g)]=iN^{-1}T_N(\{f,g\})+O(N^{-2}).
+    \]
 \end{itemize}
 \end{frame}
 
@@ -134,19 +303,22 @@ $C_j$ is a bidifferential operator of total order $2j$.}
   \uncover<2->{\item It is related to the FBI
     transform.}
   \uncover<3->{
-  \item With $g_N=(N/\pi)^ne^{-N|z|^2}$ one has
+  \item With {\color{myorange} $g_N=(N/\pi)^ne^{-N|z|^2}$} one has
     \[
       \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_W^{N^{-1}}(f*g_N).
     \]\vspace{-2em}}
-\uncover<4->{\item Formal equivalence between Toeplitz and $\Psi$DO
-  calculus.}
-\uncover<5>{\item Toeplitz quantization is formulated {\bf directly in
-  phase space}, and {\bf positive}.}
+\uncover<4->{\item Equivalence between Toeplitz and $\Psi$DO
+  calculus in the $C^{\infty}$ class.}
+\uncover<5>{\item Toeplitz quantization is formulated {\color{myorange} directly in
+  phase space}, and {\color{myorange} positive}.}
 
   \end{itemize}
 \end{frame}
 
-\section{Toeplitz operators on compact manifolds}
+\section{Toeplitz quantization on manifolds}
+
+\subsection{Construction}
+
 \begin{frame}\frametitle{Generalized Bargmann spaces}
   \begin{itemize}
     \item Changing the positive quadratic weight in the Bargmann space:
@@ -167,79 +339,154 @@ $C_j$ is a bidifferential operator of total order $2j$.}
           structure at the same time!
       \end{itemize}
     \end{frame}
+    
+\begin{frame}
+  \frametitle{Setting}
+  \begin{itemize}
+  \item Compact, complex, symplectic manifold $M$
+    under compatibility conditions (K\"ahler, quantizable).
+    \item<2-> Complex line bundle $L\to M$ with curvature
+  $-i\omega$: glue together pieces of Bargmann spaces in holomorphic charts.
+\uncover<3->{\item Quantum space $H_N(M)$ of holomorphic sections of
+  $L^{\otimes N}$.}
+\uncover<4->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M).$}
+  \end{itemize}
+  \uncover<5>{The Szeg\H{o} projector has an integral kernel (section
+    over $M^2$):
+    \[
+      (S_Nu)(x)=\int_M S_N(x,y)u(y) \omega^{\wedge d}(dy).
+    \]
+    }
+\end{frame}
+
 
 \begin{frame}
-  \frametitle{Hardy spaces and Szeg\H{o} kernel}
-  \begin{itemize}
-  \item Geometrical setting: compact K\"ahler manifold $M$.\\
-    \begin{minipage}{0.37\linewidth}\begin{itemize}
-    \item Symplectic form
-    \item Complex structure
+  \frametitle{Toeplitz quantization}
+  Let $f\in L^{\infty}(M,\C)$. The Toeplitz operator associated
+  with $f$ is the bounded operator
+\begin{center}
+\begin{array}{rcl}
+ 		T_N(f):H_N(M)&\to & H_N(M)\\
+		u& \mapsto& \uncover<2->{S_N(}fu\uncover<2>{)}.
+ 		\end{array}
+\end{center}
+\end{frame}
+
+\subsection{Case of the sphere}
+
+\begin{frame}
+  \frametitle{Case $M=\S^2$}
+  Stereographic chart: $L$ is topologically trivial.
+
+  \hspace{9.5em}Its hermitian metric is
+  $\frac{1}{1+|z|^2}|\cdot|^2.$ \[H_N(M)\simeq \left\{f\text{ holo on $
+        \C$},\,\int_{\C}\cfrac{|f|^2}{(1+|z|^2)^{N+2}}<\infty\right\}=\C_N[X].\]
+ \uncover<2->{Expression of the Szeg\H{o}
+ kernel in this chart:\[S_N(z,w)=\cfrac{N+1}{\pi}\left(\cfrac{1+z\overline{w}}{\sqrt{(1+|z|^2)(1+|w|^2)}}\right)^N.\]}
+\uncover<3->{
+  \only<1-3>{\[T_N(\text{base coords})=\vphantom{\frac{N-2}{N}}\text{spin matrices}.\]}
+  \only<4>{\[T_N(\S^2\ni (x,y,z)\mapsto x)=\frac{N-2}{N}S_x.\]}
+  }
+\end{frame}
+
+\subsection{Semiclassical limit}
+\begin{frame}
+  \frametitle{The Szeg\H{o} kernel}
+ On $\S^2$, there holds $S_N(x,y)=\frac{(N+1)}{\pi}\Psi^{\otimes
+      N}(x,y)$, where $\Psi$ is a fixed section over $M\times M$.
+    \uncover<2->{\begin{theorem}[\mycite{[Charles 2003]}]
+        Let $M$ be a compact, quantizable almost K\"ahler manifold. There exists a section
+        $\Psi$ and a sequence of functions $(s_k)_{k\geq 0}$ on
+        $M\times M$ such that, uniformly in $(x,y)\in M^2$,
+      \[
+        S_N(x,y)=N^d\Psi^{\otimes
+          N}(x,y)(s_0+N^{-1}s_1+\cdots)(x,y)+O(N^{-\infty}).
+      \]
+      Here, for some $c>0$,
+      \[
+        |\Psi(x,y)|\leq e^{-c\dist(x,y)^2}.
+        \]
+      \end{theorem}
+    \uncover<3>{Meaning: we can sum up to $N^{-K}$ and have $O(N^{-K-1})$ error.}}
+    
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Approaches for near-diagonal estimates}
+    \begin{itemize}
+    \item FIOs with complex phase \mycite{[Shiffman-Zelditch 2002,
+        Charles 2003]}: versions of
+      the result above, remainder $O(N^{-\infty})$, following
+      \mycite{[Boutet de Monvel-Sjöstrand 1975]}.
+    \item Elliptic (weighted) estimates on $-\Delta$
+      \mycite{[Ma-Marinescu 2007, Kordyukov 2017++]}:
+      generalisations to other geometries (spin$^c$-Dirac, Bochner).
+    \item Partial Bergman kernels \mycite{[Hezari et al. 2017++]}: if $M$ is {\color{myorange}
+        real-analytic}, the remainder is $O(e^{-c\sqrt{N}})$ with
+      $c>0$.
+    \item New analytic calculus \mycite{[\underline{D. 2018c++}, Rouby et al. 2018++]}: if $M$ is
+      {\color{myorange} real-analytic},
+      the remainder is $O(e^{-cN})$ with $c>0$.
     \end{itemize}
-\end{minipage}
-\uncover<2->{\begin{minipage}{0.52\linewidth}
+  \end{frame}
 
-$\biggl\}$ Compatibility condition
-\end{minipage}}
-\uncover<3->{\item Complex line bundle $L\to M$ with curvature
-  $-i\omega$: glue together pieces of Bargmann spaces in holomorphic charts.}
-\uncover<4->{\item Hardy space $H_N(M,L)$ of holomorphic sections of $L^{\otimes N}$.}
-\uncover<5->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M,L).$}
-  \end{itemize}
+  \begin{frame}
+    \frametitle{Calculus of Toeplitz operators}
+    Asymptotics of the Szeg\H{o} kernel $\Rightarrow$ composition and
+    inversion of Toeplitz operators associated with smooth
+    functions.
 
-\vspace{5em}
-\small{[2] Woodhouse, N. Geometric Quantization. Oxford University Press, 1997.}
+    \begin{theorem}[{\mycite{[Charles 2003]}}]Let $M$ be smooth. Let $a$ and $b$ be
+      smooth real-valued functions on $M$. Then there exists a sequence $(c_k)_{k\geq
+        0}\in (C^{\infty}(M,\R))^{\N}$ such that
+      \[
+        T_N(a)T_N(b)=T_N(c_0+N^{-1}c_1+\cdots)+O(N^{-\infty}).
+        \]
+
+        If $a$ does not vanish, then there exists a sequence
+        $(d_k)_{k\geq 0}\in (C^{\infty}(M,\R))^{\N}$ such that
+        \[
+          T_N(a)T_N(d_0+N^{-1}d_1+\cdots)=S_N+O(N^{-\infty}).
+          \]
+        \end{theorem}
+        Calculus in analytic regularity (up to $O(e^{-cN})$):
+        \mycite{[\underline{D. 2018c++}]}.
+  \end{frame}
+
+
+\section{Localisation of low-energy states}
+
+\subsection{Localisation at the classical minimal set}
+\begin{frame}
+  \frametitle{Speed of localisation}
+ For $N\in \N$, let $u_N$ be a normalised eigenvector associated with
+ the smallest eigenvalue of $T_N(f)$. Let $Z=\mathop{argmin}(f)$.
+  \begin{theorem}[\mycite{[Charles 2000]}]
+  If f is {\color{myorange}smooth} and $U\subset M$ is at positive distance from $Z$, then \[\int_{U}|u_N|^2=O(N^{-\infty}).\]\vspace{-1.2em}
+\end{theorem}
+\uncover<2>{
+\begin{theorem}[\mycite{[\underline{D. 2018c++}]}]
+If f is {\color{myorange}real-analytic} then\vspace{-1em}
+      \[
+        \int_{U}|u_N|^2=O(e^{-cN}).%\vspace{-0.5em}
+      \]
+    \end{theorem}
+  In progress: exponential decay $O(e^{-cN^{\alpha}})$ for any $f\in L^{\infty}$.}
 \end{frame}
 
+
+
+
+\subsection{Subprincipal effects on localisation}
 \begin{frame}
-  \frametitle{Algebra of Toeplitz operators}
+  \frametitle{Characteristic value - I}
+  What are the energetic contributions of order $N^{-1}$ for the
+  ground state?
   \begin{itemize}
-  \item The Szeg\H{o} kernel $S_N$ has a full expansion near the
-    diagonal, and decays far from it.
-  \uncover<2->{\item Indeed $S_N$ can be seen as the $N$-th Fourier mode of a
-    Fourier Integral Operator with complex phase; the critical set is
-    the diagonal.}
-\uncover<3->{\item The dominant term is always $\Pi_N$.}
-  \uncover<4>{\item Toeplitz operators form a $C^{*}$-algebra as previously.} 
-  \end{itemize}
-\vspace{2em}
-
-\small{[3] Boutet de Monvel, L, Sjöstrand, J. Journées EDP 34–35 (1975): 123–64.
-
-[4] Charles, L. Comm. Math. Phys. 239, no. 1–2 (2003): 1–28.
-
-[5] Berman, R., Berndtsson, B., Sjöstrand, J.,  Arkiv För Matematik
-46, no. 2 (2008).
-
-{\bf [6] Deleporte, A. preprint arXiv:1812.07202}
-}
-
- 
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{An example: the 2D sphere}
-  Here $M=\mathbb{S}^2$. In the stereographic projection, $L$
-  corresponds to the weight $z\mapsto \frac{1}{1+|z|^2},$ so
-  that \begin{align*}H_N(M,L)&\simeq \left\{f\text{ holomorphic in
-                               $\C$},\,\int_{\C}\cfrac{|f|^2}{(1+|z|^2)^{N+2}}<\infty\right\}\\
-                             &=\C_N[X].\end{align*}
-\uncover<2>{In the canonical basis $\binom{N}{k}^{-\frac 12}X^k$, the Toeplitz
-quantization of the three base coordinates on $\mathbb{S}^2$ are the Spin
-matrices with spin $S=\frac N2$.}
-\end{frame}
-
-
-
-\section{Melin estimate}
-\begin{frame}
-  \frametitle{Characteristic value}
-  Can one improve the lower bound $f\geq 0\Rightarrow T_N(f)\geq 0$ ?
-  \begin{itemize}
-  \item If $q$ is a quadratic form in $\C^n$, the minimal eigenvalue
-    of $T_N(q)$ is $N^{-1}\mu(q)$ with $$\mu(q)=N^{-1}(Tr^+(q)+\frac
-    12 \tr(q)).$$
+  \item If $q\geq 0$ is a quadratic form in $\C^n$, the minimal eigenvalue
+    of $T_N(q)$ is $N^{-1}\mu(q)$ with $$\mu(q)=(Tr^+(q)+\frac
+    14 \tr(q)).$$
   \uncover<2>{\item Here, up to a
     symplectomorphism, $$q=\sum_{i=1}^{r}\lambda_i(q_i^2+p_i^2)+\sum_{i=r+1}^{r+r'}p_i^2,$$
     so $$Tr^+(q)=\sum_{i=1}^r\lambda_i.$$
@@ -249,80 +496,148 @@ matrices with spin $S=\frac N2$.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Estimates on the first eigenfunction}
-  \begin{enumerate}
-  \item<1-> {\bf Upper estimate}: try states localised near a point
-    $x$ where $f$ is minimal:
-    contribution $\min(f)+N^{-1}\mu(\Hess(f)(x))+O(N^{-2})$.
-  \item<2-> Corresponding lower bound for {\bf states localised near a
-      point}.
-  \item<3-> Proof in three steps:
-    \begin{itemize}
-    \item Small energy eigenfunctions localize where $f$ is minimal.
-    \item Cut into pieces of size $N^{-\frac 12+\epsilon}$ {\bf
-        corresponding to the eigenfunction} (see next slide)
-      \item Apply the lower bound on each piece.
+  \frametitle{Characteristic value - II}
+  \begin{itemize}
+  \item For $x\in Z$ a minimal point for $f$, we let $\mu(x)$ be the
+    $\mu$ of the Hessian of $f$ at $x$.
+  \item<2-> {\color{myorange} Quantum selection}: the ground states of $T_N(f)$
+    concentrate only on the subset $Z_{\mu}$ of $Z$ where also $\mu$ is minimal.
+  \end{itemize}
+  
+  \uncover<3>{\begin{itemize}
+    \item case of a Schrödinger operator $-\hbar^2\Delta+V$
+      \mycite{[Helffer-Sjöstrand 1986]}, where
+      \begin{itemize}
+      \item $V$ vanishes on a smooth submanifold $Z$
+      \item Its transverse Hessian is nondegenerate on $Z$.
+      \end{itemize}
+    \item case of a magnetic Schrödinger operator with similar
+    conditions \mycite{[Helffer-Morame 1996, Helffer-Kordyukov 2009]} .
     \end{itemize}
+    }
 
-  \end{enumerate}
 \end{frame}
+
 \begin{frame}
-  \frametitle{A cutting lemma}
-  A function cannot be too large everywhere!
-\vfill 
-  Example: given $t<a$ and $u:\S^1\to \R$, then $\S^1$ can be cut into pieces $U_j$ of size
-  between $a$ and $2a$, with overlap $t$, such that
-  \[
-    \sum_{i,j}\int_{U_i\cap U_j}|u|\leq
-    C\frac{t}{a}\sum_i\int_{U_i}|u|.
-    \]
+  \frametitle{Subprincipal localisation}
+  Quantum selection in general for Toeplitz operators:
+  \begin{theorem}[\mycite{[\underline{D. 2019b}]}]
+    Let $M$ be smooth, let $f\in C^{\infty}(M,\R)$ and let $Z_{\mu}$ and
+    $(u_N)_{N\geq 1}$ be as above.
+
+    For all $U\subset M$ at positive distance from $Z_{\mu}$, one has
+    \[
+      \int_U
+      |u_N|^2=O(N^{-\infty}).
+      \]
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ideas for the proof}
+  \begin{itemize}
+  \item Easy case: know that the ground state localises on a discrete
+    set \mycite{[\underline{D. 2019a}]}. Then one can do a Taylor
+    expansion.
+  \item General case: a function cannot be large everywhere! Cut $M$
+    into pieces so that $u_N$ is relatively small on the overlaps.
+  \item ``Non-degenerate'' case ($Z$ is a manifold): symplectic and
+    quantum normal forms, harder than in Schrödinger case.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Particular case: frustrated spin systems}
+  \begin{center}
+    \includegraphics[scale=6]{Alcazar.png}\includegraphics[scale=0.16]{Herbertsmithite.jpg}
+  \end{center}
+  \begin{itemize}
+\item  Framework: fixed number of particles $d$, spin parameter $N$
+  tends to infinity, set $Z$ arbitrarily complicated.
+
+  \item<2->{Computations for this particular case
+    $M=(\S^2)^d$ \mycite{[\underline{D. 2018b++}]}.}
+
+  \item<3>{{\color{myorange} Open problem}: where is $\mu$ minimal among classical
+      configurations on the Kagome lattice?}
+  \end{itemize}
+\end{frame}
+
+     \begin{frame}
+        \frametitle{Publications}
+        {\footnotesize
+        \begin{description}
+        \item[{[D. 2019a]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
+of Wells.” In: Journal of Spectral Theory 9 (2019).
+\item[{[D. 2019b]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
+Miniwell.” In: Comm. Math. Phys, to appear.
+\item[{[D. 2018a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
+1808.00718 (2018).
+\item[{[D. 2018b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
+arXiv 1812.06648 (2018).
+\item[{[D. 2018c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
+1812.07202 (2018).
+\item[{[D. 2019++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
+  Operators.” In: arXiv 1901.07215 (2019).
+        \end{description}}
+      \end{frame}
+
+\subsection{Future work}
+\begin{frame}
+  \frametitle{Perspectives}
+    \begin{itemize}
+    \item Eigenfunction concentration in low-regularity.
+    \item Large number of sites: $\stackrel[d\to +\infty]{}{\lim}\stackrel[N\to +\infty]{}{\lim}\stackrel{?}{=}\stackrel[N\to +\infty]{}{\lim}\stackrel[d\to +\infty]{}{\lim}$.
+    \item Low-energy dynamics.
+    \item Non self-adjoint operators with analytic symbols (Scottish flag).
+    \end{itemize}
   \end{frame}
 
   \begin{frame}
-\frametitle{Melin estimate}
-\begin{theorem}
-    If $f\in C^{\infty}(M,\R)$ and if $\mu_{inf}$ is the infimum of $\mu$ over all
-    minimal points, then $$T_N(f)\geq \min(f)+N^{-1}\mu_{inf}+N^{-1-\epsilon}.$$
-  \end{theorem}
+    \frametitle{Thanks}
+    \centering 
+    {\Large Thanks for your attention!}
+  \end{frame}
   
-\vspace{7em}
-\small{
-  [8] Melin, A. Arkiv För Matematik 9, no. 1 (1971): 117–140
-  
-{\bf [9] Deleporte, A. Comm. Math. Phys (accepted)}
-}
 
-\end{frame}
-
-\begin{frame}
-  \frametitle{Consequence: localization of the ground state}
-  \begin{minipage}[l]{0.3\linewidth}
-    \includegraphics[width=\linewidth]{wells.png}
-  \end{minipage}
-  \begin{minipage}[r]{0.65\linewidth}
-    What can be said about the ground state, using the Melin estimate?
-    
-    \uncover<2->{
-      \begin{thm}
-        The eigenvectors of minimal eigenvalue concentrate only on
-        ``minimal'' points. Eigenvectors and eigenvalues have an
-        asymptotical expansion in powers of $N^{-\frac 12}$.
-      \end{thm}
-    }
-
-    \uncover<3>{What is minimized ? The $\mu$ of the Hessian at this
-      point.}
-  \end{minipage}
-
-  \vspace{2em}
-
-\small{{\bfseries [9] Deleporte, A., Journal of Spectral Theory
-    (accepted)}}
-\end{frame}
-
-
-
-
+  \begin{frame}[allowframebreaks]
+    \frametitle{Bibliography}
+        {\footnotesize
+          \begin{description}
+            \item[{[BS75]}] Louis Boutet de Monvel and Johannes
+              Sjöstrand.  “Sur la singularité des noyaux de Bergman et
+              de Szegö.” In: Journées équations aux dérivées
+              partielles 34-35 (1975), pp. 123--164.
+        \item[{[Cha00]}] Laurent Charles. “Aspects Semi-Classiques de La Quantification Géométrique.” PhD thesis. Université Paris 9, 2000.
+        \item[{[Cha03]}] Laurent Charles. “Berezin-Toeplitz Operators, a Semi-Classical Approach.” en. In: Communications in Mathematical Physics 239.1-2
+(Aug. 2003), pp. 1–28.
+        \item[{[DS98]}] Benoît Douçot and Patrice Simon. “A Semiclassical Analysis of Order
+from Disorder.” en. In: Journal of Physics A: Mathematical and General
+31.28 (1998), p. 5855.
+\item[{[HK09]}] Bernard Helffer and Yuri A. Kordyukov. “Semiclassical Analysis of
+Schrödinger Operators with Magnetic Wells.” In: Contemporary Mathematics 500 (2009), p. 105.
+\item[{[HM96]}] Bernard Helffer and Abderemane Mohamed. “Semiclassical Analysis for
+the Ground State Energy of a Schrödinger Operator with Magnetic
+Wells.” In: Journal of Functional Analysis 138.1 (1996), pp. 40–81.
+\item[{[HS86]}] Bernard Helffer and Johannes Sjöstrand. “Puits Multiples En Limite
+Semi-Classique V : Étude Des Minipuits.” In: Current topics in partial
+differential equations (1986), pp. 133–186.
+\item[{[HLX17++]}] Hamid Hezari, Zhiqin Lu, and Hang Xu. “Off-Diagonal Asymptotic
+Properties of Bergman Kernels Associated to Analytic Kähler Potentials.” In: arXiv 1705.09281 (2017).
+\item[{[Kor17++]}] Yuri A. Kordyukov. “On Asymptotic Expansions of Generalized Bergman
+Kernels on Symplectic Manifolds.” In: arXiv 1703.04107 [math-ph]
+(Mar. 2017).
+\item[{[MM07]}] Xiaonan Ma and George Marinescu. Holomorphic Morse Inequalities
+and Bergman Kernels. Vol. 254. Springer Science \& Business Media,
+2007.
+\item[{[RSV18++]}] Ophélie Rouby, Johannes Sjöstrand, and San Vũ Ng\d{o}c. “Analytic
+Bergman Operators in the Semiclassical Limit.” In: hal-01851770 (July
+2018).
+\item[{[SZ02]}] Bernard Shiffman and Steve Zelditch. “Asymptotics of Almost Holomorphic Sections on Symplectic Manifolds.” In: J. reine angew. Math.
+544 (2002), pp. 181–222.
+        \end{description}
+        }
+      \end{frame}
 
 \end{document}
 %%% Local Variables:
