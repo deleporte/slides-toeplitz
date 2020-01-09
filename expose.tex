@@ -224,165 +224,79 @@ arXiv 1812.06648 (2018).
 
 \section{Basics of Toeplitz quantization}
 \begin{frame}
-  \frametitle{Quantization of the harmonic oscillator}
+  \frametitle{Quantization: I}
   Quantization: associate {\bf classical dynamics} (driven by
   real-valued functions) with {\bf self-adjoint operators}.
 
-  \uncover<2->{\begin{center}
-    \begin{tabular}{ccc}
-      classical & $\rightsquigarrow$ & quantum\\\hline
-      \uncover<3->{\includegraphics[scale=0.2]{harm_phase.png}}&&\uncover<6>{\begin{minipage}{}
-        ???\\
-        \vspace{7em}\end{minipage}\vspace{-3em}}\\
-      \uncover<4->{{\tiny $x(t)=\sqrt{x_0^2+\xi_0^2}\cos\left[t-\arctan\left(\frac{\xi_0}{x_0}\right)\right]$}}& &\uncover<5->{$H_n(x)e^{-\frac{x^2}{2}}$}
-    \end{tabular}
-  \end{center}}
+Ingredients: a symplectic manifold $(M,\omega)$, a Lagrangian
+distribution $\mathcal{F}\subset TM$.
+
+\vfill
+
+{\bfseries Step 1}: construct the {\bfseries prequantum bundle} $L$
+over $M$: it is a $\C$-bundle with Hermitian structure, and curvature
+$2i\pi \omega$.
+
+{\bfseries Step 2}: associate to $f:M\to \R$ an operator $Op(f)$
+acting on $\mathcal{F}$-invariant sections of $L$.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Bargmann spaces}
+  \frametitle{Quantization: II}
+  {\bfseries Semiclassical limit}: replace $\omega$ with $N\omega$ for
+  $N\in \N$ large (replace $L$ with $L^{\otimes N}$).
+
+  \vfill
+
+  Example 1:
   \begin{itemize}
-  \item Original idea: express Quantum Mechanics directly in phase
-    space.
-  \uncover<2->{\item The standard $L^2(\R^n)$ is replaced with the \emph{Bargmann
-      space}, with parameter $N>0$ (think of $N=\hbar^{-1}$):
-$$B_N=L^2(\C^n)\cap\left\{e^{-\frac N2 |\cdot|^2}f,\,f\text{ is
-    holomorphic on $\C^n$}\right\}.$$\vspace{-1em}
+  \item 
+  $M=T^*X$, $X$ Riemannian manifold,
+  $\mathcal{F}=\mathrm{span}(\partial/\partial \xi)$.
+\item 
+  $\mathcal{F}$-invariant sections of
+  $L^{\otimes N}$ are functions on $X$.
+\item $Op$ is
+  Weyl-quantization. ($\xi\rightsquigarrow iN^{-1}\partial_x$).
+\end{itemize}
 
-Example of functions in $B_N$: $\C[z]e^{-\frac N2|z|^2}$.}
-  \uncover<3>{\item This is a closed subspace of $L^2(\C^n)$, with reproducing
-    kernel
-$$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
-  |x-y|^2+iN\Im(x\cdot \overline{y})\right).$$}
-  \end{itemize}
+\vfill
 
-\end{frame}
-
-\begin{frame}
-  \frametitle{Quantum harmonic oscillator}
-  \begin{itemize}
-  \item Let us quantize $x^2+\xi^2=|z|^2=\overline{z}z$.
-  \item<2-> $z$ acts by multiplication.
-  \item<3-> $\overline{z}$ acts as its adjoint; it acts as
-    $N^{-1}\partial+\frac 12 \overline{z}=\mathfrak{d}_N$.
-  \item<4-> {\bf ordering choice}: $Op(x^2+\xi^2)=\mathfrak{d}_Nz$.
-  \item<5-> $\langle u,\mathfrak{d}_Nzv\rangle=\langle
-    zu,zv\rangle=\langle u,|z|^2v\rangle$.
-  \item<6> Spectrum: $N^{-1}\N$; eigenfunctions: monomials. \vspace{1em}
-  \end{itemize}
-  \uncover<6>{Note: spectrum is shifted by $\frac{1}{2N}$ with respect to the Weyl case.}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toeplitz quantization}
-  Let $f\in L^{\infty}(\C^n,\C)$ bounded. The Toeplitz operator associated
-  with $f$ is the bounded operator
-\begin{center}
-\begin{array}{rcl}
- 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
-		u& \mapsto& \uncover<2->{\Pi_N(}fu\uncover<2->{)}.
- 		\end{array}
-\end{center}
-
-\uncover<3->{If $f\in L^{\infty}_{loc}$ has polynomial growth then $T_N(f)$ is an unbounded operator
-with dense domain.}
-\uncover<4>{\begin{itemize}
-\item If $f$ is real-valued then $T_N(f)$ is ess. self-adjoint.
-\item If moreover $f\geq 0$ then $T_N(f)\geq 0$.
-\end{itemize}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Composition of Toeplitz operators}
-  \begin{itemize}
-  \item Recipe: \[T_N(z\mapsto \overline{z}^{\alpha}z^{\beta})=\mathfrak{d}_N^{\alpha}z^{\beta}.\]
-
-\uncover<2->{\item Composition of smooth symbols: formal series
-\[T_N(f)T_N(g)=T_N\left(fg+N^{-1}C_1(f,g)+N^{-2}C_2(f,g)+\cdots\right).\]
-
-$C_j$ is a bidifferential operator of total order $2j$.}
-\item<3> In particular,
-  \[
-    [T_N(f),T_N(g)]=iN^{-1}T_N(\{f,g\})+O(N^{-2}).
-    \]
+Example 2:
+\begin{itemize}
+\item $M$ is a Kähler manifold (compatible complex structure $J$),
+  $\mathcal{F}=\mathrm{span}(\partial/\partial \overline{z})$.
+\item $\mathcal{F}$-invariant sections of $L^{\otimes N}$ are
+  holomorphic sections.
+\item $Op$ is Toeplitz-quantization.
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
-  \frametitle{Toeplitz operators versus $\Psi$DOs}
+  \frametitle{Toeplitz quantization}
   \begin{itemize}
-  \item The Bargmann transform $\mathcal{B}_N$ conjugates $B_N$ and
-    $L^2(\R^n)$.
-  \uncover<2->{\item It is related to the FBI
-    transform.}
-  \uncover<3->{
-  \item With {\color{myorange} $g_N=(N/\pi)^ne^{-N|z|^2}$} one has
-    \[
-      \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_W^{N^{-1}}(f*g_N).
-    \]\vspace{-2em}}
-\uncover<4->{\item Equivalence between Toeplitz and $\Psi$DO
-  calculus in the $C^{\infty}$ class.}
-\uncover<5>{\item Toeplitz quantization is formulated {\color{myorange} directly in
-  phase space}, and {\color{myorange} positive}.}
-
+  \item Quantum space $H_N(M)$ of holomorphic sections of
+  $L^{\otimes N}$.
+\uncover<2->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M).$}
   \end{itemize}
-\end{frame}
-
-\section{Toeplitz quantization on manifolds}
-
-\subsection{Construction}
-
-\begin{frame}\frametitle{Generalized Bargmann spaces}
-  \begin{itemize}
-    \item Changing the positive quadratic weight in the Bargmann space:
-  \[
-    B_N^{\psi}=\left\{f\in L^2(\C^n), e^{-N\psi}f \text{ is
-        holomorphic}\right\}
-  \]
-  is another closed subspace of $L^2$.
-
-  \item<2-> Commutator of Toeplitz operators $\rightsquigarrow$
-    squeezed symplectic form given by
-    $\partial\overline{\partial}\psi$.
-    
-  \item<3-> Infinitesimal model for the case where $\psi$ is an
-    arbitrary strongly pseudoconvex function $\Leftrightarrow$ arbitrary
-    symplectic form on $\R^{2n}$.
-      \item<4> Note: one cannot simplify both symplectic and complex
-          structure at the same time!
-      \end{itemize}
-    \end{frame}
-    
-\begin{frame}
-  \frametitle{Setting}
-  \begin{itemize}
-  \item Compact, complex, symplectic manifold $M$
-    under compatibility conditions (K\"ahler, quantizable).
-    \item<2-> Complex line bundle $L\to M$ with curvature
-  $-i\omega$: glue together pieces of Bargmann spaces in holomorphic charts.
-\uncover<3->{\item Quantum space $H_N(M)$ of holomorphic sections of
-  $L^{\otimes N}$.}
-\uncover<4->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M).$}
-  \end{itemize}
-  \uncover<5>{The Szeg\H{o} projector has an integral kernel (section
+  \uncover<3->{The Szeg\H{o} projector has an integral kernel (section
     over $M^2$):
     \[
       (S_Nu)(x)=\int_M S_N(x,y)u(y) \omega^{\wedge d}(dy).
     \]
-    }
-\end{frame}
+  }
 
-
-\begin{frame}
-  \frametitle{Toeplitz quantization}
-  Let $f\in L^{\infty}(M,\C)$. The Toeplitz operator associated
+  \vfill
+  
+  \uncover<4->{ Let $f\in L^{\infty}(M,\C)$. The Toeplitz operator associated
   with $f$ is the bounded operator
 \begin{center}
 \begin{array}{rcl}
  		T_N(f):H_N(M)&\to & H_N(M)\\
-		u& \mapsto& \uncover<2->{S_N(}fu\uncover<2>{)}.
+		u& \mapsto& \uncover<5>{S_N(}fu\uncover<5>{)}.
  		\end{array}
-\end{center}
+\end{center}}
 \end{frame}
 
 \subsection{Case of the sphere}
@@ -453,7 +367,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
       \mycite{[Boutet de Monvel-Sjöstrand 1975]}.
     \item Weighted estimates on $-\Delta$
       \mycite{[Ma-Marinescu 2007, Ma-Marinsecu-Kordyukov 2019]}:
-      generalisations (spin$^c$-Dirac, Bochner).
+      generalisations.
     \item Analytic calculus \mycite{[\underline{D. 2018c++},
         Rouby-Vũ Ng\d{o}c-Sjöstrand 2018++]}: if $M$ is
       {\color{myorange} real-analytic},
@@ -462,12 +376,24 @@ $C_j$ is a bidifferential operator of total order $2j$.}
   \end{frame}
 
   \begin{frame}
+    \frametitle{Applications of the study of the Szeg\H{o} projector}
+    Good embeddings of $M$ in projective complex spaces.
+
+    \vfill
+
+    Random holomorphic sections of $M$, random submanifolds, ...
+
+    \vfill
+
+    Toeplitz quantization.
+  \end{frame}
+
+  \begin{frame}
     \frametitle{Calculus of Toeplitz operators}
     Asymptotics of the Szeg\H{o} kernel $\Rightarrow$ composition and
-    inversion of Toeplitz operators associated with smooth
-    functions.
+    inversion of Toeplitz operators.
 
-    \begin{theorem}[{\mycite{[Charles 2003]}}]Let $M$ be smooth. Let $a$ and $b$ be
+    \begin{theorem}[{\mycite{[Schlichenmaier 1999]}}]Let $M$ be smooth. Let $a$ and $b$ be
       smooth real-valued functions on $M$. Then there exists a sequence $(c_k)_{k\geq
         0}\in (C^{\infty}(M,\R))^{\N}$ such that
       \[
@@ -511,7 +437,7 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 \subsection{Subprincipal effects on localisation}
 \begin{frame}
   \frametitle{Characteristic value - I}
-  What are the energetic contributions of order $N^{-1}$ for the
+  What are the eigenvalue contributions of order $N^{-1}$ for the
   ground state?
   \begin{itemize}
   \item If $q\geq 0$ is a quadratic form in $\C^n$, the minimal eigenvalue
