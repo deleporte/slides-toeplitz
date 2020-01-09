@@ -84,7 +84,7 @@
         \item Motivation: antiferromagnetic spin systems
           \begin{itemize}
           \item What are spin systems?
-          \item frustration in antiferromagnets
+          \item Frustration in antiferromagnets
           \end{itemize}
         \item Basics of Toeplitz quantization
           \begin{itemize}
@@ -406,11 +406,20 @@ $C_j$ is a bidifferential operator of total order $2j$.}
 \begin{frame}
   \frametitle{The Szeg\H{o} kernel}
  On $\S^2$, there holds $S_N(x,y)=\frac{(N+1)}{\pi}\Psi^{\otimes
-      N}(x,y)$, where $\Psi$ is a fixed section over $M\times M$.
-    \uncover<2->{\begin{theorem}[\mycite{[Charles 2003]}]
-        Let $M$ be a compact, quantizable almost K\"ahler manifold. There exists a section
+      N}(x,y)$, where $\Psi$ is a fixed section over $M\times M$ and
+    $|\Psi|\approx e^{-c\dist(x,y)^2}$.
+    \uncover<2->{\begin{theorem}[\mycite{[Delin 1998]}]
+        Let $M$ be a compact, $C^2$ Kähler manifold of
+        dimension $d$. Then
+        \[
+          |S_N(x,y)|<CN^d\exp(-c\sqrt{N}\dist(x,y)).
+        \]
+      \end{theorem}
+    }
+    \uncover<3->{\begin{theorem}[\mycite{[Charles 2003]}]
+        Suppose $M$ is $C^{\infty}$. There exists a section
         $\Psi$ and a sequence of functions $(s_k)_{k\geq 0}$ on
-        $M\times M$ such that, uniformly in $(x,y)\in M^2$,
+        $M\times M$ such that
       \[
         S_N(x,y)=N^d\Psi^{\otimes
           N}(x,y)(s_0+N^{-1}s_1+\cdots)(x,y)+O(N^{-\infty}).
@@ -419,25 +428,32 @@ $C_j$ is a bidifferential operator of total order $2j$.}
       \[
         |\Psi(x,y)|\leq e^{-c\dist(x,y)^2}.
         \]
-      \end{theorem}
-    \uncover<3>{Meaning: we can sum up to $N^{-K}$ and have $O(N^{-K-1})$ error.}}
+      \end{theorem}}
     
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Approaches for near-diagonal estimates}
-    \begin{itemize}
+  \frametitle{Approaches for Szeg\H{o} kernel estimates}
+  Off-diagonal decay:
+  \begin{itemize}
+  \item Spectral gap for $\overline{\partial}^*\overline{\partial}$
+    \mycite{[Kohn 1963, Hörmander 1968]}.
+  \item Off-diagonal $\exp(-c\sqrt{N})$ decay \mycite{[Christ 1991,
+      Delin 1998]}.
+  \item Off-diagonal $\exp(-cN)$ decay if $M$ is {\color{myorange} real-analytic}
+    \mycite{[Berndtsson-Berman-Sjöstrand 2008]}.
+  \end{itemize}
+
+  Near diagonal estimates:
+  \begin{itemize}
     \item FIOs with complex phase \mycite{[Shiffman-Zelditch 2002,
         Charles 2003]}: versions of
       the result above, remainder $O(N^{-\infty})$, following
       \mycite{[Boutet de Monvel-Sjöstrand 1975]}.
-    \item Elliptic (weighted) estimates on $-\Delta$
-      \mycite{[Ma-Marinescu 2007, Kordyukov 2017++]}:
-      generalisations to other geometries (spin$^c$-Dirac, Bochner).
-    \item Partial Bergman kernels \mycite{[Hezari et al. 2017++]}: if $M$ is {\color{myorange}
-        real-analytic}, the remainder is $O(e^{-c\sqrt{N}})$ with
-      $c>0$.
+    \item Weighted estimates on $-\Delta$
+      \mycite{[Ma-Marinescu 2007, Ma-Marinsecu-Kordyukov 2019]}:
+      generalisations (spin$^c$-Dirac, Bochner).
     \item Analytic calculus \mycite{[\underline{D. 2018c++},
         Rouby-Vũ Ng\d{o}c-Sjöstrand 2018++]}: if $M$ is
       {\color{myorange} real-analytic},
