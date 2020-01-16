@@ -376,22 +376,32 @@ Example 2:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Applications of the study of the Szeg\H{o} projector}
-    Good embeddings of $M$ in projective complex spaces.
+    \frametitle{Application: Kodaira embeddings}
+    Let $M$ be a compact Kähler manifold with a prequantum bundle $L$.
 
+    For $N$ large, with $\mathop{dim}(H^0(M,L^{\otimes N}))=d_N$, and
+    $(s_k)$ an orthonormal basis, let
+    \begin{center}
+      \begin{array}{rcl}
+        \phi_N:M&\to &\C\mathbb{P}^{d_N-1}\\
+        x&\mapsto &[s_1(x):s_2(x):\cdots:s_{d_N}(x)]
+      \end{array}
+    \end{center}
+    Then $\phi_N$ is a well-defined complex map (because
+    $S_N(x,x)=\sum |s_k(x)|^2$, they don't all vanish at the same
+    point).
     \vfill
-
-    Random holomorphic sections of $M$, random submanifolds, ...
-
-    \vfill
-
-    Toeplitz quantization.
+    \uncover<2>{
+      \begin{itemize}
+      \item $\Phi_N$ is an embedding for $N$ large. \mycite{[Kodaira 1954]}
+      \item The pulled-back Fubini metric is close (up to scaling) to
+        the original metric. \mycite{[Tian 1990, Zelditch 2000]}
+      \end{itemize}
+      }
   \end{frame}
 
   \begin{frame}
-    \frametitle{Calculus of Toeplitz operators}
-    Asymptotics of the Szeg\H{o} kernel $\Rightarrow$ composition and
-    inversion of Toeplitz operators.
+    \frametitle{Application: Calculus of Toeplitz operators}
 
     \begin{theorem}[{\mycite{[Schlichenmaier 1999]}}]Let $M$ be smooth. Let $a$ and $b$ be
       smooth real-valued functions on $M$. Then there exists a sequence $(c_k)_{k\geq
@@ -427,11 +437,33 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
       \[
         \int_{U}|u_N|^2=O(e^{-cN}).%\vspace{-0.5em}
       \]
-    \end{theorem}
-  In progress: exponential decay $O(e^{-cN^{\alpha}})$ for any $f\in L^{\infty}$.}
+    \end{theorem}}
+  Tool: calculus of Toeplitz operators.
 \end{frame}
+\begin{frame}
+  \frametitle{Speed of localisation -- improved}
+  \begin{theorem}
+    If $f$ is {\color{myorange} smooth} and $U\subset M$ is at
+    positive distance from $Z$, then
+    \[
+      \int_U |u_N|^2=O(e^{-cN^{\alpha}}).
+      \]
+    \end{theorem}
+    \uncover<2>{
+      \begin{itemize}
+        \item $M$ is $C^{1,1}$: $\alpha=\frac 14$.
+        \item $M$ is analytic: $\alpha=\frac 13$.
+        \item $f$ is Lipschitz: $\alpha=\frac 12$, one can take
+          $U=\{f\geq \min(f)+CN^{-\frac 12+\epsilon}\}$.
+        \item $f$ is $C^2$: $\alpha=\frac 12$, one can take $U=\{f\geq
+          \min(f)+CN^{-1+\epsilon}\}$.
+        \end{itemize}
+      }
+      
+      \vfill
 
-
+      Tool: off-diagonal decay of the projector.
+    \end{frame}
 
 
 \subsection{Subprincipal effects on localisation}
