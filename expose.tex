@@ -38,6 +38,7 @@
 \input{thm-config}
 \title{Szeg\H{o} kernels and Toeplitz operators}
 \author{Alix Deleporte}
+\date{January 23, 2020}
 \institute[UZH]{Institut für Mathematik\\Universität Zürich}
 \newcommand{\spline}{\hline}
 \renewcommand{\arraystretch}{1.3}
@@ -200,18 +201,22 @@
         \setbeamercovered{transparent}
         {\footnotesize
         \begin{description}
-        \item<1>[{[D. 2019a]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
+        \item<1>[{[D. 2019]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
 of Wells.” In: Journal of Spectral Theory 9 (2019).
-\item<1-2> [{[D. 2019b]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
+\item<1-2> [{[D. 2020?]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
 Miniwell.” In: Comm. Math. Phys, to appear.
 \item<1>[{[D. 2018a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
 1808.00718 (2018).
 \item<1>[{[D. 2018b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
 arXiv 1812.06648 (2018).
-\item<1>[{[D. 2018c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
+\item<1-2>[{[D. 2018c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
 1812.07202 (2018).
 \item<1>[{[D. 2019++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
   Operators.” In: arXiv 1901.07215 (2019).
+  \item<1-2>[{[D. 2020++]}] Alix Deleporte. ``Fractional exponential
+    decay in the forbidden region for Toeplitz operators.'' In: arXiv
+    2001.07921 (2020).
+  
         \end{description}}
       \end{frame}
 
@@ -437,7 +442,7 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 \end{frame}
 \begin{frame}
   \frametitle{Speed of localisation -- improved}
-  \begin{theorem}
+  \begin{theorem}[\mycite{[\underline{D. 2020++}]}]
     If $f$ is {\color{myorange} smooth} and $U\subset M$ is at
     positive distance from $Z$, then
     \[
@@ -462,27 +467,13 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 
 
 \subsection{Subprincipal effects on localisation}
-\begin{frame}
-  \frametitle{Characteristic value - I}
-  What are the eigenvalue contributions of order $N^{-1}$ for the
-  ground state?
-  \begin{itemize}
-  \item If $q\geq 0$ is a quadratic form in $\C^n$, the minimal eigenvalue
-    of $T_N(q)$ is $N^{-1}\mu(q)$ with $$\mu(q)=(Tr^+(q)+\frac
-    14 \tr(q)).$$
-  \uncover<2>{\item Here, up to a
-    symplectomorphism, $$q=\sum_{i=1}^{r}\lambda_i(q_i^2+p_i^2)+\sum_{i=r+1}^{r+r'}p_i^2,$$
-    so $$Tr^+(q)=\sum_{i=1}^r\lambda_i.$$
-}
-
-\end{itemize}
-\end{frame}
 
 \begin{frame}
-  \frametitle{Characteristic value - II}
+  \frametitle{Characteristic value}
   \begin{itemize}
-  \item For $x\in Z$ a minimal point for $f$, we let $\mu(x)$ be the
-    $\mu$ of the Hessian of $f$ at $x$.
+  \item For $x\in Z$ a minimal point for $f$, we construct $\mu(x)$
+    associated with the Hessian of $f$ at $x$.
+  \item $\mu$ captures the eigenvalue contribution of order $N^{-1}$.
   \item<2-> {\color{myorange} Quantum selection}: the ground states of $T_N(f)$
     concentrate only on the subset $Z_{\mu}$ of $Z$ where also $\mu$ is minimal.
   \end{itemize}
@@ -504,7 +495,7 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 \begin{frame}
   \frametitle{Subprincipal localisation}
   Quantum selection in general for Toeplitz operators:
-  \begin{theorem}[\mycite{[\underline{D. 2019b}]}]
+  \begin{theorem}[\mycite{[\underline{D. 2020?}]}]
     Let $M$ be smooth, let $f\in C^{\infty}(M,\R)$ and let $Z_{\mu}$ and
     $(u_N)_{N\geq 1}$ be as above.
 
@@ -533,24 +524,23 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
   \end{itemize}
 \end{frame}
 
-     \begin{frame}
-        \frametitle{Publications}
-        {\footnotesize
-        \begin{description}
-        \item[{[D. 2019a]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
-of Wells.” In: Journal of Spectral Theory 9 (2019).
-\item[{[D. 2019b]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
-Miniwell.” In: Comm. Math. Phys, to appear.
-\item[{[D. 2018a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
-1808.00718 (2018).
-\item[{[D. 2018b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
-arXiv 1812.06648 (2018).
-\item[{[D. 2018c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
-1812.07202 (2018).
-\item[{[D. 2019++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
-  Operators.” In: arXiv 1901.07215 (2019).
-        \end{description}}
-      \end{frame}
+\begin{frame}
+  \frametitle{Applications: Mabuchi geodesics}
+  Another application of localisation of eigenfunctions. (In progress,
+  joint with S. Zelditch and P. Zhou)
+
+  \vfill
+  
+  \begin{itemize}
+  \item Riemannian structure (Mabuchi) on the space of Kähler metrics
+  on $M$.
+\item Geodesic equation $\Leftrightarrow$ complex Monge-Ampère
+  equation.
+\item<2-> {\color{myorange} Quantization} of the geodesics:
+  (presumably) of the form $t\mapsto e^{tNT_N(f)}$.
+\item<2-> Control of the spectrum of $T_N(f)$ allows us to study these operators.
+  \end{itemize}
+\end{frame}
 
 \subsection{Future work}
 \begin{frame}
