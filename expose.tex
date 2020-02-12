@@ -38,7 +38,7 @@
 \input{thm-config}
 \title{Szeg\H{o} kernels and Toeplitz operators}
 \author{Alix Deleporte}
-\date{January 31, 2020}
+\date{February 14, 2020}
 \institute[UZH]{Institut für Mathematik\\Universität Zürich}
 \newcommand{\spline}{\hline}
 \renewcommand{\arraystretch}{1.3}
@@ -81,23 +81,18 @@
 
       \begin{frame}
         \frametitle{Outline}
-        \begin{enumerate}\setcounter{enumi}{-1}
+        \begin{enumerate}
         \item Motivation: antiferromagnetic spin systems
           \begin{itemize}
           \item What are spin systems?
           \item Frustration in antiferromagnets
           \end{itemize}
-        \item Basics of Toeplitz quantization
+        \item Toeplitz operators
           \begin{itemize}
-          \item Toeplitz operators and Szeg\H{o} kernel on $\C^n$
-          \item Elementary properties
-          \item Relation to $\Psi$DO's
-          \end{itemize}
-        \item Toeplitz quantization on manifolds
-          \begin{itemize}
-          \item General constructions
-          \item The case of the sphere: spin systems
-          \item Semiclassical limit
+            \item Definition of Toeplitz operators
+            \item $L^2$ spaces of holomorphic functions and spectral
+              gap
+            \item Properties of Toeplitz operators
           \end{itemize}
         \item Localisation of low-energy states
           \begin{itemize}
@@ -107,6 +102,8 @@
           \end{itemize}
         \end{enumerate}
       \end{frame}
+
+      \section{Motivation: antiferromagnetic spin systems}
 
 \begin{frame}
   \frametitle{Introduction}
@@ -137,7 +134,7 @@
          \end{picture}
          \vspace{8em}
 
-         Kagome lattice: \uncover<2->{appears in Zn$_2$CU$_3$(OH)$_6$Cl$_2$ crystals.}
+         Kagome lattice: \uncover<2->{appears in Zn$_2$Cu$_3$(OH)$_6$Cl$_2$ crystals.}
        \end{center}
      \end{frame}
 
@@ -219,195 +216,154 @@ arXiv 1812.06648 (2018).
 1812.07202 (2018).
 \item<1>[{[D. 2019++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
   Operators.” In: arXiv 1901.07215 (2019).
-  \item<1-2>[{[D. 2020++]}] Alix Deleporte. ``Fractional exponential
+  \item<1-2>[{[D. 2020a++]}] Alix Deleporte. ``Fractional exponential
     decay in the forbidden region for Toeplitz operators.'' In: arXiv
     2001.07921 (2020).
+    \item<1>[{[DV 2020b++]}] Alix Deleporte and San Vũ Ng\d{o}c. ``Uniform spectral asymptotics for semiclassical
+wells on phase space loops''. In: arXiv 2002.00234 (2020).
         \end{description}}
-      \end{frame}
-
-    
-\section{Basics of Toeplitz quantization}
-\begin{frame}
-  \frametitle{Quantization of the harmonic oscillator}
-  Quantization: associate {\bf classical dynamics} (driven by
-  real-valued functions) with {\bf self-adjoint operators}.
-
-  \uncover<2->{\begin{center}
-    \begin{tabular}{ccc}
-      classical & $\rightsquigarrow$ & quantum\\\hline
-      \uncover<3->{\includegraphics[scale=0.2]{harm_phase.png}}&&\uncover<6>{\begin{minipage}{}
-        ???\\
-        \vspace{7em}\end{minipage}\vspace{-3em}}\\
-      \uncover<4->{{\tiny $x(t)=\sqrt{x_0^2+\xi_0^2}\cos\left[t-\arctan\left(\frac{\xi_0}{x_0}\right)\right]$}}& &\uncover<5->{$H_n(x)e^{-\frac{x^2}{2}}$}
-    \end{tabular}
-  \end{center}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Bargmann spaces}
-  \begin{itemize}
-  \item Original idea: express Quantum Mechanics directly in phase
-    space.
-  \uncover<2->{\item The standard $L^2(\R^n)$ is replaced with the \emph{Bargmann
-      space}, with parameter $N>0$ (think of $N=\hbar^{-1}$):
-$$B_N=L^2(\C^n)\cap\left\{e^{-\frac N2 |\cdot|^2}f,\,f\text{ is
-    holomorphic on $\C^n$}\right\}.$$\vspace{-1em}
-
-Example of functions in $B_N$: $\C[z]e^{-\frac N2|z|^2}$.}
-  \uncover<3>{\item This is a closed subspace of $L^2(\C^n)$, with reproducing
-    kernel
-$$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
-  |x-y|^2+iN\Im(x\cdot \overline{y})\right).$$}
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Quantum harmonic oscillator}
-  \begin{itemize}
-  \item Let us quantize $x^2+\xi^2=|z|^2=\overline{z}z$.
-  \item<2-> $z$ acts by multiplication.
-  \item<3-> $\overline{z}$ acts as its adjoint; it acts as
-    $N^{-1}\partial+\frac 12 \overline{z}=\mathfrak{d}_N$.
-  \item<4-> {\bf ordering choice}: $Op(x^2+\xi^2)=\mathfrak{d}_Nz$.
-  \item<5-> $\langle u,\mathfrak{d}_Nzv\rangle=\langle
-    zu,zv\rangle=\langle u,|z|^2v\rangle$.
-  \item<6> Spectrum: $N^{-1}\N$; eigenfunctions: monomials. \vspace{1em}
-  \end{itemize}
-  \uncover<6>{Note: spectrum is shifted by $\frac{1}{2N}$ with respect to the Weyl case.}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toeplitz quantization}
-  Let $f\in L^{\infty}(\C^n,\C)$ bounded. The Toeplitz operator associated
-  with $f$ is the bounded operator
-\begin{center}
-\begin{array}{rcl}
- 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
-		u& \mapsto& \uncover<2->{\Pi_N(}fu\uncover<2->{)}.
- 		\end{array}
-\end{center}
-
-\vfill
-
-\uncover<3>{\begin{itemize}
-\item If $f$ is real-valued then $T_N(f)$ is ess. self-adjoint.
-\item If moreover $f\geq 0$ then $T_N(f)\geq 0$.
-\end{itemize}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Composition of Toeplitz operators}
-  \begin{itemize}
-  \item Recipe: \[T_N(z\mapsto \overline{z}^{\alpha}z^{\beta})=\mathfrak{d}_N^{\alpha}z^{\beta}.\]
-
-\uncover<2->{\item Composition of smooth symbols: formal series
-\[T_N(f)T_N(g)=T_N\left(fg+N^{-1}C_1(f,g)+N^{-2}C_2(f,g)+\cdots\right).\]
-
-$C_j$ is a bidifferential operator of total order $2j$.}
-\item<3> In particular,
-  \[
-    [T_N(f),T_N(g)]=iN^{-1}T_N(\{f,g\})+O(N^{-2}).
-    \]
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toeplitz operators versus $\Psi$DOs}
-  \begin{itemize}
-  \item The Bargmann transform $\mathcal{B}_N$ conjugates $B_N$ and
-    $L^2(\R^n)$.
-  \uncover<2->{\item It is related to the FBI
-    transform.}
-  \uncover<3->{
-  \item With {\color{myorange} $g_N=(N/\pi)^ne^{-N|z|^2}$} one has
-    \[
-      \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_W^{N^{-1}}(f*g_N).
-    \]\vspace{-2em}}
-\uncover<4->{\item Equivalence between Toeplitz and $\Psi$DO
-  calculus in the $C^{\infty}$ class.}
-\uncover<5>{\item Toeplitz quantization is formulated {\color{myorange} directly in
-  phase space}, and {\color{myorange} positive}.}
-
-  \end{itemize}
-\end{frame}
-
-\section{Toeplitz quantization on manifolds}
-
-\subsection{Construction}
-
-\begin{frame}\frametitle{Generalized Bargmann spaces}
-  \begin{itemize}
-    \item Changing the positive quadratic weight in the Bargmann space:
-  \[
-    B_N^{\psi}=\left\{f\in L^2(\C^n), e^{-N\psi}f \text{ is
-        holomorphic}\right\}
-  \]
-  is another closed subspace of $L^2$.
-
-  \item<2-> Commutator of Toeplitz operators $\rightsquigarrow$
-    squeezed symplectic form given by
-    $\partial\overline{\partial}\psi$.
-    
-  \item<3-> Infinitesimal model for the case where $\psi$ is an
-    arbitrary strongly pseudoconvex function $\Leftrightarrow$ arbitrary
-    symplectic form on $\R^{2n}$.
-      \item<4> Note: one cannot simplify both symplectic and complex
-          structure at the same time!
-      \end{itemize}
     \end{frame}
+
+
+    \AtBeginSection[]
+{
+\setbeamercolor{section in toc}{fg=alerted text.fg}
+\setbeamercolor{section in toc shaded}{bg=structure!20,fg=structure}
+\setbeamertemplate{section in toc shaded}[default][100]
+\begin{frame}<beamer>
+  \frametitle{Outline}
+  \tableofcontents[currentsection,hideallsubsections]
+\end{frame}
+}
+
     
+      \section{Toeplitz quantization}
+      \begin{frame}
+        \frametitle{Quantum-classical correspondence}
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\spline
+	    Classical mechanics & Quantum mechanics\\
+		\spline
+		Symplectic manifold $M$ & Hilbert Space $H$\\ 
+		\spline 
+		Function $a\in C^{\infty}(M,\R)$ & Self-adjoint
+                                                   operator $A\in L(H)$\\
+		\spline
+                Hamiltonien flow of $a$ & Flow of $e^{itA/\hbar}$\\
+		\spline
+		Poisson Bracket & Lie Bracket\\
+		\spline
+	\end{tabular}\end{center}\vspace{0em}
+	\begin{itemize}
+	\uncover<2>{\item Quantization : for a given classical
+          model, how to construct an associated quantum
+          model ?
+	
+	\item Semiclassics : the quantum model is $\hbar$-dependent. What
+          can be said in the $\hbar\to 0$ limit ?}
+	\end{itemize}
+\end{frame}
+
 \begin{frame}
   \frametitle{Toeplitz quantization}
   \begin{itemize}
-  \item Compact, complex, symplectic manifold $M$
-    under compatibility conditions ({\color{myorange} K\"ahler, quantizable}).
-    \item<2-> Complex line bundle $L\to M$ with curvature
-  $-i\omega$: glue together pieces of Bargmann spaces in holomorphic charts.
-\uncover<3->{\item Quantum space $H_N(M)$ of holomorphic sections of
-  $L^{\otimes N}$.}
-\uncover<4->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M).$}
+  \item {\color{myorange} First step}: construct a sequence of
+    orthogonal projectors $(S_N)_{N\in \N}$ acting on functions (or sections) on $M$.
+    \item {\color{myorange} Second step}: associate to $a\in
+      C^{\infty}(M,\R)$ the operator
+      \begin{center}
+\begin{array}{rcl}
+ 		T_N(a):Im(S_N)&\to & Im(S_N)\\
+		u& \mapsto& S_N(fu\uncover).
+ 		\end{array}
+\end{center}
 \end{itemize}
 
 \vfill
 
-  \uncover<5>{Let $f\in L^{\infty}(M,\C)$. The Toeplitz operator associated
-  with $f$ is the bounded operator
-\begin{center}
-\begin{array}{rcl}
- 		T_N(f):H_N(M)&\to & H_N(M)\\
-		u& \mapsto& S_N(fu).
- 		\end{array}
-\end{center}
-    }
+This procedure preserves self-adjointness and {\color{myorange}
+  positivity}.
+
+\vfill
+
+\uncover<2>{
+  Idea for $Im(S_N)$: consider spaces that are (over an open set $U$) of the form
+  \[
+    L^2(w)\cap \mathop{Hol}:=\left\{f:U\to \C \text{ holomorphic }, \int
+    |f|^2w<+\infty\right\}.
+  \]
+
+  \vfill
+
+  Semiclassical regime: $w=e^{N\Phi}$, with $N\to +\infty$.}
 \end{frame}
 
-
-\subsection{Case of the sphere}
-
 \begin{frame}
-  \frametitle{Case $M=\S^2$}
-  Stereographic chart: $L$ is topologically trivial.
+  \frametitle{Spectral gap}
+  $L^2(e^{N\Phi})\cap \mathop{Hol}$ is the kernel of
+  $\overline{\partial}^*\overline{\partial}$ acting on $L^2(e^{N\Phi})$.
 
-  \hspace{9.5em}Its hermitian metric is
-  $\frac{1}{1+|z|^2}|\cdot|^2.$ \[H_N(M)\simeq \left\{f\text{ holo on $
-        \C$},\,\int_{\C}\cfrac{|f|^2}{(1+|z|^2)^{N+2}}<\infty\right\}=\C_N[X].\]
- \uncover<2->{Expression of the Szeg\H{o}
- kernel in this chart:\[S_N(z,w)=\cfrac{N+1}{\pi}\left(\cfrac{1+z\overline{w}}{\sqrt{(1+|z|^2)(1+|w|^2)}}\right)^N.\]}
-\uncover<3->{
-  \only<1-3>{\[T_N(\text{base coords})=\vphantom{\frac{N-2}{N}}\text{spin matrices}.\]}
-  \only<4>{\[T_N(\S^2\ni (x,y,z)\mapsto x)=\frac{N-2}{N}S_x.\]}
-  }
+  \vfill
+
+  The orthogonal projector $S_N:L^2(e^{N\Phi})\to L^2(e^{N\Phi})\cap \mathop{Hol}$  is well-behaved when
+  $\overline{\partial}^*\overline{\partial}$ has a spectral
+  gap.
+  \begin{prop}[\mycite{Hörmander 1968}]
+    If (and only if) $\partial\overline{\partial}\Phi$ is definite positive
+    everywhere, then for some $c>0$, 
+    \[
+      \sigma(\overline{\partial}^*\overline{\partial})\subset
+      \{0\}\cup [cN,+\infty).
+      \]
+    \end{prop}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Flat case}
+    Standard case: on $\C^d\simeq \R^{2d}$, $\Phi$ is a positive
+    definite quadratic form.
+    \begin{itemize}
+    \item $S_N$ is explicit: it has an integral kernel
+      \[
+        S_N(x,y)=cN^d\exp(-N\Psi(x,y)).
+        \]
+    \item One interpretation: projector onto the Lowest Landau Level
+      of a constant magnetic field.
+    \item $Im(S_N)$ is related to $L^2(\R^d)$ via a FBI transform.
+    \end{itemize}
+    {\color{myorange} Quantization check}: the bracket between
+    Toeplitz operators is given by
+    \[
+      [T_N(f),T_N(g)]=\uncover<2>{\frac{i}{N}T_N(\{f,g\}_{\Phi})+O(N^{-2}),}\]
+    \uncover<2>{where $\{\cdot,\cdot\}_{\Phi}$ is the Poisson bracket
+      for the symplectic structure $\partial\overline{\partial}\Phi$.}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{General case and gluing}
+    On a compact manifold, gluing spaces of the form
+    $L^2(e^{N\Phi})\cap \mathop{Hol}$ yields {\color{myorange}
+      holomorphic sections of a line bundle} $L^{\otimes N}$ over $M$.
+
+    \vfill
+
+    Reciprocally, given a symplectic manifold $(M,\omega)$ and a
+    compatible complex structure $J$ (Kähler), one can build $L$ by reading
+    $\omega$ as $\partial\overline{\partial}\Phi$ in charts.
+
+    \vfill
+
+    If $M=\S^2$ with natural symplectic and complex structure, then
+      \only<1>{\[T_N(\text{base coords})=\vphantom{\frac{N-2}{N}}\text{spin matrices}.\]}
+  \only<2>{\[T_N(\S^2\ni (x,y,z)\mapsto x)=\frac{N-2}{N}S_x.\]}
 \end{frame}
-
-\subsection{Semiclassical limit}
 \begin{frame}
-  \frametitle{The Szeg\H{o} kernel}
- On $\S^2$, there holds $S_N(x,y)=\frac{(N+1)}{\pi}\Psi^{\otimes
-      N}(x,y)$, where $\Psi$ is a fixed section over $M\times M$ and
-    $|\Psi|\approx e^{-c\dist(x,y)^2}$.
+  \frametitle{Asymptotics of the Szeg\H{o} kernel}
+ On $\C^d$, there holds $S_N(x,y)=cN^d\Psi^{\otimes
+      N}(x,y)$, with
+    $|\Psi|\asymp e^{-c\dist(x,y)^2}$.
     \uncover<2->{\begin{theorem}[\mycite{[Delin 1998]}]
-        Let $M$ be a compact, $C^2$ Kähler manifold of
+        Let $M$ be a compact, {\color{myorange} $C^2$} Kähler manifold of
         dimension $d$. Then
         \[
           |S_N(x,y)|<CN^d\exp(-c\sqrt{N}\dist(x,y)).
@@ -415,48 +371,21 @@ $C_j$ is a bidifferential operator of total order $2j$.}
       \end{theorem}
     }
     \uncover<3->{\begin{theorem}[\mycite{[Charles 2003]}]
-        Suppose $M$ is $C^{\infty}$. There exists a section
+        Suppose $M$ is {\color{myorange} $C^{\infty}$}. There exists a section
         $\Psi$ and a sequence of functions $(s_k)_{k\geq 0}$ on
         $M\times M$ such that
       \[
         S_N(x,y)=N^d\Psi^{\otimes
           N}(x,y)(s_0+N^{-1}s_1+\cdots)(x,y)+O(N^{-\infty}).
       \]
-      Here, for some $c>0$,
-      \[
-        |\Psi(x,y)|\leq e^{-c\dist(x,y)^2}.
-        \]
-      \end{theorem}}
-    
-\end{frame}
+      Here, for some $c>0$, $
+        |\Psi(x,y)|\leq e^{-c\dist(x,y)^2}.$
+      \end{theorem}
 
-
-\begin{frame}
-  \frametitle{Approaches for Szeg\H{o} kernel estimates}
-  Off-diagonal decay:
-  \begin{itemize}
-  \item Spectral gap for $\overline{\partial}^*\overline{\partial}$
-    \mycite{[Kohn 1963, Hörmander 1968]}.
-  \item Off-diagonal $\exp(-c\sqrt{N})$ decay \mycite{[Christ 1991,
-      Delin 1998]}.
-  \item Off-diagonal $\exp(-cN)$ decay if $M$ is {\color{myorange} real-analytic}
-    \mycite{[Berndtsson-Berman-Sjöstrand 2008]}.
-  \end{itemize}
-
-  Near diagonal estimates:
-  \begin{itemize}
-    \item FIOs with complex phase \mycite{[Shiffman-Zelditch 2002,
-        Charles 2003]}: versions of
-      the result above, remainder $O(N^{-\infty})$, following
-      \mycite{[Boutet de Monvel-Sjöstrand 1975]}.
-    \item Weighted estimates on $-\Delta$
-      \mycite{[Ma-Marinescu 2007, Ma-Marinsecu-Kordyukov 2019]}:
-      generalisations (spin$^c$-Dirac, Bochner).
-    \item Analytic calculus \mycite{[\underline{D. 2018c++},
-        Rouby-Vũ Ng\d{o}c-Sjöstrand 2018++]}: if $M$ is
-      {\color{myorange} real-analytic},
-      the remainder is $O(e^{-cN})$ with $c>0$.
-    \end{itemize}
+      If $M$ is {\color{myorange} analytic}, $S_N$ is known up to
+    $O(e^{-cN})$. \mycite{[\underline{D. 2018c++},
+        Rouby-Vũ \vspace{-0.6em}\begin{flushright}Ng\d{o}c-Sjöstrand 2018++]\end{flushright}}
+    }
   \end{frame}
 
   \begin{frame}
@@ -481,6 +410,27 @@ $C_j$ is a bidifferential operator of total order $2j$.}
         \mycite{[\underline{D. 2018c++}]}.
   \end{frame}
 
+\begin{frame}
+  \frametitle{Toeplitz operators versus $\Psi$DOs}
+  \begin{itemize}
+  \item In the case $M=\C^d, \Phi=|z|^2$, an FBI transform $\mathcal{B}_N$ conjugates $Im(S_N)$ and
+    $L^2(\R^n)$.
+  \uncover<2->{
+  \item With {\color{myorange} $g_N=(N/\pi)^ne^{-N|z|^2}$} one has
+    \[
+      \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_W^{N^{-1}}(f*g_N).
+    \]\vspace{-2em}}
+\uncover<3->{\item Equivalence between Toeplitz and $\Psi$DO
+  calculus in the $C^{\infty}$ class.}
+\uncover<4>{\item Toeplitz quantization is formulated {\color{myorange} directly in
+  phase space}, it is {\color{myorange} positive} and
+{\color{myorange} better behaved for rough symbols}.}
+
+  \end{itemize}
+\end{frame}
+
+
+
 
 \section{Localisation of low-energy states}
 
@@ -499,35 +449,56 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
         \int_{U}|u_N|^2=O(e^{-cN}).%\vspace{-0.5em}
       \]
     \end{theorem}
-    }
-  \end{frame}
+  }
+
+  \begin{itemize}
+  \item Tool: calculus of Toeplitz operators
+  \item  Context: fixed manifold, $N\to +\infty$.
+  \end{itemize}
+\end{frame}
 
   \begin{frame}
   \frametitle{Speed of localisation -- improved}
-  \begin{theorem}[\mycite{[\underline{D. 2020++}]}]
-    If $f$ is {\color{myorange} $L^{\infty}$} and $U\subset M$ is at
+  \begin{theorem}[\mycite{[\underline{D. 2020a++}]}]
+    If $f$ is {\color{myorange} $L^{\infty}$}, $M$ is
+    {\color{myorange} $C^{1,1}$} and $U\subset M$ is at
     positive distance from $Z$, then
     \[
-      \int_U |u_N|^2=O(e^{-cN^{\alpha}}).
+      \int_U |u_N|^2=O(e^{-cN^{\frac 14}}).
       \]
     \end{theorem}
-    \uncover<2>{
-      \begin{itemize}
-        \item $M$ is $C^{1,1}$: $\alpha=\frac 14$.
-        \item $M$ is analytic: $\alpha=\frac 13$.
-        \item $f$ is Lipschitz: $\alpha=\frac 12$, one can take
-          $U=\{f\geq \min(f)+CN^{-\frac 12+\epsilon}\}$.
-        \item $f$ is $C^2$: $\alpha=\frac 12$, one can take $U=\{f\geq
-          \min(f)+CN^{-1+\epsilon}\}$.
-        \end{itemize}
-      }
-      
-      \vfill
+    If $f$ or $M$ is more regular, we get up to $O(e^{-cN^{-\frac 12}})$.
 
-      Tool: off-diagonal decay of the projector.
+    \begin{itemize}
+      \item Tool: off-diagonal decay of the projector.
+      \item Context: fixed manifold, $N\to +\infty$.
+      \end{itemize}
     \end{frame}
 
+    \begin{frame}
+      \frametitle{Speed of localisation -- uniformity in $d$}
+      Case where $f$ is a ``spin system'' on $(\S^2)^d$.
+      \begin{theorem}
+        [\mycite{[\underline{D. 2020a++}]}]
+        If $T_N(f)u=\lambda u$, then with
+        \[
+          U=\{|f-\lambda|\geq C(f)N^{-\frac 14}d^{\frac 34}\},
+        \]
+        one has
+        \[
+          \int_U
+          e^{c(f)\frac{\sqrt{N}\dist(\cdot,U)}{\sqrt{d}}}|u|^2\leq
+          C(f)\|u\|_2^2.
+          \]
+        \end{theorem}
+        Here, $C(f)$ is {\color{myorange} independent on $d,N,\lambda$}.
 
+        Application: quantum free energy $f_Q$ versus classical free
+        energy $f_C$: if $\beta<c(f)d$, then
+        \[
+          |f_Q(\beta,d)-f_C(\beta,d)|\leq C(f)N^{-\frac 12}.
+          \]
+    \end{frame}
 
 
 \subsection{Subprincipal effects on localisation}
@@ -548,8 +519,8 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
       \item $V$ vanishes on a smooth submanifold $Z$
       \item Its transverse Hessian is nondegenerate on $Z$.
       \end{itemize}
-    \item case of a magnetic Schrödinger operator with similar
-    conditions \mycite{[Helffer-Morame 1996, Helffer-Kordyukov 2009]} .
+    \item ``Magnetic bottles'' \mycite{[Helffer-Morame 1996,
+        Helffer-Kordyukov 2009, ...]}
     \end{itemize}
     }
 
@@ -569,29 +540,15 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
       \]
     \end{theorem}
 
-    \vfill
-
-    One should have fractional exponential decay at least when $f\in C^{2,1}$.
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Particular case: frustrated spin systems}
-  \begin{center}
-    \includegraphics[scale=6]{Alcazar.png}\includegraphics[scale=0.16]{Herbertsmithite.jpg}
-  \end{center}
-  \begin{itemize}
-\item  Framework: fixed number of particles $d$, spin parameter $N$
-  tends to infinity, set $Z$ arbitrary.
-
-  \item<2->{Computations for this particular case
-    $M=(\S^2)^d$ \mycite{[\underline{D. 2018b++}]}.}
-\item<3-> Fractional exponential decay,
-  {\color{myorange} uniform in $d$} \mycite{[\underline{D. 2020++}].}
-
-  \item<4>{{\color{myorange} Open problem}: where is $\mu$ minimal among classical
-      configurations on the Kagome lattice?}
-  \end{itemize}
+    \begin{itemize}
+      \item If $Z$ has a simple structure near $Z_{\mu}$, one can build
+        quasimodes.
+        \item Tools: Calculus of Toeplitz operators, cutting the phase
+          space.
+        \item Context: fixed manifold, $M\to +\infty$.\
+        \end{itemize}
+        
+    
 \end{frame}
 
  \subsection{Future work}
