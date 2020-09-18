@@ -38,8 +38,8 @@
 \input{thm-config}
 \title{Szeg\H{o} kernels and Toeplitz operators}
 \author{Alix Deleporte}
-\date{January 23, 2020}
-\institute[UZH]{Institut für Mathematik\\Universität Zürich}
+\date{September 22, 2020}
+\institute[LMO]{Laboratoire de Mathématiques d'Orsay\\Université Paris-Saclay}
 \newcommand{\spline}{\hline}
 \renewcommand{\arraystretch}{1.3}
 
@@ -76,7 +76,11 @@
 
   \vfill
 
-  2020--2???: Postdoc (Zürich)
+  2020: Postdoc (Zürich)
+  
+  \vfill
+  
+  2020--20??: Maître de Conférences (LMO, Paris-Saclay)
 \end{frame}
 
       \begin{frame}
@@ -203,19 +207,17 @@
         \begin{description}
         \item<1>[{[D. 2019]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators: The Case
 of Wells.” In: Journal of Spectral Theory 9 (2019).
-\item<1-2> [{[D. 2020?]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
-Miniwell.” In: Comm. Math. Phys, to appear.
+\item<1-2> [{[D. 2020a]}] Alix Deleporte. “Low-Energy Spectrum of Toeplitz Operators with a
+Miniwell.” In: Comm. Math. Phys 378(3), 1587-1647.
 \item<1>[{[D. 2018a++]}] Alix Deleporte. “Quantum Selection for Spin Systems.” In: arXiv
 1808.00718 (2018).
 \item<1>[{[D. 2018b++]}] Alix Deleporte. “The Bergman Kernel in Constant Curvature.” In:
 arXiv 1812.06648 (2018).
-\item<1-2>[{[D. 2018c++]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: arXiv
-1812.07202 (2018).
+\item<1-2>[{[D. 2020b]}] Alix Deleporte. “Toeplitz Operators with Analytic Symbols.” In: Journal of Geometric Analysis, to appear.
 \item<1>[{[D. 2019++]}] Alix Deleporte. “WKB Eigenmode Construction for Analytic Toeplitz
   Operators.” In: arXiv 1901.07215 (2019).
-  \item<1-2>[{[D. 2020++]}] Alix Deleporte. ``Fractional exponential
-    decay in the forbidden region for Toeplitz operators.'' In: arXiv
-    2001.07921 (2020).
+  \item<1-2>[{[D. 2020c]}] Alix Deleporte. ``Fractional exponential
+    decay in the forbidden region for Toeplitz operators.'' In: Documenta Mathematica (to appear)
   
         \end{description}}
       \end{frame}
@@ -225,6 +227,39 @@ arXiv 1812.06648 (2018).
 \section{Basics of Toeplitz quantization}
 \begin{frame}
   \frametitle{Quantization: I}
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\spline
+	    Classical mechanics & Quantum mechanics\\
+		\spline
+		\uncover<2->{Symplectic manifold $M$} & \uncover<2->{Hilbert Space $H$}\\ 
+		\spline 
+		\uncover<3->{Function $p\in C^{\infty}(M,\R)$}& \uncover<3->{Self-adjoint
+                                                   operator $P\in L(H)$}\\
+		\spline
+          \uncover<4->{Hamiltonien flow $\Phi_t(p)$} &
+                                                  \uncover<4->{Unitary
+                                                        flow $e^{itP/\hbar}$}\\
+		\spline
+		\uncover<5->{Poisson Bracket} &\uncover<5->{Lie Bracket}\\
+		\spline
+	\end{tabular}\end{center}\vspace{0em}
+	\uncover<6>{Quantization : associate to $p\in
+          C^{\infty}(M,\R)$ a family $Op_{\hbar}(p)\in L(H)$, such that, as
+          $\hbar \to 0$,
+          \[
+            [Op_{\hbar}(p),Op_{\hbar}(q)]=i\hbar Op_{\hbar}(\{p,q\})+O(\hbar^2).
+          \]
+          
+          \vfill
+          
+          Semiclassical analysis: study $Op_{\hbar}(p)$ as $\hbar\to 0$.}
+          
+          
+      \end{frame}
+
+\begin{frame}
+  \frametitle{Quantization: II}
   Quantization: associate {\bf classical dynamics} (driven by
   real-valued functions) with {\bf self-adjoint operators}.
 
@@ -242,7 +277,7 @@ acting on $\mathcal{F}$-invariant sections of $L$.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Quantization: II}
+  \frametitle{Quantization: III}
   {\bfseries Semiclassical limit}: replace $\omega$ with $N\omega$ for
   $N\in \N$ large (replace $L$ with $L^{\otimes N}$).
 
