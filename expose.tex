@@ -323,8 +323,8 @@ $C_j$ is a bidifferential operator of total order $2j$.}
     \]\vspace{-2em}}
 \uncover<4->{\item Formal equivalence between Toeplitz and $\Psi$DO
   calculus.}
-\uncover<5>{\item Toeplitz quantization is formulated directly in
-  phase space, and it is positive.}
+\uncover<5>{\item Toeplitz quantization is formulated {\color{myorange}directly in
+  phase space}, and it is {\color{myorange} positive}.}
 
   \end{itemize}
 \end{frame}
@@ -342,7 +342,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
     If $\Phi$ is an arbitrary positive definite quadratic form $\rightarrow$ same theory: 
     the Szeg\H{o} projector is explicit,
     \[
-     \exists \Psi, \qquad \qquad S_N(z,w)=N^{-n}\exp(-N\Psi(x,y));
+     \exists \Psi,C, \qquad \qquad S_N(z,w)=N^{-n}\exp(-N\Psi(x,y));
     \]
     and the commutator brings out a new symplectic form
 
@@ -364,7 +364,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
     Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_0(M,L^{\otimes N})$, Toeplitz quantization
     \begin{center}
 \begin{array}{rcl}
- 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
+ 		T_N(f):H_0(M,L^{\otimes N})&\to & H_0(M,L^{\otimes N})\\
 		u& \mapsto& S_N(fu).
  		\end{array}
 \end{center}
@@ -391,7 +391,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
   \frametitle{The Szeg\H{o} kernel}
  On $\S^2$, there holds $S_N(x,y)=\frac{(N+1)}{\pi}\Psi^{\otimes
       N}(x,y)$, where $\Psi$ is a fixed section over $M\times M$ and
-    $|\Psi|\approx e^{-c\dist(x,y)^2}$.
+    $\log |\Psi|\asymp -\dist(x,y)^2$.
     \uncover<2->{\begin{theorem}[\mycite{[Delin 1998]}]
         Let $M$ be a compact, $C^2$ Kähler manifold of
         dimension $d$. Then
@@ -410,7 +410,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
       \]
       Here, for some $c>0$,
       \[
-        |\Psi(x,y)|\leq e^{-c\dist(x,y)^2}.
+         |\Psi(x,y)|\leq -c\dist(x,y)^2.
         \]
       \end{theorem}}
     
@@ -438,8 +438,8 @@ $C_j$ is a bidifferential operator of total order $2j$.}
     \item Weighted estimates on $-\Delta$
       \mycite{[Ma-Marinescu 2007, Ma-Marinsecu-Kordyukov 2019]}:
       generalisations.
-    \item Analytic calculus \mycite{[\underline{D. 2018c++},
-        Rouby-Vũ Ng\d{o}c-Sjöstrand 2018++]}: if $M$ is
+    \item Analytic calculus \mycite{[\underline{D. 2020b},
+        Rouby-Vũ Ng\d{o}c-Sjöstrand 2019]}: if $M$ is
       {\color{myorange} real-analytic},
       the remainder is $O(e^{-cN})$ with $c>0$.
     \end{itemize}
@@ -461,8 +461,11 @@ $C_j$ is a bidifferential operator of total order $2j$.}
           T_N(a)T_N(d_0+N^{-1}d_1+\cdots)=S_N+O(N^{-\infty}).
           \]
         \end{theorem}
+
+        \vfill
+        
         Calculus in analytic regularity (up to $O(e^{-cN})$):
-        \mycite{[\underline{D. 2018c++}]}.
+        \mycite{[\underline{D. 2020b}]}.
   \end{frame}
 
 
@@ -477,7 +480,7 @@ $C_j$ is a bidifferential operator of total order $2j$.}
   If f is {\color{myorange}smooth} and $U\subset M$ is at positive distance from $Z$, then \[\int_{U}|u_N|^2=O(N^{-\infty}).\]\vspace{-1.2em}
 \end{theorem}
 \uncover<2>{
-\begin{theorem}[\mycite{[\underline{D. 2018c++}]}]
+\begin{theorem}[\mycite{[\underline{D. 2020b}]}]
 If f is {\color{myorange}real-analytic} then\vspace{-1em}
       \[
         \int_{U}|u_N|^2=O(e^{-cN}).%\vspace{-0.5em}
@@ -487,7 +490,7 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 \end{frame}
 \begin{frame}
   \frametitle{Speed of localisation -- improved}
-  \begin{theorem}[\mycite{[\underline{D. 2020++}]}]
+  \begin{theorem}[\mycite{[\underline{D. 2020c}]}]
     If $f$ is {\color{myorange} smooth} and $U\subset M$ is at
     positive distance from $Z$, then
     \[
@@ -515,7 +518,7 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
      
      How do these estimates behave as the dimension of $M$ increases? (In the setting of spin systems: large dimension !)
      
-     \begin{theorem}
+     \begin{theorem}[\mycite{[\underline{D. 2020c}]}]
       Let $f$ be a nice spin system. Then, {\color{myorange}uniformly in $d$ and $N$}, letting
       \[
        U=\left\{x\in (S^2)^d, f(x)\leq \min(f)+C_1N^{-\frac 14}d^{\frac 34}\right\},
@@ -560,7 +563,7 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 \begin{frame}
   \frametitle{Subprincipal localisation}
   Quantum selection in general for Toeplitz operators:
-  \begin{theorem}[\mycite{[\underline{D. 2020?}]}]
+  \begin{theorem}[\mycite{[\underline{D. 2020a}]}]
     Let $M$ be smooth, let $f\in C^{\infty}(M,\R)$ and let $Z_{\mu}$ and
     $(u_N)_{N\geq 1}$ be as above.
 
