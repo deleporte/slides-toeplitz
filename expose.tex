@@ -14,16 +14,16 @@
 \usepackage{calc}
 \usepackage{xcolor}
 
-\AtBeginSection[]
-{
-\setbeamercolor{section in toc}{fg=alerted text.fg}
-\setbeamercolor{section in toc shaded}{bg=structure!20,fg=structure}
-\setbeamertemplate{section in toc shaded}[default][100]
-\begin{frame}<beamer>
-  \frametitle{Outline}
-  \tableofcontents[currentsection,hideallsubsections]
-\end{frame}
-}
+%\AtBeginSection[]
+%{
+%\setbeamercolor{section in toc}{fg=alerted text.fg}
+%\setbeamercolor{section in toc shaded}{bg=structure!20,fg=structure}
+%\setbeamertemplate{section in toc shaded}[default][100]
+%\begin{frame}<beamer>
+%  \frametitle{Outline}
+%  \tableofcontents[currentsection,hideallsubsections]
+%\end{frame}
+%}
 
 \definecolor{myorange}{RGB}{180,90,0}
 
@@ -218,7 +218,7 @@ arXiv 1812.06648 (2018).
   Operators.” In: arXiv 1901.07215 (2019).
   \item<1-2>[{[D. 2020c]}] Alix Deleporte. ``Fractional exponential
     decay in the forbidden region for Toeplitz operators.'' In: Documenta Mathematica (to appear)
-  
+\item<1>[{[DHS 2020++]}] Alix Deleporte, Michael Hitrik and Johannes Sjöstrand. “A direct approach to the analytic Bergman projection.” In: arXiv 2004.14606
         \end{description}}
       \end{frame}
 
@@ -226,7 +226,7 @@ arXiv 1812.06648 (2018).
 
 \section{Basics of Toeplitz quantization}
 \begin{frame}
-  \frametitle{Quantization: I}
+  \frametitle{Semiclassical correspondence}
 \begin{center}
 	\begin{tabular}{|c|c|}
 		\spline
@@ -257,84 +257,118 @@ arXiv 1812.06648 (2018).
           
           
       \end{frame}
-
-\begin{frame}
-  \frametitle{Quantization: II}
-  Quantization: associate {\bf classical dynamics} (driven by
-  real-valued functions) with {\bf self-adjoint operators}.
-
-Ingredients: a symplectic manifold $(M,\omega)$, a Lagrangian
-distribution $\mathcal{F}\subset TM$.
-
-\vfill
-
-{\bfseries Step 1}: construct the {\bfseries prequantum bundle} $L$
-over $M$: it is a $\C$-bundle with Hermitian structure, and curvature
-$2i\pi \omega$.
-
-{\bfseries Step 2}: associate to $f:M\to \R$ an operator $Op(f)$
-acting on $\mathcal{F}$-invariant sections of $L$.
-\end{frame}
-
-\begin{frame}
-  \frametitle{Quantization: III}
-  {\bfseries Semiclassical limit}: replace $\omega$ with $N\omega$ for
-  $N\in \N$ large (replace $L$ with $L^{\otimes N}$).
-
-  \vfill
-
-  Example 1:
+      
+      \begin{frame}
+  \frametitle{Bargmann spaces}
   \begin{itemize}
-  \item 
-  $M=T^*X$, $X$ Riemannian manifold,
-  $\mathcal{F}=\mathrm{span}(\partial/\partial \xi)$.
-\item 
-  $\mathcal{F}$-invariant sections of
-  $L^{\otimes N}$ are functions on $X$.
-\item $Op$ is
-  Weyl-quantization. ($\xi\rightsquigarrow iN^{-1}\partial_x$).
-\end{itemize}
+  \item Original idea: express Quantum Mechanics directly in phase
+    space. \mycite{[Bargmann 61]}
+  \uncover<2->{\item The standard $L^2(\R^n)$ is replaced with the \emph{Bargmann
+      space}, with parameter $N>0$:
+$$B_N=L^2(\C^n)\cap\left\{e^{-\frac N2 |\cdot|^2}f,\,f\text{ is
+  holomorphic on $\C^n$}\right\}.$$}\vspace{-2em}
+  \uncover<3>{\item This is a closed subspace of $L^2(\C^n)$, with reproducing
+    kernel
+$$\Pi_N(x,y)=\left(\frac N{\pi}\right)^n\exp\left(-\cfrac N2
+  |x-y|^2+iN\Im(x\cdot \overline{y})\right).$$}
+  \end{itemize}
 
-\vfill
-
-Example 2:
-\begin{itemize}
-\item $M$ is a Kähler manifold (compatible complex structure $J$),
-  $\mathcal{F}=\mathrm{span}(\partial/\partial \overline{z})$.
-\item $\mathcal{F}$-invariant sections of $L^{\otimes N}$ are
-  holomorphic sections.
-\item $Op$ is Toeplitz-quantization.
-\end{itemize}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Toeplitz quantization}
-  \begin{itemize}
-  \item Quantum space $H_N(M)$ of holomorphic sections of
-  $L^{\otimes N}$.
-\uncover<2->{\item Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_N(M).$}
-  \end{itemize}
-  \uncover<3->{The Szeg\H{o} projector has an integral kernel (section
-    over $M^2$):
-    \[
-      (S_Nu)(x)=\int_M S_N(x,y)u(y) \omega^{\wedge d}(dy).
-    \]
-  }
-
-  \vfill
-  
-  \uncover<4->{ Let $f\in L^{\infty}(M,\C)$. The Toeplitz operator associated
+  Let $f\in C^{\infty}(\C^n,\C)$ bounded. The Toeplitz operator associated
   with $f$ is the bounded operator
 \begin{center}
 \begin{array}{rcl}
- 		T_N(f):H_N(M)&\to & H_N(M)\\
-		u& \mapsto& \uncover<5>{S_N(}fu\uncover<5>{)}.
+ 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
+		u& \mapsto& \uncover<2->{\Pi_N(}fu\uncover<2->{)}.
  		\end{array}
-\end{center}}
+\end{center}
+
+\uncover<3->{If $f$ has polynomial growth then $T_N(f)$ is an unbounded operator
+with dense domain.}
+\uncover<4>{\begin{itemize}
+\item If $f$ is real-valued then $T_N(f)$ is ess. self-adjoint.
+\item If moreover $f\geq 0$ then $T_N(f)\geq 0$.
+\end{itemize}}
 \end{frame}
 
-\subsection{Case of the sphere}
+\begin{frame}
+  \frametitle{Composition of Toeplitz operators}
+  \begin{itemize}
+  \item Recipe: \[T_N(z\mapsto \overline{z}^{\alpha}z^{\beta})=N^{-|\alpha|}\partial^{\alpha}z^{\beta}.\]
+
+\uncover<2->{\item The Toeplitz quantization is \emph{anti-Wick}: if $f$ is
+  anti-holomorphic and $h$ is holomorphic then
+\[T_N(fgh)=T_N(f)T_N(g)T_N(h).\]}
+\uncover<3>{\vspace{-1.5em}\item More generally, composition yields a formal series:
+\[T_N(f)T_N(g)=T_N\left(fg+N^{-1}C_1(f,g)+N^{-2}C_2(f,g)+\cdots\right).\]
+
+$C_j$ is a bidifferential operator of total order $2j$.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toeplitz operators versus $\Psi$DOs}
+  \begin{itemize}
+  \item The Bargmann transform $\mathcal{B}_N$ conjugates $B_N$ and
+    $L^2(\R^n)$.
+  \uncover<2->{\item It is related to the FBI
+    transform.}
+  \uncover<3->{
+  \item With $g_N=(N/\pi)^ne^{-N|z|^2}$ one has
+    \[
+      \mathcal{B}_N^{-1}T_N(f)\mathcal{B}_N=Op_{W}^{N^{-1}}(f*g_N).
+    \]\vspace{-2em}}
+\uncover<4->{\item Formal equivalence between Toeplitz and $\Psi$DO
+  calculus.}
+\uncover<5>{\item Toeplitz quantization is formulated directly in
+  phase space, and it is positive.}
+
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Generalized Bargmann spaces}
+ Given $\Phi:\R^n\to \R$, let us define
+    \[
+     B_N^{\Phi}=L^2(\C^n)\cap\left\{e^{-N\Phi}f,\,f\text{ is
+  holomorphic on $\C^n$}\right\}
+    \]
+    \vfill
+    
+    If $\Phi$ is an arbitrary positive definite quadratic form $\rightarrow$ same theory: 
+    the Szeg\H{o} projector is explicit,
+    \[
+     \exists \Psi, \qquad \qquad S_N(z,w)=N^{-n}\exp(-N\Psi(x,y));
+    \]
+    and the commutator brings out a new symplectic form
+
+    \[
+     [T_N(f),T_N(g)]=\frac{i}{N}T_N(\{f,g\}_\Phi).
+    \]
+\end{frame}
+
+\begin{frame}
+ \frametitle{General definitions}
+    Locally: symplectic form $+$ complex structure $\rightsquigarrow$ weight $\Phi$.
+    
+    \vfill
+    
+    Gluing together the pieces of Bargmann spaces gives a {\color{myorange} space of holomorphic sections} $H_0(M,L^{\otimes N})$ over the manifold.
+    
+    \vfill
+    
+    Szeg\H{o} projector $S_N:L^2(M,L^{\otimes N})\to H_0(M,L^{\otimes N})$, Toeplitz quantization
+    \begin{center}
+\begin{array}{rcl}
+ 		T_N(f):B_N(\C^n)&\to & B_N(\C^n)\\
+		u& \mapsto& S_N(fu).
+ 		\end{array}
+\end{center}
+\end{frame}
 
 \begin{frame}
   \frametitle{Case $M=\S^2$}
@@ -350,6 +384,7 @@ Example 2:
   \only<4>{\[T_N(\S^2\ni (x,y,z)\mapsto x)=\frac{N-2}{N}S_x.\]}
   }
 \end{frame}
+
 
 \subsection{Semiclassical limit}
 \begin{frame}
@@ -408,31 +443,6 @@ Example 2:
       {\color{myorange} real-analytic},
       the remainder is $O(e^{-cN})$ with $c>0$.
     \end{itemize}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{Application: Kodaira embeddings}
-    Let $M$ be a compact Kähler manifold with a prequantum bundle $L$.
-
-    For $N$ large, with $\mathop{dim}(H^0(M,L^{\otimes N}))=d_N$, and
-    $(s_k)$ an orthonormal basis, let
-    \begin{center}
-      \begin{array}{rcl}
-        \phi_N:M&\to &\C\mathbb{P}^{d_N-1}\\
-        x&\mapsto &[s_1(x):s_2(x):\cdots:s_{d_N}(x)]
-      \end{array}
-    \end{center}
-    Then $\phi_N$ is a well-defined complex map (because
-    $S_N(x,x)=\sum |s_k(x)|^2$, they don't all vanish at the same
-    point).
-    \vfill
-    \uncover<2>{
-      \begin{itemize}
-      \item $\Phi_N$ is an embedding for $N$ large. \mycite{[Kodaira 1954]}
-      \item The pulled-back Fubini metric is close (up to scaling) to
-        the original metric. \mycite{[Tian 1990, Zelditch 2000]}
-      \end{itemize}
-      }
   \end{frame}
 
   \begin{frame}
@@ -499,6 +509,26 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
 
       Tool: off-diagonal decay of the projector.
     \end{frame}
+    
+    \begin{frame}
+     \frametitle{Uniformity in the dimension}
+     
+     How do these estimates behave as the dimension of $M$ increases? (In the setting of spin systems: large dimension !)
+     
+     \begin{theorem}
+      Let $f$ be a nice spin system. Then, {\color{myorange}uniformly in $d$ and $N$}, letting
+      \[
+       U=\left\{x\in (S^2)^d, f(x)\leq \min(f)+C_1N^{-\frac 14}d^{\frac 34}\right\},
+      \]
+      one has
+      \[
+       \int |u_N(x)|\exp\left(-c\frac{N^{\frac 12}}{d^{\frac 12}}\dist(x,U)\right)\dd x\leq C_2
+      \]
+     \end{theorem}
+     Tool: off-diagonal decay of the projector.
+
+    \end{frame}
+
 
 
 \subsection{Subprincipal effects on localisation}
@@ -559,29 +589,11 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Applications: Mabuchi geodesics}
-  Another application of localisation of eigenfunctions. (In progress,
-  joint with S. Zelditch and P. Zhou)
-
-  \vfill
-  
-  \begin{itemize}
-  \item Riemannian structure (Mabuchi) on the space of Kähler metrics
-  on $M$.
-\item Geodesic equation $\Leftrightarrow$ complex Monge-Ampère
-  equation.
-\item<2-> {\color{myorange} Quantization} of the geodesics:
-  (presumably) of the form $t\mapsto e^{tNT_N(f)}$.
-\item<2-> Control of the spectrum of $T_N(f)$ allows us to study these operators.
-  \end{itemize}
-\end{frame}
-
 \subsection{Future work}
 \begin{frame}
   \frametitle{Perspectives}
     \begin{itemize}
-    \item Second-order effects for a large number of spins.
+    \item Subprincipal effects for a large number of spins.
     \item Low-energy dynamics.
     \item Non self-adjoint operators with analytic symbols (Scottish flag).
     \end{itemize}
@@ -592,46 +604,6 @@ If f is {\color{myorange}real-analytic} then\vspace{-1em}
     \centering 
     {\Large Thanks for your attention!}
   \end{frame}
-  
-
-  \begin{frame}[allowframebreaks]
-    \frametitle{Bibliography}
-        {\footnotesize
-          \begin{description}
-            \item[{[BS75]}] Louis Boutet de Monvel and Johannes
-              Sjöstrand.  “Sur la singularité des noyaux de Bergman et
-              de Szegö.” In: Journées équations aux dérivées
-              partielles 34-35 (1975), pp. 123--164.
-        \item[{[Cha00]}] Laurent Charles. “Aspects Semi-Classiques de La Quantification Géométrique.” PhD thesis. Université Paris 9, 2000.
-        \item[{[Cha03]}] Laurent Charles. “Berezin-Toeplitz Operators, a Semi-Classical Approach.” en. In: Communications in Mathematical Physics 239.1-2
-(Aug. 2003), pp. 1–28.
-        \item[{[DS98]}] Benoît Douçot and Patrice Simon. “A Semiclassical Analysis of Order
-from Disorder.” en. In: Journal of Physics A: Mathematical and General
-31.28 (1998), p. 5855.
-\item[{[HK09]}] Bernard Helffer and Yuri A. Kordyukov. “Semiclassical Analysis of
-Schrödinger Operators with Magnetic Wells.” In: Contemporary Mathematics 500 (2009), p. 105.
-\item[{[HM96]}] Bernard Helffer and Abderemane Mohamed. “Semiclassical Analysis for
-the Ground State Energy of a Schrödinger Operator with Magnetic
-Wells.” In: Journal of Functional Analysis 138.1 (1996), pp. 40–81.
-\item[{[HS86]}] Bernard Helffer and Johannes Sjöstrand. “Puits Multiples En Limite
-Semi-Classique V : Étude Des Minipuits.” In: Current topics in partial
-differential equations (1986), pp. 133–186.
-\item[{[HLX17++]}] Hamid Hezari, Zhiqin Lu, and Hang Xu. “Off-Diagonal Asymptotic
-Properties of Bergman Kernels Associated to Analytic Kähler Potentials.” In: arXiv 1705.09281 (2017).
-\item[{[Kor17++]}] Yuri A. Kordyukov. “On Asymptotic Expansions of Generalized Bergman
-Kernels on Symplectic Manifolds.” In: arXiv 1703.04107 [math-ph]
-(Mar. 2017).
-\item[{[MM07]}] Xiaonan Ma and George Marinescu. Holomorphic Morse Inequalities
-and Bergman Kernels. Vol. 254. Springer Science \& Business Media,
-2007.
-\item[{[RSV18++]}] Ophélie Rouby, Johannes Sjöstrand, and San Vũ Ng\d{o}c. “Analytic
-Bergman Operators in the Semiclassical Limit.” In: hal-01851770 (July
-2018).
-\item[{[SZ02]}] Bernard Shiffman and Steve Zelditch. “Asymptotics of Almost Holomorphic Sections on Symplectic Manifolds.” In: J. reine angew. Math.
-544 (2002), pp. 181–222.
-        \end{description}
-        }
-      \end{frame}
 
 \end{document}
 %%% Local Variables:
